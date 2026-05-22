@@ -378,21 +378,22 @@ footer{
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
 .reveal.in{opacity:1;transform:none}
 
-/* ── RESPONSIVE ── */
+/* ── TABLET ── */
 @media(max-width:960px){
   nav{padding:0 24px}
-  .nav-links,.nav-hire{display:none}
+  .nav-links{display:none}
+  .nav-hire{display:none}
   .hamburger{display:flex}
-  .mobile-menu{padding:24px}
+  .mobile-menu{padding:20px 24px}
   #hero{grid-template-columns:1fr}
   .hero-right{display:none}
-  .hero-left{padding:60px 24px}
-  .section{padding:72px 24px}
+  .hero-left{padding:60px 32px 56px}
+  .section{padding:72px 32px}
   .exp-row{grid-template-columns:1fr auto}
   .exp-left{display:none}
   .exp-body-inner{grid-template-columns:1fr}
   .exp-body-spacer{display:none}
-  .exp-body-content{padding:20px 16px}
+  .exp-body-content{padding:20px 20px}
   .proj-card.span2,.proj-card.span3{grid-column:span 12}
   .proj-card.span4{grid-column:span 12;grid-template-columns:1fr}
   .skills-grid{grid-template-columns:1fr}
@@ -400,6 +401,73 @@ footer{
   .ach-cell{border-bottom:1px solid rgba(255,255,255,0.1)}
   .contact-grid{grid-template-columns:1fr}
   footer{flex-direction:column;gap:16px;padding:20px 24px;text-align:center}
+}
+
+/* ── PHONE ── */
+@media(max-width:600px){
+  nav{padding:0 16px;height:58px}
+  .nav-brand{font-size:15px}
+  .mobile-menu{top:58px;padding:16px}
+  .mobile-menu a{font-size:16px;padding:10px 0;border-bottom:1px solid var(--rule)}
+  .mobile-menu a:last-child{border-bottom:none}
+
+  #hero{min-height:auto}
+  .hero-left{padding:44px 16px 48px}
+  h1{font-size:38px;line-height:1.05}
+  .hero-eyebrow{font-size:10px;margin-bottom:16px}
+  .hero-desc{font-size:14.5px;margin-bottom:28px}
+  .hero-actions{flex-direction:column;gap:10px}
+  .btn-dark,.btn-ghost{width:100%;justify-content:center;padding:14px 20px;font-size:13px}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;gap:0;padding-top:24px;margin-top:24px}
+  .stat-n{font-size:22px}
+  .stat-l{font-size:9px}
+  .stat{padding:0 10px}
+  .stat:first-child{padding-left:0}
+  .stat:last-child{padding-right:0}
+
+  .section{padding:52px 16px}
+  .section-header{margin-bottom:36px}
+  h2{font-size:30px}
+
+  .exp-row{grid-template-columns:1fr auto;align-items:center}
+  .exp-mid{padding:20px 16px}
+  .exp-role{font-size:13px;margin-bottom:8px}
+  .exp-chips{gap:4px}
+  .chip{font-size:9px;padding:3px 7px}
+  .exp-right{padding:20px 12px 20px 0}
+  .exp-arrow{width:32px;height:32px;font-size:20px}
+  .exp-body-content{padding:16px}
+  .exp-body-content li{font-size:13.5px}
+
+  .proj-grid{gap:1px}
+  .proj-card{padding:24px 18px;gap:12px}
+  .proj-card.span4{grid-template-columns:1fr}
+  .proj-name{font-size:16px}
+  .proj-card.span4 .proj-name{font-size:18px}
+  .proj-desc{font-size:13px}
+  .proj-tech{font-size:9px}
+
+  .ach-grid{grid-template-columns:1fr 1fr}
+  .ach-cell{padding:28px 18px}
+  .ach-glyph{font-size:32px}
+  .ach-name{font-size:12px}
+  .ach-sub{font-size:11px}
+
+  .skill-pills{gap:5px}
+  .pill{font-size:10px;padding:5px 10px}
+  .edu-card{padding:20px}
+  .edu-school{font-size:16px}
+  .cert-card{padding:18px}
+
+  .contact-grid{gap:40px}
+  .contact-intro{font-size:14.5px;margin-bottom:28px}
+  .c-row{padding:14px 16px}
+  .c-val{font-size:13px}
+  .role-grid{grid-template-columns:1fr 1fr}
+  .role-cell{padding:14px 16px}
+
+  footer{padding:20px 16px;gap:14px}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:16px}
 }
 </style>
 </head>
