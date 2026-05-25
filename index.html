@@ -510,6 +510,81 @@ nav{transition:height .25s ease,box-shadow .25s ease,background .25s ease}
 .ach-grid.in .ach-cell:nth-child(4){transition-delay:.4s}
 .ach-glyph{transition:color .3s ease}
 
+/* Contact form */
+.contact-form{
+  background:var(--off);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  padding:32px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.contact-form-title{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
+  letter-spacing:-0.02em;color:var(--ink);margin-bottom:4px;
+}
+.contact-form-sub{
+  font-size:13px;color:var(--ink3);line-height:1.55;margin-bottom:12px;
+}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{
+  font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink3);
+}
+.form-field input,.form-field textarea{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;
+  background:var(--w);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  padding:12px 14px;
+  color:var(--ink);
+  width:100%;
+  transition:border-color .2s ease,box-shadow .2s ease;
+  resize:none;
+}
+.form-field input:focus,.form-field textarea:focus{
+  outline:none;
+  border-color:var(--amber);
+  box-shadow:0 0 0 3px rgba(200,118,42,0.12);
+}
+.form-field textarea{min-height:120px;line-height:1.55}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--ink3);opacity:0.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  background:var(--ink);color:var(--w);
+  border:none;border-radius:2px;
+  padding:14px 24px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .2s ease,transform .15s ease;
+  margin-top:4px;
+  min-height:48px;
+}
+@media (hover:hover){.form-submit:hover{background:var(--amber);transform:translateY(-2px)}}
+.form-submit:active{transform:translateY(0)}
+.form-submit svg{width:14px;height:14px;transition:transform .2s ease}
+@media (hover:hover){.form-submit:hover svg{transform:translateX(3px)}}
+.form-status{
+  font-size:13px;font-weight:600;
+  display:none;padding:10px 12px;border-radius:2px;
+  align-items:center;gap:8px;
+  line-height:1.4;
+}
+.form-status.show{display:flex}
+.form-status.success{color:#0f5132;background:#d1e7dd;border:1px solid #a3cfbb}
+.form-status.error{color:#842029;background:#f8d7da;border:1px solid #f1aeb5}
+.form-status.loading{color:var(--ink2);background:var(--off);border:1px solid var(--rule)}
+.form-submit:disabled{opacity:0.6;cursor:not-allowed}
+.form-submit.loading .form-submit-label::after{
+  content:'';display:inline-block;width:12px;height:12px;
+  border:2px solid currentColor;border-right-color:transparent;border-radius:50%;
+  margin-left:8px;vertical-align:-2px;
+  animation:spin 0.7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 /* Contact rows */
 .c-row{position:relative;overflow:hidden}
 .c-row::before{
@@ -736,6 +811,14 @@ nav{transition:height .25s ease,box-shadow .25s ease,background .25s ease}
   .role-cell label{font-size:9px}
   .role-cell span{font-size:13px}
   .open-badge{font-size:13px;padding:14px 16px}
+
+  /* CONTACT FORM */
+  .contact-form{padding:22px 18px}
+  .contact-form-title{font-size:19px}
+  .form-row{grid-template-columns:1fr;gap:14px}
+  .form-field input,.form-field textarea{font-size:14px;padding:11px 12px;min-height:44px}
+  .form-field textarea{min-height:100px}
+  .form-submit{padding:14px 20px;font-size:12px}
 
   /* FOOTER */
   footer{padding:20px 16px;gap:14px}
@@ -1739,7 +1822,41 @@ nav{transition:height .25s ease,box-shadow .25s ease,background .25s ease}
         </div>
       </div>
       <div class="contact-right">
-        <div class="role-grid">
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f8b497c5-59f1-40d0-ba7b-ac6384e7da2a"/>
+          <input type="hidden" name="from_name" value="Portfolio Contact Form"/>
+          <input type="hidden" name="redirect" value="false"/>
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+          <div>
+            <div class="contact-form-title">Send a Message</div>
+            <div class="contact-form-sub">For roles, collaborations, or just to say hello. I read every message.</div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Your Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required autocomplete="name"/>
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Your Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="jane@company.com" required autocomplete="email"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="Cloud Engineer role at..." required/>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Your Message</label>
+            <textarea id="cf-message" name="message" placeholder="Hi Md, I'd like to discuss..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="formSubmitBtn">
+            <span class="form-submit-label">Send Message</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+
+        <div class="role-grid" style="margin-top:24px">
           <div class="role-cell">
             <label>Seeking</label>
             <span>Cloud / DevOps Engineer</span>
@@ -1757,7 +1874,7 @@ nav{transition:height .25s ease,box-shadow .25s ease,background .25s ease}
             <span>Chicago, IL · Flexible</span>
           </div>
         </div>
-        <div class="open-badge">
+        <div class="open-badge" style="margin-top:14px">
           <div class="pulse"></div>
           Open to new opportunities
         </div>
@@ -1969,6 +2086,61 @@ const sectionIo = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 sections.forEach(s => sectionIo.observe(s));
+// ── CONTACT FORM (Web3Forms) ──
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+const formSubmitBtn = document.getElementById('formSubmitBtn');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Honeypot check — if a bot filled this, silently abort
+    const botcheck = contactForm.querySelector('input[name="botcheck"]');
+    if (botcheck && botcheck.checked) return;
+
+    const setStatus = (msg, type) => {
+      if (!formStatus) return;
+      formStatus.textContent = msg;
+      formStatus.className = 'form-status show ' + type;
+    };
+
+    // Loading state
+    formSubmitBtn.disabled = true;
+    formSubmitBtn.classList.add('loading');
+    setStatus('Sending your message…', 'loading');
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus('✓ Message sent! I\'ll get back to you within 1–2 days.', 'success');
+        contactForm.reset();
+      } else {
+        setStatus(data.message || 'Something went wrong. Please try emailing me directly.', 'error');
+      }
+    } catch (err) {
+      setStatus('Network error. Please try emailing me directly at samadmd6020@gmail.com.', 'error');
+    } finally {
+      formSubmitBtn.disabled = false;
+      formSubmitBtn.classList.remove('loading');
+      // Auto-hide success/error after 8 seconds
+      setTimeout(() => {
+        if (formStatus && !formStatus.classList.contains('loading')) {
+          formStatus.classList.remove('show');
+        }
+      }, 8000);
+    }
+  });
+}
 </script>
 </body>
 </html>
