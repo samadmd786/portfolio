@@ -1,16 +1,51 @@
-name: Keep Streamlit Apps Awake
+name: Keep Apps Awake
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/20 * * * *'
   workflow_dispatch:
 
 jobs:
-  ping:
+  wake:
     runs-on: ubuntu-latest
     steps:
-      - name: Wake ai-hangman
-        run: curl -s -o /dev/null -w "%{http_code}" https://ai-hangman.streamlit.app/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Wake cloudguard
-        run: curl -s -o /dev/null -w "%{http_code}" https://cloudguard.streamlit.app/
+      - name: Install Playwright
+        run: npm install playwright@latest
+
+      - name: Install Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Wake Streamlit apps
+        run: |
+          node -e "
+          const { chromium } = require('playwright');
+          const apps = [
+            'https://cloudguard.streamlit.app/',
+            'https://ai-hangman.streamlit.app/'
+          ];
+          (async () => {
+            const browser = await chromium.launch();
+            for (const url of apps) {
+              try {
+                const page = await browser.newPage();
+                await page.goto(url, { timeout: 60000 });
+                try {
+                  await page.click('button:has-text(\"Yes, get this app back up!\")', { timeout: 5000 });
+                  await page.waitForTimeout(4000);
+                  console.log('Woke (was sleeping):', url);
+                } catch (_) {
+                  console.log('Already awake:', url);
+                }
+                await page.close();
+              } catch (e) {
+                console.log('Error:', url, e.message);
+              }
+            }
+            await browser.close();
+          })();
+          " || true
+
