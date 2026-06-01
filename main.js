@@ -28,8 +28,14 @@ function closeMenu() {
 /* ── EXPERIENCE ACCORDION ───────────────────────────── */
 function toggleExp(row) {
   const wasOpen = row.classList.contains('open');
-  document.querySelectorAll('.exp-row').forEach(r => r.classList.remove('open'));
-  if (!wasOpen) row.classList.add('open');
+  document.querySelectorAll('.exp-row').forEach(r => {
+    r.classList.remove('open');
+    r.setAttribute('aria-expanded', 'false');
+  });
+  if (!wasOpen) {
+    row.classList.add('open');
+    row.setAttribute('aria-expanded', 'true');
+  }
 }
 
 /* ── PARTICLE CANVAS ────────────────────────────────── */
