@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="NucleusCloud — Fully event-driven bioinformatics pipeline on AWS by Md Samad"/>
+<title>NucleusCloud | Md Samad</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary:   '#6366f1',
+        secondary: '#4cd7f6',
+        surface:   '#10131a',
+        'on-surface': '#e1e2eb',
+        'on-surface-variant': '#c7c4d7',
+        'surface-variant': '#32353c',
+        'surface-container': '#1d2026',
+        'surface-container-low': '#191c22',
+        'outline-variant': '#464554'
+      },
+      fontFamily: {
+        syne: ['Syne', 'sans-serif'],
+        code: ['JetBrains Mono', 'monospace'],
+        body: ['Inter', 'sans-serif']
+      },
+      maxWidth: { container: '1200px' }
+    }
+  }
+}
+</script>
+
+<style>
+  body { background-color: #10131a; color: #e1e2eb; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  .arch-node {
+    fill: rgba(22,27,34,0.9);
+    stroke: rgba(99,102,241,0.4);
+    stroke-width: 1.5;
+    rx: 8;
+  }
+  .arch-node-secondary {
+    fill: rgba(22,27,34,0.9);
+    stroke: rgba(76,215,246,0.35);
+    stroke-width: 1.5;
+  }
+  .arch-node-green {
+    fill: rgba(22,27,34,0.9);
+    stroke: rgba(52,211,153,0.4);
+    stroke-width: 1.5;
+  }
+  .arch-arrow { stroke: rgba(99,102,241,0.5); stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  .arch-arrow-cyan { stroke: rgba(76,215,246,0.5); stroke-width: 1.5; fill: none; marker-end: url(#arrow-cyan); }
+  .arch-label { fill: #e1e2eb; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .arch-sublabel { fill: #c7c4d7; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+  .section-divider { border-color: rgba(255,255,255,0.06); }
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
+  <div class="flex justify-between items-center h-16 px-4 sm:px-6 max-w-container mx-auto">
+    <a href="index.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200 font-code text-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Back
+    </a>
+    <a href="index.html" class="font-syne text-lg font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200">Md Samad</a>
+    <a href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener"
+       class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</header>
+
+<main class="pt-16">
+
+  <!-- Hero -->
+  <section class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
+    <div class="max-w-container mx-auto">
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud / AWS</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">Full-Stack</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(52,211,153,0.12);color:#34d399">Event-Driven</span>
+      </div>
+      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4">NucleusCloud</h1>
+      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
+        Fully event-driven bioinformatics data pipeline on AWS - Flask frontend, presigned S3 uploads, SQS/SNS workers, Lambda triggers, Step Functions archival workflow, Stripe billing, and Globus Auth. Entire stack provisioned from a single CloudFormation template.
+      </p>
+      <div class="flex flex-wrap gap-8">
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary">1</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">CloudFormation Template</div>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary">6</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">AWS Services</div>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary">0</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Manual Infra Steps</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">System Design</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
+
+      <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
+        <svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(99,102,241,0.6)"/>
+            </marker>
+            <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(76,215,246,0.6)"/>
+            </marker>
+            <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(52,211,153,0.6)"/>
+            </marker>
+          </defs>
+
+          <!-- User Browser -->
+          <rect x="340" y="10" width="180" height="50" rx="8" class="arch-node"/>
+          <text x="430" y="35" class="arch-label">User Browser</text>
+
+          <!-- Flask App -->
+          <rect x="300" y="100" width="260" height="58" rx="8" class="arch-node"/>
+          <text x="430" y="122" class="arch-label">Flask App</text>
+          <text x="430" y="138" class="arch-sublabel">EC2 / ECS · REST API</text>
+
+          <!-- Globus Auth + Stripe side by side -->
+          <rect x="60" y="100" width="160" height="58" rx="8" class="arch-node-cyan"/>
+          <text x="140" y="122" class="arch-label" style="fill:#4cd7f6">Globus Auth</text>
+          <text x="140" y="138" class="arch-sublabel">Federated Identity</text>
+
+          <rect x="640" y="100" width="160" height="58" rx="8" class="arch-node-green"/>
+          <text x="720" y="122" class="arch-label" style="fill:#34d399">Stripe</text>
+          <text x="720" y="138" class="arch-sublabel">Billing / Subscriptions</text>
+
+          <!-- S3 -->
+          <rect x="300" y="210" width="260" height="58" rx="8" class="arch-node-green"/>
+          <text x="430" y="232" class="arch-label" style="fill:#34d399">Amazon S3</text>
+          <text x="430" y="248" class="arch-sublabel">Presigned URL Upload · File Storage</text>
+
+          <!-- SQS -->
+          <rect x="300" y="318" width="120" height="50" rx="8" class="arch-node"/>
+          <text x="360" y="343" class="arch-label">SQS Queue</text>
+
+          <!-- SNS -->
+          <rect x="440" y="318" width="120" height="50" rx="8" class="arch-node"/>
+          <text x="500" y="343" class="arch-label">SNS Topic</text>
+
+          <!-- Lambda -->
+          <rect x="300" y="420" width="260" height="50" rx="8" class="arch-node-cyan"/>
+          <text x="430" y="440" class="arch-label" style="fill:#4cd7f6">Lambda</text>
+          <text x="430" y="455" class="arch-sublabel">Trigger · Glacier Hydration</text>
+
+          <!-- Step Functions -->
+          <rect x="610" y="318" width="200" height="152" rx="8" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="710" y="340" class="arch-label" style="font-size:10px;fill:#a5b4fc">Step Functions</text>
+          <rect x="626" y="352" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="710" y="370" class="arch-sublabel" style="fill:#c7c4d7">1. Validate</text>
+          <rect x="626" y="388" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="710" y="406" class="arch-sublabel" style="fill:#c7c4d7">2. Process</text>
+          <rect x="626" y="424" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="710" y="442" class="arch-sublabel" style="fill:#34d399">3. Archive → Glacier</text>
+
+          <!-- CloudFormation banner -->
+          <rect x="30" y="490" width="800" height="24" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation — provisions entire stack · LocalStack for local dev · Moto for testing</text>
+
+          <!-- Arrows -->
+          <!-- User → Flask -->
+          <line x1="430" y1="60" x2="430" y2="98" class="arch-arrow"/>
+          <!-- Flask → Globus (left) -->
+          <line x1="300" y1="124" x2="222" y2="124" class="arch-arrow-cyan"/>
+          <!-- Flask → Stripe (right) -->
+          <line x1="560" y1="124" x2="638" y2="124" class="arch-arrow" style="stroke:rgba(52,211,153,0.5)"/>
+          <!-- Flask → S3 -->
+          <line x1="430" y1="158" x2="430" y2="208" class="arch-arrow"/>
+          <!-- S3 → SQS -->
+          <line x1="380" y1="268" x2="360" y2="316" class="arch-arrow"/>
+          <!-- S3 → SNS -->
+          <line x1="480" y1="268" x2="500" y2="316" class="arch-arrow"/>
+          <!-- SQS → Lambda -->
+          <line x1="360" y1="368" x2="380" y2="418" class="arch-arrow"/>
+          <!-- SNS → Lambda -->
+          <line x1="500" y1="368" x2="460" y2="418" class="arch-arrow"/>
+          <!-- SNS → Step Functions -->
+          <line x1="560" y1="343" x2="608" y2="365" class="arch-arrow"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- End-to-End Flow -->
+  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">End-to-End</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">How it works</h2>
+
+      <div class="flex flex-col gap-4">
+        <!-- Step 1 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Authentication via Globus Auth</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth — a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a scoped session token and provisions the user's storage quota via Stripe subscription tier.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Presigned S3 Upload</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side — the file bytes go directly from the user's browser to S3 without passing through the application server. This eliminates bandwidth bottlenecks and reduces server load to near-zero for large genomics files.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
+          <div>
+            <div class="font-syne font-bold mb-1">SQS + SNS Event Fan-out</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message. SNS fans this event out to multiple subscribers — the processing Lambda, the notification service, and the billing metering endpoint — all decoupled and independently scalable. No polling, fully push-driven.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">SNS triggers a Step Functions state machine with three stages: (1) Validate — checksum verification and format validation, (2) Process — indexing and metadata extraction, (3) Archive — tiered storage migration to S3 Glacier for cost-optimized long-term retention. Each stage is independently retryable with configurable backoff.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Glacier Hydration on Demand</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">A dedicated Lambda handles Glacier restore requests. When a researcher requests a previously archived file, the Lambda initiates an expedited or standard Glacier retrieval job, monitors completion via CloudWatch Events, and returns a presigned download URL when the file is available.</p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
+          <div>
+            <div class="font-syne font-bold mb-1">One-Command Infrastructure</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The entire stack — IAM roles, S3 buckets, SQS queues, SNS topics, Lambda functions, Step Functions, VPC networking — is defined in a single CloudFormation template. LocalStack mirrors the AWS environment locally for development. Moto mocks AWS service calls in unit tests, achieving full test coverage without cloud costs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Frontend</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Flask</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Jinja2</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">JavaScript</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">AWS Services</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">S3 + Glacier</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">SQS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">SNS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Lambda</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Step Functions</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">CloudWatch</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Auth + Billing</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Globus Auth</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Stripe</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">OAuth 2.0</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Infrastructure as Code</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">CloudFormation</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">IAM Roles + Policies</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Testing + Local Dev</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">LocalStack</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Moto</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Pytest</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Backend</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Python</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Boto3</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-white/5 py-10 bg-surface-container-low">
+  <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
+    <a href="index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+  </div>
+</footer>
+
+</body>
+</html>
