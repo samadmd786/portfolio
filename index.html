@@ -98,9 +98,13 @@ tailwind.config = {
         Open to SDE / DevOps / Cloud Roles
       </div>
 
-      <h1 class="font-syne text-[34px] sm:text-[52px] leading-[1.1] font-extrabold text-on-surface mb-6 tracking-tight">
+      <h1 class="font-syne text-[34px] sm:text-[52px] leading-[1.1] font-extrabold text-on-surface mb-3 tracking-tight">
         Md <span class="text-primary">Samad</span>
       </h1>
+
+      <p class="font-body text-on-surface-variant text-sm sm:text-base mb-8 leading-relaxed max-w-xl">
+        Cloud Security &amp; AI Infrastructure Engineer — 4 years building enterprise auth at Vanguard scale, now shipping agentic systems
+      </p>
 
       <!-- Terminal card -->
       <div class="glass-panel glow-indigo rounded-xl overflow-hidden mb-8 max-w-xl">
@@ -180,45 +184,6 @@ tailwind.config = {
 
     <div class="flex flex-col gap-3">
 
-      <!-- Vanguard Senior -->
-      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-        <div class="flex items-start gap-4 p-5">
-          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
-            <span class="material-symbols-outlined" style="font-size:22px">terminal</span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="exp-role-title font-syne font-bold text-base mb-1">Senior Software Engineer · Sr. Cloud Security Engineer</div>
-            <div class="text-on-surface-variant text-sm mb-3">Vanguard · Dec 2023 - Jun 2025</div>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Auth0</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS IAM</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Terraform</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">OPA/Rego</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">OAuth 2.0</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">SAML 2.0</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kubernetes</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kong</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Envoy Proxy</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-1.5 font-code text-[10px] text-white uppercase tracking-widest opacity-60 flex-shrink-0 pt-1 hover:opacity-100 transition-opacity">
-            <span>Details</span>
-            <span class="material-symbols-outlined exp-toggle-icon" style="font-size:18px">add</span>
-          </div>
-        </div>
-        <div class="exp-body px-5 pb-5">
-          <ul class="exp-bullets pt-4">
-            <li>Architected cloud-native auth &amp; authorization on AWS using Terraform, IAM, and Auth0 - delivered <strong>99.999% uptime</strong> handling <strong>100,000+ peak hourly logons</strong> via fully automated CI/CD pipelines; boosted authentication efficiency by <strong>30%</strong></li>
-            <li>Designed fine-grained <strong>IAM roles, policies, and permission boundaries</strong> across multi-account AWS environments, enforcing least-privilege access at scale</li>
-            <li>Reduced AWS security incidents by <strong>40%</strong> by rolling out Auth0 MFA + RBAC across distributed microservices serving <strong>200K+ users</strong></li>
-            <li>Secured microservices with <strong>OPA policy-as-code (Rego)</strong> integrated into REST APIs - decreased unauthorized access 40%, lifted compliance metrics 30%</li>
-            <li>Integrated <strong>Kong API Gateway and NGINX</strong> - reduced API latency by <strong>40%</strong> and boosted throughput performance by <strong>50%</strong></li>
-            <li>Mentored 5 engineers, led code reviews for AWS infrastructure in Terraform, Kubernetes, and CI/CD; improved team onboarding velocity and codebase quality</li>
-            <li>Built a real-time, interactive <strong>AI video assistant</strong> using HuggingFace-based LLM pipelines, collaborating with a cross-functional team of <strong>10+ engineers</strong> to deliver conversational financial education modules</li>
-          </ul>
-        </div>
-      </div>
-
       <!-- UChicago TA -->
       <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
         <div class="flex items-start gap-4 p-5">
@@ -247,6 +212,48 @@ tailwind.config = {
             <li>Support students through complex cloud architecture assignments covering <strong>AWS, Kubernetes, and distributed systems</strong> - answering technical questions during office hours and online</li>
             <li>Grade assignments and projects, providing detailed feedback on <strong>cloud infrastructure design, IaC, and system architecture</strong> decisions</li>
             <li>Bridge theory and industry practice by drawing on hands-on Vanguard experience to give students real-world context for course concepts</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Vanguard Senior -->
+      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+        <div class="flex items-start gap-4 p-5">
+          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined" style="font-size:22px">terminal</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="exp-role-title font-syne font-bold text-base mb-1">Senior Software Engineer · Sr. Cloud Security Engineer</div>
+            <div class="text-on-surface-variant text-sm mb-0.5">Vanguard · Dec 2023 - Jun 2025</div>
+            <div class="font-code text-[11px] text-white/70 mb-3">Enterprise auth &amp; authorization · AI applications · 200K+ users</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Auth0</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS IAM</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Terraform</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">OPA/Rego</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">OAuth 2.0</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">SAML 2.0</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kubernetes</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kong</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Envoy Proxy</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">HuggingFace</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Python</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 font-code text-[10px] text-white uppercase tracking-widest opacity-60 flex-shrink-0 pt-1 hover:opacity-100 transition-opacity">
+            <span>Details</span>
+            <span class="material-symbols-outlined exp-toggle-icon" style="font-size:18px">add</span>
+          </div>
+        </div>
+        <div class="exp-body px-5 pb-5">
+          <ul class="exp-bullets pt-4">
+            <li>Architected cloud-native auth &amp; authorization on AWS using Terraform, IAM, and Auth0 - delivered <strong>99.999% uptime</strong> handling <strong>100,000+ peak hourly logons</strong> via fully automated CI/CD pipelines; boosted authentication efficiency by <strong>30%</strong></li>
+            <li>Designed fine-grained <strong>IAM roles, policies, and permission boundaries</strong> across multi-account AWS environments, enforcing least-privilege access at scale</li>
+            <li>Reduced AWS security incidents by <strong>40%</strong> by rolling out Auth0 MFA + RBAC across distributed microservices serving <strong>200K+ users</strong></li>
+            <li>Secured microservices with <strong>OPA policy-as-code (Rego)</strong> integrated into REST APIs - decreased unauthorized access 40%, lifted compliance metrics 30%</li>
+            <li>Integrated <strong>Kong API Gateway and NGINX</strong> - reduced API latency by <strong>40%</strong> and boosted throughput performance by <strong>50%</strong></li>
+            <li>Mentored 5 engineers, led code reviews for AWS infrastructure in Terraform, Kubernetes, and CI/CD; improved team onboarding velocity and codebase quality</li>
+            <li>Built a real-time, interactive <strong>AI video assistant</strong> using HuggingFace-based LLM pipelines, collaborating with a cross-functional team of <strong>10+ engineers</strong> to deliver conversational financial education modules</li>
           </ul>
         </div>
       </div>
@@ -611,7 +618,7 @@ tailwind.config = {
           <div class="flex flex-wrap gap-1.5 mb-3">
             <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(248,113,113,0.12);color:#f87171">Security</span>
           </div>
-          <div class="proj-name font-syne text-lg font-bold mb-2">Zombie Hunter</div>
+          <div class="proj-name font-syne text-lg font-bold mb-2">SubRecon</div>
           <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Recon tool aggregating subdomain enumeration from HackerTarget, crt.sh, and RapidDNS. Probes for hidden API docs, mines HTML for sensitive comments. Critical/High/Medium/Low risk scoring with screenshot evidence gallery and trend analysis.</p>
           <div class="flex flex-wrap gap-1.5 mb-4">
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Python</span>
