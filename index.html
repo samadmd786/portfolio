@@ -45,7 +45,7 @@ tailwind.config = {
 <!-- ── HEADER ──────────────────────────────────────── -->
 <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
   <div class="flex justify-between items-center h-16 px-6 max-w-container mx-auto">
-    <div class="font-syne text-lg font-bold text-primary tracking-tight">SAMAD_DEV</div>
+    <a href="#" class="font-syne text-lg font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200">Md Samad</a>
 
     <nav class="nav-links-desktop hide-tablet flex gap-6 items-center">
       <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-sm rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 px-1" href="#experience">Experience</a>
@@ -486,57 +486,6 @@ tailwind.config = {
         </div>
       </a>
 
-      <!-- Labyrinth -->
-      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://labyrinth-rrkj.onrender.com/" target="_blank" rel="noopener">
-        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#451a03 0%,#7c2d12 100%)">
-          <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <g stroke="#fff" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="square">
-              <path d="M40,20 L40,60 L100,60 L100,110 L60,110 L60,140"/>
-              <path d="M120,20 L120,80 L170,80 L170,40 L220,40"/>
-              <path d="M250,20 L250,70 L300,70 L300,120"/>
-              <path d="M330,40 L370,40 L370,130 L310,130"/>
-            </g>
-            <g transform="translate(200,96)">
-              <circle r="22" fill="none" stroke="#f97316" stroke-width="2" opacity="0.4"/>
-              <circle r="14" fill="#f97316"/>
-              <circle cx="0" cy="-4" r="4" fill="#fff"/>
-              <path d="M-6,6 Q0,10 6,6 L6,9 Q0,13 -6,9 Z" fill="#fff"/>
-            </g>
-            <g fill="#fff" opacity="0.5">
-              <circle cx="80"  cy="40" r="3"/><circle cx="320" cy="40" r="3"/>
-              <circle cx="100" cy="115" r="3"/><circle cx="320" cy="115" r="3"/>
-            </g>
-            <g stroke="#ef4444" stroke-width="2" opacity="0.8" stroke-linecap="round">
-              <line x1="76" y1="36" x2="84" y2="44"/><line x1="84" y1="36" x2="76" y2="44"/>
-              <line x1="96" y1="111" x2="104" y2="119"/><line x1="104" y1="111" x2="96" y2="119"/>
-            </g>
-          </svg>
-          <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
-          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; Live Demo</span></div>
-        </div>
-        <div class="p-5 flex flex-col flex-grow">
-          <div class="flex flex-wrap gap-1.5 mb-3">
-            <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(248,113,113,0.12);color:#f87171">Privacy / AI Agents</span>
-          </div>
-          <div class="proj-name font-syne text-lg font-bold mb-2">Labyrinth</div>
-          <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Autonomous AI agents that discover and delete "zombie" online accounts - forgotten signups that sit exposed across the web. Agentic workflow built with LangGraph and Python, targeting the personal data security and digital privacy space.</p>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Python</span>
-            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">LangGraph</span>
-            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">AI Agents</span>
-            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Streamlit</span>
-          </div>
-          <div class="proj-footer">
-            <span class="proj-gh-link">&#9654; Open Live Demo &rarr;</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- NucleusCloud + Zombie Hunter — 2 full cards in a row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-
       <!-- NucleusCloud -->
       <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener">
         <div class="proj-visual h-48" style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%)">
@@ -586,6 +535,57 @@ tailwind.config = {
             <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
           </div>
         </div>
+
+    </div>
+
+    <!-- Labyrinth + SubRecon — 2 full cards in a row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+      <!-- Labyrinth -->
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://labyrinth-rrkj.onrender.com/" target="_blank" rel="noopener">
+        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#451a03 0%,#7c2d12 100%)">
+          <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <g stroke="#fff" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="square">
+              <path d="M40,20 L40,60 L100,60 L100,110 L60,110 L60,140"/>
+              <path d="M120,20 L120,80 L170,80 L170,40 L220,40"/>
+              <path d="M250,20 L250,70 L300,70 L300,120"/>
+              <path d="M330,40 L370,40 L370,130 L310,130"/>
+            </g>
+            <g transform="translate(200,96)">
+              <circle r="22" fill="none" stroke="#f97316" stroke-width="2" opacity="0.4"/>
+              <circle r="14" fill="#f97316"/>
+              <circle cx="0" cy="-4" r="4" fill="#fff"/>
+              <path d="M-6,6 Q0,10 6,6 L6,9 Q0,13 -6,9 Z" fill="#fff"/>
+            </g>
+            <g fill="#fff" opacity="0.5">
+              <circle cx="80"  cy="40" r="3"/><circle cx="320" cy="40" r="3"/>
+              <circle cx="100" cy="115" r="3"/><circle cx="320" cy="115" r="3"/>
+            </g>
+            <g stroke="#ef4444" stroke-width="2" opacity="0.8" stroke-linecap="round">
+              <line x1="76" y1="36" x2="84" y2="44"/><line x1="84" y1="36" x2="76" y2="44"/>
+              <line x1="96" y1="111" x2="104" y2="119"/><line x1="104" y1="111" x2="96" y2="119"/>
+            </g>
+          </svg>
+          <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
+          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; Live Demo</span></div>
+        </div>
+        <div class="p-5 flex flex-col flex-grow">
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(248,113,113,0.12);color:#f87171">Privacy / AI Agents</span>
+          </div>
+          <div class="proj-name font-syne text-lg font-bold mb-2">Labyrinth</div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Autonomous AI agents that discover and delete "zombie" online accounts - forgotten signups that sit exposed across the web. Agentic workflow built with LangGraph and Python, targeting the personal data security and digital privacy space.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Python</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">LangGraph</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">AI Agents</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Streamlit</span>
+          </div>
+          <div class="proj-footer">
+            <span class="proj-gh-link">&#9654; Open Live Demo &rarr;</span>
+          </div>
+        </div>
+      </a>
       </a>
 
       <!-- Zombie Hunter -->
@@ -972,7 +972,7 @@ tailwind.config = {
           </div>
           <div class="bg-surface-container p-4">
             <div class="font-code text-[9px] uppercase tracking-widest text-on-surface-variant opacity-70 mb-1">Also Open To</div>
-            <div class="font-syne font-bold text-sm">SDE / AI Infra / SRE</div>
+            <div class="font-syne font-bold text-sm">SDE / AI Infra</div>
           </div>
           <div class="bg-surface-container p-4">
             <div class="font-code text-[9px] uppercase tracking-widest text-on-surface-variant opacity-70 mb-1">Work Type</div>
@@ -1048,7 +1048,7 @@ tailwind.config = {
 <footer class="border-t border-white/5 mt-12 py-12 bg-surface-container-low">
   <div class="max-w-container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
     <div class="font-code text-[12px] text-on-surface-variant opacity-60">
-      &copy; 2026 MD_SAMAD // ARCHITECTING_THE_FUTURE
+      &copy; 2026 Md Samad
     </div>
     <nav class="flex gap-8">
       <a href="mailto:samadmd6020@gmail.com"
