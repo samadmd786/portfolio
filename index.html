@@ -180,38 +180,6 @@ tailwind.config = {
 
     <div class="flex flex-col gap-3">
 
-      <!-- UChicago TA -->
-      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
-        <div class="flex items-start gap-4 p-5">
-          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
-            <span class="material-symbols-outlined" style="font-size:22px">school</span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="exp-role-title font-syne font-bold text-base mb-1">Graduate Teaching Assistant</div>
-            <div class="text-on-surface-variant text-sm mb-0.5">University of Chicago · Mar 2026 - Jun 2026</div>
-            <div class="font-code text-[11px] text-white/70 mb-3">MPCS 51083 Cloud Computing (Graduate)</div>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Cloud Architecture</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kubernetes</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Terraform</span>
-              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Distributed Systems</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-1.5 font-code text-[10px] text-white uppercase tracking-widest opacity-60 flex-shrink-0 pt-1 hover:opacity-100 transition-opacity">
-            <span>Details</span>
-            <span class="material-symbols-outlined exp-toggle-icon" style="font-size:18px">add</span>
-          </div>
-        </div>
-        <div class="exp-body px-5 pb-5">
-          <ul class="exp-bullets pt-4">
-            <li>Support students through complex cloud architecture assignments covering <strong>AWS, Kubernetes, and distributed systems</strong> - answering technical questions during office hours and online</li>
-            <li>Grade assignments and projects, providing detailed feedback on <strong>cloud infrastructure design, IaC, and system architecture</strong> decisions</li>
-            <li>Bridge theory and industry practice by drawing on hands-on Vanguard experience to give students real-world context for course concepts</li>
-          </ul>
-        </div>
-      </div>
-
       <!-- Vanguard Senior -->
       <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
         <div class="flex items-start gap-4 p-5">
@@ -245,6 +213,39 @@ tailwind.config = {
             <li>Secured microservices with <strong>OPA policy-as-code (Rego)</strong> integrated into REST APIs - decreased unauthorized access 40%, lifted compliance metrics 30%</li>
             <li>Integrated <strong>Kong API Gateway and NGINX</strong> - reduced API latency by <strong>40%</strong> and boosted throughput performance by <strong>50%</strong></li>
             <li>Mentored 5 engineers, led code reviews for AWS infrastructure in Terraform, Kubernetes, and CI/CD; improved team onboarding velocity and codebase quality</li>
+            <li>Built a real-time, interactive <strong>AI video assistant</strong> using HuggingFace-based LLM pipelines, collaborating with a cross-functional team of <strong>10+ engineers</strong> to deliver conversational financial education modules</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- UChicago TA -->
+      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+        <div class="flex items-start gap-4 p-5">
+          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined" style="font-size:22px">school</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="exp-role-title font-syne font-bold text-base mb-1">Graduate Teaching Assistant</div>
+            <div class="text-on-surface-variant text-sm mb-0.5">University of Chicago · Mar 2026 - Jun 2026</div>
+            <div class="font-code text-[11px] text-white/70 mb-3">MPCS 51083 Cloud Computing (Graduate)</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Cloud Architecture</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kubernetes</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Terraform</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Distributed Systems</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 font-code text-[10px] text-white uppercase tracking-widest opacity-60 flex-shrink-0 pt-1 hover:opacity-100 transition-opacity">
+            <span>Details</span>
+            <span class="material-symbols-outlined exp-toggle-icon" style="font-size:18px">add</span>
+          </div>
+        </div>
+        <div class="exp-body px-5 pb-5">
+          <ul class="exp-bullets pt-4">
+            <li>Support students through complex cloud architecture assignments covering <strong>AWS, Kubernetes, and distributed systems</strong> - answering technical questions during office hours and online</li>
+            <li>Grade assignments and projects, providing detailed feedback on <strong>cloud infrastructure design, IaC, and system architecture</strong> decisions</li>
+            <li>Bridge theory and industry practice by drawing on hands-on Vanguard experience to give students real-world context for course concepts</li>
           </ul>
         </div>
       </div>
@@ -415,7 +416,7 @@ tailwind.config = {
             <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud Security</span>
           </div>
           <div class="proj-name font-syne text-lg font-bold mb-2">CloudGuard AI</div>
-          <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Agentic Security Hub analyzer powered by Claude with multi-turn ReAct tool-use - NVD CVE lookup, AWS docs retrieval, compliance mapping for HIGH/CRITICAL findings. Implements org-aware RAG pipeline using sentence-transformers + cosine similarity. Generates schema-enforced JSON output mapped across CIS, PCI DSS, SOC 2, NIST 800-53, ISO 27001.</p>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Tells you in plain English what's wrong with your AWS account and exactly how to fix it - no security expertise needed. Powered by Claude with agentic ReAct reasoning: looks up the real CVE, pulls the relevant AWS doc, and maps each finding to the compliance standard it violates (CIS, PCI DSS, SOC 2, NIST 800-53, ISO 27001). Every answer is backed by actual references, not guesses.</p>
           <div class="flex flex-wrap gap-1.5 mb-4">
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Python</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Claude API</span>
@@ -624,17 +625,6 @@ tailwind.config = {
 
     </div>
 
-    <!-- Remaining smaller tiles -->
-    <div class="grid grid-cols-2 gap-3">
-      <a href="https://ai-hangman.streamlit.app/" target="_blank" rel="noopener" class="proj-small-card glass-panel rounded-lg p-4 flex items-center justify-between text-on-surface no-underline">
-        <span class="font-syne font-bold text-sm">AI Hangman</span>
-        <span class="material-symbols-outlined text-primary proj-arrow" style="font-size:20px">arrow_forward</span>
-      </a>
-      <a href="https://github.com/samadmd786/Snake_in_Jack" target="_blank" class="proj-small-card glass-panel rounded-lg p-4 flex items-center justify-between text-on-surface no-underline">
-        <span class="font-syne font-bold text-sm">Snake in Jack</span>
-        <span class="material-symbols-outlined text-primary proj-arrow" style="font-size:20px">arrow_forward</span>
-      </a>
-    </div>
 
   </div>
 </section>
