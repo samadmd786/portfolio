@@ -372,8 +372,8 @@ tailwind.config = {
     <div class="proj-feat-grid grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
       <!-- CloudGuard AI -->
-      <div class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full" data-href="https://cloudguard.streamlit.app/">
-        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)">
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/cloudguard" target="_blank" rel="noopener">
+        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)" onclick="event.preventDefault();event.stopPropagation();window.open('https://cloudguard.streamlit.app/','_blank')">
           <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="cg-shield" x1="0" y1="0" x2="0" y2="1">
@@ -407,6 +407,7 @@ tailwind.config = {
             <text x="200" y="182" text-anchor="middle" fill="#fff" opacity="0.35" font-family="ui-monospace,monospace" font-size="8" letter-spacing="3">SECURITY HUB · CLAUDE · ReAct</text>
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
+          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; Live Demo</span></div>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -423,20 +424,15 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">AWS Security Hub</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Streamlit</span>
           </div>
-          <div class="flex gap-4">
-            <a href="https://github.com/samadmd786/cloudguard" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-primary hover:text-primary/80">
-              <span class="material-symbols-outlined" style="font-size:14px">terminal</span> GitHub
-            </a>
-            <a href="https://cloudguard.streamlit.app/" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-on-surface-variant hover:text-white">
-              <span class="material-symbols-outlined" style="font-size:14px">link</span> Live Demo
-            </a>
+          <div class="proj-footer">
+            <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Cheetah.ai -->
-      <div class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full" data-href="https://devpost.com/software/cheetah-ai">
-        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 100%)">
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/cheetah.ai" target="_blank" rel="noopener">
+        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#1e1b4b 0%,#3730a3 100%)" onclick="event.preventDefault();event.stopPropagation();window.open('https://devpost.com/software/cheetah-ai','_blank')">
           <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <g opacity="0.15" stroke="#fff" stroke-width="1">
               <line x1="0" y1="24" x2="160" y2="24"/><line x1="0" y1="48" x2="220" y2="48"/>
@@ -457,13 +453,14 @@ tailwind.config = {
             <text x="330" y="170" fill="#fff" opacity="0.9" font-family="'Syne',sans-serif" font-weight="800" font-size="22">2.6x</text>
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-secondary/5 to-transparent"></div>
+          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; Devpost</span></div>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
-            <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(251,191,36,0.12);color:#fbbf24">Hackathon Winner</span>
+            <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(74,222,128,0.12);color:#4ade80">Hackathon Winner</span>
           </div>
           <div class="proj-name font-syne text-lg font-bold mb-1">Cheetah.ai</div>
-          <div class="inline-flex items-center gap-1.5 font-code text-[10px] font-bold text-[#fbbf24] bg-[rgba(251,191,36,0.1)] px-2.5 py-1 rounded mb-3 w-fit">
+          <div class="inline-flex items-center gap-1.5 font-code text-[10px] font-bold text-[#4ade80] bg-[rgba(74,222,128,0.1)] px-2.5 py-1 rounded mb-3 w-fit">
             &#127942; Best Use of Snowflake · Uncommon Hacks 2026
           </div>
           <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">DAG-aware orchestrator pre-warms KV caches between agent calls, reducing pipeline TTFT from 104s to 36s - a 2.6x speedup saving ~68 GPU-seconds per pipeline. Integrated Snowflake for live telemetry and Cortex AI for auto-generated run summaries.</p>
@@ -474,19 +471,14 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">SimHash</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">vllm-mlx</span>
           </div>
-          <div class="flex gap-4">
-            <a href="https://github.com/samadmd786/cheetah.ai" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-primary hover:text-primary/80">
-              <span class="material-symbols-outlined" style="font-size:14px">terminal</span> GitHub
-            </a>
-            <a href="https://devpost.com/software/cheetah-ai" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-on-surface-variant hover:text-white">
-              <span class="material-symbols-outlined" style="font-size:14px">link</span> Devpost
-            </a>
+          <div class="proj-footer">
+            <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Labyrinth -->
-      <div class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full" data-href="https://labyrinth-rrkj.onrender.com/">
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://labyrinth-rrkj.onrender.com/" target="_blank" rel="noopener">
         <div class="proj-visual h-48" style="background:linear-gradient(135deg,#451a03 0%,#7c2d12 100%)">
           <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <g stroke="#fff" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="square">
@@ -511,6 +503,7 @@ tailwind.config = {
             </g>
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
+          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; Live Demo</span></div>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -524,13 +517,11 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">AI Agents</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Streamlit</span>
           </div>
-          <div class="flex gap-4">
-            <a href="https://labyrinth-rrkj.onrender.com/" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-on-surface-variant hover:text-white">
-              <span class="material-symbols-outlined" style="font-size:14px">link</span> Live Demo
-            </a>
+          <div class="proj-footer">
+            <span class="proj-gh-link">&#9654; Open Live Demo &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
 
@@ -538,7 +529,7 @@ tailwind.config = {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
       <!-- NucleusCloud -->
-      <div class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full" data-href="https://github.com/samadmd786/nucleuscloud">
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener">
         <div class="proj-visual h-48" style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%)">
           <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <g opacity="0.12" stroke="#fff" stroke-width="0.5">
@@ -582,16 +573,14 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">LocalStack</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Moto</span>
           </div>
-          <div class="flex gap-4">
-            <a href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-primary hover:text-primary/80">
-              <span class="material-symbols-outlined" style="font-size:14px">terminal</span> GitHub
-            </a>
+          <div class="proj-footer">
+            <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Zombie Hunter -->
-      <div class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full" data-href="https://github.com/samadmd786/zombie_hunter">
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/zombie_hunter" target="_blank" rel="noopener">
         <div class="proj-visual h-48" style="background:linear-gradient(135deg,#450a0a 0%,#7f1d1d 100%)">
           <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <g opacity="0.1" stroke="#fff" stroke-width="0.5">
@@ -627,13 +616,11 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Streamlit</span>
             <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/8 bg-white/5 text-on-surface-variant">Playwright</span>
           </div>
-          <div class="flex gap-4">
-            <a href="https://github.com/samadmd786/zombie_hunter" target="_blank" rel="noopener" class="proj-link-base flex items-center gap-1 font-code text-[11px] font-bold uppercase tracking-wide text-primary hover:text-primary/80">
-              <span class="material-symbols-outlined" style="font-size:14px">terminal</span> GitHub
-            </a>
+          <div class="proj-footer">
+            <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
 
@@ -855,9 +842,17 @@ tailwind.config = {
           <div class="glass-panel rounded-xl p-6">
             <div class="font-code text-primary text-xs font-semibold mb-3">Graduate · 2025 - 2026</div>
             <div class="font-syne font-bold text-lg mb-1">The University of Chicago</div>
-            <div class="text-on-surface-variant text-sm mb-2">MS in Computer Science</div>
-            <div class="text-on-surface-variant text-xs opacity-70 leading-relaxed">Cloud Computing · Distributed Systems · Generative AI · Computer Security</div>
-            <div class="text-on-surface-variant text-xs mt-2 leading-relaxed opacity-80">
+            <div class="text-on-surface-variant text-sm mb-3">MS in Computer Science</div>
+            <div class="font-code text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Coursework</div>
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Cloud Computing</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Distributed Systems</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Computer Security</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Computer Systems</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Networks</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Generative AI</span>
+            </div>
+            <div class="text-on-surface-variant text-xs mt-1 leading-relaxed opacity-80">
               <strong class="text-on-surface">Teaching Assistant - Cloud Computing</strong><br/>
               Supporting students through AWS, Kubernetes, and distributed systems coursework. Grading assignments and providing structured feedback on cloud infrastructure design.
             </div>
@@ -865,9 +860,17 @@ tailwind.config = {
           <div class="glass-panel rounded-xl p-6">
             <div class="font-code text-primary text-xs font-semibold mb-3">Undergraduate · 2018 - 2022</div>
             <div class="font-syne font-bold text-lg mb-1">Michigan State University</div>
-            <div class="text-on-surface-variant text-sm mb-2">BS in Computer Science</div>
-            <div class="text-on-surface-variant text-xs opacity-70 leading-relaxed">Machine Learning · Algorithms · Computer Systems · Object-Oriented Design</div>
-            <div class="inline-flex items-center gap-1.5 mt-3 font-code text-[10px] font-bold uppercase tracking-wide text-[#fbbf24] bg-[rgba(251,191,36,0.1)] px-2.5 py-1 rounded">
+            <div class="text-on-surface-variant text-sm mb-3">BS in Computer Science</div>
+            <div class="font-code text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Coursework</div>
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Machine Learning</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Database Systems</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Computer Organization &amp; Architecture</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Web App Architecture &amp; Development</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Mobile App Development</span>
+              <span class="font-code text-[10px] px-2 py-0.5 rounded border border-white/10 bg-white/5 text-on-surface-variant">Software Design</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 font-code text-[10px] font-bold uppercase tracking-wide text-[#4ade80] bg-[rgba(74,222,128,0.1)] px-2.5 py-1 rounded">
               GPA 3.9 / 4.0 · Dean's List x5 Semesters
             </div>
           </div>

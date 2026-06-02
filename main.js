@@ -215,17 +215,8 @@ if (contactForm) {
   });
 }
 
-/* ── PROJECT CARD CLICK-THROUGH ─────────────────────── */
-document.querySelectorAll('.proj-card[data-href]').forEach(card => {
-  card.addEventListener('click', e => {
-    if (e.target.closest('a')) return; // let internal links work normally
-    const a = document.createElement('a');
-    a.href = card.dataset.href;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.click();
-  });
-});
+/* ── PROJECT CARDS ───────────────────────────────────── */
+/* Cards are <a> tags; image onclick intercepts to open demo. No JS needed. */
 
 /* ── INIT ───────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
