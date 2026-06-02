@@ -106,71 +106,90 @@ tailwind.config = {
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
 
       <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
-        <svg viewBox="0 0 860 540" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
+        <svg viewBox="0 0 860 610" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
           <defs>
-            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="rgba(99,102,241,0.6)"/>
+            <marker id="sr-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(99,102,241,0.7)"/>
             </marker>
-            <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="rgba(248,113,113,0.6)"/>
+            <marker id="sr-arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(248,113,113,0.7)"/>
             </marker>
           </defs>
 
           <!-- Input -->
-          <rect x="330" y="10" width="200" height="50" rx="8" fill="rgba(22,27,34,0.9)" stroke="rgba(99,102,241,0.5)" stroke-width="2"/>
-          <text x="430" y="35" class="arch-label" style="fill:#a5b4fc">Target Domain</text>
+          <rect x="330" y="14" width="200" height="48" rx="8" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.55)" stroke-width="2"/>
+          <text x="430" y="42" class="arch-label" style="fill:#a5b4fc">Target Domain</text>
 
-          <!-- Data Sources box -->
-          <rect x="40" y="100" width="740" height="80" rx="10" fill="rgba(99,102,241,0.05)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="430" y="116" class="arch-sublabel" style="fill:#a5b4fc;font-size:9px">PASSIVE RECON LAYER</text>
-          <rect x="70" y="125" width="190" height="40" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
-          <text x="165" y="141" class="arch-label" style="font-size:10px">HackerTarget</text>
-          <text x="165" y="155" class="arch-sublabel">API · Passive DNS</text>
-          <rect x="325" y="125" width="210" height="40" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
-          <text x="430" y="141" class="arch-label" style="font-size:10px">crt.sh</text>
-          <text x="430" y="155" class="arch-sublabel">Certificate Transparency Logs</text>
-          <rect x="600" y="125" width="160" height="40" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
-          <text x="680" y="141" class="arch-label" style="font-size:10px">RapidDNS</text>
-          <text x="680" y="155" class="arch-sublabel">DNS Enumeration</text>
+          <!-- Passive Recon Layer -->
+          <rect x="36" y="96" width="788" height="86" rx="10" fill="rgba(99,102,241,0.05)" stroke="rgba(99,102,241,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="430" y="112" class="arch-sublabel" style="fill:#a5b4fc;font-size:9px;letter-spacing:0.15em">PASSIVE RECON LAYER</text>
+          <!-- HackerTarget -->
+          <rect x="58" y="120" width="198" height="48" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.3)" stroke-width="1.2"/>
+          <text x="157" y="140" class="arch-label" style="font-size:11px">HackerTarget</text>
+          <text x="157" y="156" class="arch-sublabel">Passive DNS · API</text>
+          <!-- crt.sh -->
+          <rect x="331" y="120" width="198" height="48" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.3)" stroke-width="1.2"/>
+          <text x="430" y="140" class="arch-label" style="font-size:11px">crt.sh</text>
+          <text x="430" y="156" class="arch-sublabel">Certificate Transparency</text>
+          <!-- RapidDNS -->
+          <rect x="604" y="120" width="198" height="48" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.3)" stroke-width="1.2"/>
+          <text x="703" y="140" class="arch-label" style="font-size:11px">RapidDNS</text>
+          <text x="703" y="156" class="arch-sublabel">DNS Enumeration</text>
 
-          <!-- Aggregation -->
-          <rect x="280" y="225" width="300" height="50" rx="8" fill="rgba(22,27,34,0.9)" stroke="rgba(99,102,241,0.4)" stroke-width="1.5"/>
-          <text x="430" y="244" class="arch-label">Aggregation Engine</text>
-          <text x="430" y="258" class="arch-sublabel">Dedup · Validate · Merge</text>
+          <!-- Arrow: Passive → Aggregation -->
+          <line x1="430" y1="182" x2="430" y2="216" stroke="rgba(99,102,241,0.55)" stroke-width="1.8" marker-end="url(#sr-arrow)"/>
 
-          <!-- Probe Engine -->
-          <rect x="40" y="325" width="740" height="80" rx="10" fill="rgba(248,113,113,0.04)" stroke="rgba(248,113,113,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="430" y="341" class="arch-sublabel" style="fill:#f87171;font-size:9px">ACTIVE PROBE LAYER</text>
-          <rect x="60" y="354" width="200" height="38" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
-          <text x="160" y="369" class="arch-label" style="font-size:10px">API Doc Scanner</text>
-          <text x="160" y="382" class="arch-sublabel">Swagger / OpenAPI exposure</text>
-          <rect x="330" y="354" width="200" height="38" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
-          <text x="430" y="369" class="arch-label" style="font-size:10px">HTML Comment Miner</text>
-          <text x="430" y="382" class="arch-sublabel">Secrets · TODOs · Debug info</text>
-          <rect x="600" y="354" width="180" height="38" rx="6" fill="rgba(22,27,34,0.9)" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
-          <text x="690" y="369" class="arch-label" style="font-size:10px">Playwright</text>
-          <text x="690" y="382" class="arch-sublabel">Screenshot Evidence</text>
+          <!-- Aggregation Engine -->
+          <rect x="275" y="218" width="310" height="56" rx="8" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.45)" stroke-width="1.8"/>
+          <text x="430" y="240" class="arch-label">Aggregation Engine</text>
+          <text x="430" y="257" class="arch-sublabel">Deduplicate · Validate · Merge</text>
 
-          <!-- Risk Scoring -->
-          <rect x="160" y="455" width="540" height="50" rx="8" fill="rgba(22,27,34,0.9)" stroke="rgba(248,113,113,0.35)" stroke-width="1.5"/>
-          <text x="340" y="474" class="arch-label">Risk Scoring Engine</text>
-          <text x="430" y="495" class="arch-sublabel">● Critical  ● High  ● Medium  ● Low</text>
-          <!-- colored dots -->
-          <circle cx="350" cy="495" r="4" fill="#f87171"/>
-          <circle cx="400" cy="495" r="4" fill="#fb923c"/>
-          <circle cx="450" cy="495" r="4" fill="#fbbf24"/>
-          <circle cx="500" cy="495" r="4" fill="#4ade80"/>
+          <!-- Arrow: Aggregation → Active -->
+          <line x1="430" y1="274" x2="430" y2="308" stroke="rgba(248,113,113,0.55)" stroke-width="1.8" marker-end="url(#sr-arrow-red)"/>
+
+          <!-- Active Probe Layer -->
+          <rect x="36" y="310" width="788" height="90" rx="10" fill="rgba(248,113,113,0.04)" stroke="rgba(248,113,113,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="430" y="326" class="arch-sublabel" style="fill:#f87171;font-size:9px;letter-spacing:0.15em">ACTIVE PROBE LAYER</text>
+          <!-- API Doc Scanner -->
+          <rect x="56" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="166" y="355" class="arch-label" style="font-size:11px">API Doc Scanner</text>
+          <text x="166" y="371" class="arch-sublabel">Swagger · OpenAPI exposure</text>
+          <!-- HTML Comment Miner -->
+          <rect x="320" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="430" y="355" class="arch-label" style="font-size:11px">HTML Comment Miner</text>
+          <text x="430" y="371" class="arch-sublabel">Secrets · TODOs · Credentials</text>
+          <!-- Playwright -->
+          <rect x="584" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="694" y="355" class="arch-label" style="font-size:11px">Playwright</text>
+          <text x="694" y="371" class="arch-sublabel">Screenshot Evidence</text>
+
+          <!-- Arrow: Active → Risk Scoring -->
+          <line x1="430" y1="400" x2="430" y2="434" stroke="rgba(248,113,113,0.55)" stroke-width="1.8" marker-end="url(#sr-arrow-red)"/>
+
+          <!-- Risk Scoring Engine -->
+          <rect x="155" y="436" width="550" height="80" rx="9" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.4)" stroke-width="1.8"/>
+          <text x="430" y="458" class="arch-label">Risk Scoring Engine</text>
+          <!-- 4 risk chips -->
+          <rect x="175" y="466" width="100" height="34" rx="6" fill="rgba(248,113,113,0.12)" stroke="rgba(248,113,113,0.35)" stroke-width="1"/>
+          <text x="225" y="480" class="arch-label" style="font-size:10px;fill:#f87171">Critical</text>
+          <text x="225" y="494" class="arch-sublabel" style="fill:#f87171">Credentials</text>
+          <rect x="290" y="466" width="100" height="34" rx="6" fill="rgba(251,146,60,0.1)" stroke="rgba(251,146,60,0.3)" stroke-width="1"/>
+          <text x="340" y="480" class="arch-label" style="font-size:10px;fill:#fb923c">High</text>
+          <text x="340" y="494" class="arch-sublabel" style="fill:#fb923c">API Docs</text>
+          <rect x="405" y="466" width="100" height="34" rx="6" fill="rgba(251,191,36,0.09)" stroke="rgba(251,191,36,0.28)" stroke-width="1"/>
+          <text x="455" y="480" class="arch-label" style="font-size:10px;fill:#fbbf24">Medium</text>
+          <text x="455" y="494" class="arch-sublabel" style="fill:#fbbf24">Comments</text>
+          <rect x="520" y="466" width="100" height="34" rx="6" fill="rgba(74,222,128,0.09)" stroke="rgba(74,222,128,0.28)" stroke-width="1"/>
+          <text x="570" y="480" class="arch-label" style="font-size:10px;fill:#4ade80">Low</text>
+          <text x="570" y="494" class="arch-sublabel" style="fill:#4ade80">Info</text>
+
+          <!-- Arrow: Risk → Dashboard -->
+          <line x1="430" y1="516" x2="430" y2="550" stroke="rgba(99,102,241,0.5)" stroke-width="1.8" marker-end="url(#sr-arrow)"/>
 
           <!-- Streamlit Dashboard -->
-          <rect x="280" y="515" width="300" height="16" rx="5" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
-          <text x="430" y="526" class="arch-sublabel" style="fill:#a5b4fc">Streamlit Dashboard · Trend Analysis</text>
-
-          <!-- Arrows -->
-          <line x1="430" y1="60" x2="430" y2="98" stroke="rgba(99,102,241,0.5)" stroke-width="1.5" marker-end="url(#arrow)"/>
-          <line x1="430" y1="180" x2="430" y2="223" stroke="rgba(99,102,241,0.5)" stroke-width="1.5" marker-end="url(#arrow)"/>
-          <line x1="430" y1="275" x2="430" y2="323" stroke="rgba(248,113,113,0.5)" stroke-width="1.5" marker-end="url(#arrow-red)"/>
-          <line x1="430" y1="405" x2="430" y2="453" stroke="rgba(248,113,113,0.5)" stroke-width="1.5" marker-end="url(#arrow-red)"/>
-          <line x1="430" y1="505" x2="430" y2="513" stroke="rgba(99,102,241,0.4)" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <rect x="240" y="552" width="380" height="52" rx="9" fill="rgba(22,27,34,0.95)" stroke="rgba(99,102,241,0.4)" stroke-width="1.8"/>
+          <text x="430" y="574" class="arch-label" style="fill:#a5b4fc">Streamlit Dashboard</text>
+          <text x="430" y="590" class="arch-sublabel">Evidence Gallery · Trend Analysis · Export</text>
         </svg>
       </div>
     </div>
