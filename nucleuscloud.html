@@ -297,8 +297,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
           <div>
-            <div class="font-syne font-bold mb-1">Authentication via Globus Auth</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth - a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a session token and determines the user's tier via Stripe: Basic (150KB VCF upload limit, 5-minute Glacier archival) or Premium (unlimited file sizes, indefinite S3 preservation).</p>
+            <div class="font-syne font-bold mb-1">EC2 Web - Auth &amp; Tier Check</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask app on EC2 Web authenticates researchers through Globus Auth - a federated identity system trusted by institutions like NIH and XSEDE. On login, Stripe resolves the user's subscription tier: Basic (150KB VCF upload limit, aggressive 5-minute Glacier archival) or Premium (unlimited file sizes, indefinite hot S3 preservation). Job state is tracked in DynamoDB throughout.</p>
           </div>
         </div>
 
@@ -306,8 +306,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
           <div>
-            <div class="font-syne font-bold mb-1">Presigned S3 Upload</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side - the VCF file bytes go directly from the browser to S3, bypassing the application server entirely. This eliminates bandwidth bottlenecks and keeps server load near-zero for large genomic variant files. Upload limits are enforced per tier before the presigned URL is issued.</p>
+            <div class="font-syne font-bold mb-1">EC2 Web - Presigned S3 Upload</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">After enforcing the per-tier size limit, Flask generates a presigned S3 URL server-side. The VCF file bytes travel directly from the browser to S3 - the EC2 Web instance never handles file data. This keeps the web server free for API requests regardless of file size, and S3 handles durability and replication automatically.</p>
           </div>
         </div>
 
@@ -315,8 +315,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
           <div>
-            <div class="font-syne font-bold mb-1">SQS + SNS Event Fan-out</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message picked up by the VCF Analyzer worker, which processes the variant file and pushes results back to S3. SNS fans the completion event to multiple subscribers: the Archiver microservice, the SES Notifier (which emails the researcher on success or failure), and the billing metering endpoint - all independently scalable, zero polling.</p>
+            <div class="font-syne font-bold mb-1">EC2 Ann - VCF Analysis</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The S3 upload event enqueues a message in SQS. The VCF Analyzer worker on EC2 Ann polls this queue, picks up the job, and processes the genomic variant file - running analysis and annotation logic from <span class="font-code text-xs text-secondary">pipeline/</span>. Processed results are written back to S3, and job status is updated in DynamoDB. EC2 Ann scales independently of the web tier.</p>
           </div>
         </div>
 
@@ -324,8 +324,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
           <div>
-            <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">SNS triggers a Step Functions state machine with three stages: (1) Validate - checksum verification and format validation, (2) Process - indexing and metadata extraction, (3) Archive - tiered storage migration to S3 Glacier for cost-optimized long-term retention. Each stage is independently retryable with configurable backoff.</p>
+            <div class="font-syne font-bold mb-1">EC2 Util - SNS Fan-out to Archiver &amp; Notifier</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Completion triggers an SNS message that fans out to two microservices on EC2 Util. The <strong>Archiver</strong> receives the SNS event and migrates Basic-tier results to S3 Glacier within 5 minutes; Premium results stay in hot S3. The <strong>Notifier</strong> polls a separate SQS queue and emails the researcher via SES on success or failure - completely decoupled from the web and analysis tiers.</p>
           </div>
         </div>
 
@@ -333,8 +333,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
           <div>
-            <div class="font-syne font-bold mb-1">Glacier Hydration on Demand</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Two dedicated microservices handle cold-storage retrieval. The Retriever polls SQS to initiate Glacier retrieval batches; the Restorer Lambda copies the thawed data from Glacier back to hot S3 and generates a presigned download URL. Premium users get automated restoration; Basic-tier users can upgrade via Stripe to unlock it.</p>
+            <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">In parallel, SNS also triggers a Step Functions state machine for structured archival: (1) Validate - checksum verification and format validation, (2) Process - indexing and metadata extraction, (3) Archive - cold storage migration to S3 Glacier. Each stage is independently retryable with exponential backoff, and failed states produce structured error events for observability.</p>
           </div>
         </div>
 
@@ -342,8 +342,17 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
           <div>
+            <div class="font-syne font-bold mb-1">EC2 Util Retriever + Lambda Restorer - On-demand Retrieval</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">When a researcher requests a previously archived file, the <strong>Retriever</strong> on EC2 Util polls SQS for retrieval jobs and initiates a Glacier batch retrieval. Once Glacier thaws the data, the <strong>Lambda Restorer</strong> function fires - it copies the restored bytes back to hot S3 and returns a presigned download URL. The two-service split keeps long-running Glacier polling off Lambda's execution limits.</p>
+          </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">7</div>
+          <div>
             <div class="font-syne font-bold mb-1">One-Command Infrastructure</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The entire stack - IAM roles, S3 buckets, SQS queues, SNS topics, Lambda functions, Step Functions, VPC networking - is defined in a single CloudFormation template. LocalStack mirrors the AWS environment locally for development. Moto mocks AWS service calls in unit tests, achieving full test coverage without cloud costs.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">All three EC2 instances, IAM roles, S3 buckets, SQS queues, SNS topics, Lambda, Step Functions, DynamoDB tables, and VPC networking are defined in a single CloudFormation <span class="font-code text-xs text-secondary">template.yaml</span>. LocalStack mirrors the full AWS environment locally via <span class="font-code text-xs text-secondary">start_all_local.sh</span>. Moto mocks every AWS service call in unit tests, giving full coverage without cloud spend.</p>
           </div>
         </div>
       </div>
