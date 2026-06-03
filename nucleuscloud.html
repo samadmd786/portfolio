@@ -123,7 +123,7 @@ tailwind.config = {
         </div>
         <div class="w-px bg-white/10"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary" data-count="9">9</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="10">10</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">AWS Services</div>
         </div>
         <div class="w-px bg-white/10"></div>
@@ -248,7 +248,7 @@ tailwind.config = {
 
           <!-- CloudFormation banner -->
           <rect x="30" y="560" width="800" height="22" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="430" y="574" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - provisions entire stack · LocalStack for local dev · Moto for unit testing</text>
+          <text x="430" y="574" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - S3 · Glacier · SQS · SNS · Lambda · Step Functions · SES · DynamoDB · EC2 · RDS · CloudWatch</text>
 
           <!-- Arrows -->
           <!-- User → Flask -->
@@ -334,7 +334,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
           <div>
             <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">In parallel, SNS also triggers a Step Functions state machine for structured archival: (1) Validate - checksum verification and format validation, (2) Process - indexing and metadata extraction, (3) Archive - cold storage migration to S3 Glacier. Each stage is independently retryable with exponential backoff, and failed states produce structured error events for observability.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">In parallel, SNS triggers a Step Functions state machine for structured archival - but only for objects that meet the Basic-tier lifecycle policy. Premium-tier objects bypass this flow entirely and remain in hot S3 indefinitely. For Basic-tier objects, the three-stage machine runs: (1) Validate - checksum verification and format validation, (2) Process - indexing and metadata extraction, (3) Archive - cold storage migration to S3 Glacier within 5 minutes. Each stage is independently retryable with exponential backoff.</p>
           </div>
         </div>
 
