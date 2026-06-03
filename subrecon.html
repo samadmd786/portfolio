@@ -45,6 +45,19 @@ tailwind.config = {
   .risk-high { color: #fb923c; }
   .risk-medium { color: #fbbf24; }
   .risk-low { color: #4ade80; }
+
+  @keyframes srFadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-in { opacity:0; animation: srFadeUp 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+    .sr-reveal { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease,transform 0.55s ease; transition-delay:var(--sr-d,0ms); }
+    .sr-reveal.in { opacity:1; transform:none; }
+  }
+  .step-card { transition:transform 0.22s ease,box-shadow 0.22s ease; }
+  .step-card:hover { transform:translateX(5px); box-shadow:-3px 0 0 0 #6366f1,0 4px 24px rgba(99,102,241,0.1); }
+  .tech-card { transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease; }
+  .tech-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.25)!important; }
+  .pill-glow { transition:background 0.15s,border-color 0.15s,color 0.15s; }
+  .pill-glow:hover { background:rgba(99,102,241,0.15)!important; border-color:rgba(99,102,241,0.4)!important; color:#a5b4fc!important; }
 </style>
 </head>
 
@@ -58,7 +71,7 @@ tailwind.config = {
       Back
     </a>
     <a href="index.html" class="font-syne text-lg font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200">Md Samad</a>
-    <a href="https://github.com/samadmd786/zombie_hunter" target="_blank" rel="noopener"
+    <a href="https://github.com/samadmd786/SubRecon" target="_blank" rel="noopener"
        class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       GitHub
@@ -69,31 +82,32 @@ tailwind.config = {
 <main class="pt-16">
 
   <!-- Hero -->
-  <section class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
+  <section id="hero" class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
     <div class="max-w-container mx-auto">
-      <div class="flex flex-wrap gap-2 mb-5">
+      <div class="flex flex-wrap gap-2 mb-5 hero-in" style="animation-delay:0ms">
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(248,113,113,0.12);color:#f87171">Security</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">Recon</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Attack Surface</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(251,146,60,0.12);color:#fb923c">Port Scanning</span>
       </div>
-      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4">SubRecon</h1>
-      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
-        Automated subdomain enumeration and attack surface mapping tool. Aggregates passive recon from multiple sources, actively probes for exposed API docs and sensitive HTML comments, captures visual evidence with Playwright, and outputs a risk-scored dashboard with trend analysis.
+      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4 hero-in" style="animation-delay:90ms">SubRecon</h1>
+      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
+        Automated attack surface mapping tool with three scan modes. Enumerates subdomains via passive recon, port-scans live hosts for exposed dangerous services, probes for exposed API docs and sensitive HTML comments, captures visual evidence with Playwright, and outputs a risk-scored dashboard with dated CSV reports.
       </p>
-      <div class="flex flex-wrap gap-8">
+      <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:300ms">
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">3</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="3">3</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Data Sources</div>
         </div>
         <div class="w-px bg-white/10"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">4</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="4">4</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Risk Levels</div>
         </div>
         <div class="w-px bg-white/10"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">100%</div>
-          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Passive + Active</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="3">3</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Scan Modes</div>
         </div>
       </div>
     </div>
@@ -150,18 +164,22 @@ tailwind.config = {
           <!-- Active Probe Layer -->
           <rect x="36" y="310" width="788" height="90" rx="10" fill="rgba(248,113,113,0.04)" stroke="rgba(248,113,113,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
           <text x="430" y="326" class="arch-sublabel" style="fill:#f87171;font-size:9px;letter-spacing:0.15em">ACTIVE PROBE LAYER</text>
+          <!-- Port Scanner -->
+          <rect x="51" y="334" width="178" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="140" y="355" class="arch-label" style="font-size:11px">Port Scanner</text>
+          <text x="140" y="371" class="arch-sublabel">FTP · SSH · MySQL · RDP</text>
           <!-- API Doc Scanner -->
-          <rect x="56" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
-          <text x="166" y="355" class="arch-label" style="font-size:11px">API Doc Scanner</text>
-          <text x="166" y="371" class="arch-sublabel">Swagger · OpenAPI exposure</text>
+          <rect x="244" y="334" width="178" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="333" y="355" class="arch-label" style="font-size:11px">API Doc Scanner</text>
+          <text x="333" y="371" class="arch-sublabel">Swagger · OpenAPI exposure</text>
           <!-- HTML Comment Miner -->
-          <rect x="320" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
-          <text x="430" y="355" class="arch-label" style="font-size:11px">HTML Comment Miner</text>
-          <text x="430" y="371" class="arch-sublabel">Secrets · TODOs · Credentials</text>
+          <rect x="437" y="334" width="178" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="526" y="355" class="arch-label" style="font-size:11px">HTML Comment Miner</text>
+          <text x="526" y="371" class="arch-sublabel">Secrets · TODOs · Credentials</text>
           <!-- Playwright -->
-          <rect x="584" y="334" width="220" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
-          <text x="694" y="355" class="arch-label" style="font-size:11px">Playwright</text>
-          <text x="694" y="371" class="arch-sublabel">Screenshot Evidence</text>
+          <rect x="630" y="334" width="178" height="52" rx="7" fill="rgba(22,27,34,0.95)" stroke="rgba(248,113,113,0.28)" stroke-width="1.2"/>
+          <text x="719" y="355" class="arch-label" style="font-size:11px">Playwright</text>
+          <text x="719" y="371" class="arch-sublabel">Screenshot Evidence</text>
 
           <!-- Arrow: Active → Risk Scoring -->
           <line x1="430" y1="400" x2="430" y2="434" stroke="rgba(248,113,113,0.55)" stroke-width="1.8" marker-end="url(#sr-arrow-red)"/>
@@ -172,16 +190,16 @@ tailwind.config = {
           <!-- 4 risk chips -->
           <rect x="175" y="466" width="100" height="34" rx="6" fill="rgba(248,113,113,0.12)" stroke="rgba(248,113,113,0.35)" stroke-width="1"/>
           <text x="225" y="480" class="arch-label" style="font-size:10px;fill:#f87171">Critical</text>
-          <text x="225" y="494" class="arch-sublabel" style="fill:#f87171">Credentials</text>
+          <text x="225" y="494" class="arch-sublabel" style="fill:#f87171">Ports / Open Dirs</text>
           <rect x="290" y="466" width="100" height="34" rx="6" fill="rgba(251,146,60,0.1)" stroke="rgba(251,146,60,0.3)" stroke-width="1"/>
           <text x="340" y="480" class="arch-label" style="font-size:10px;fill:#fb923c">High</text>
-          <text x="340" y="494" class="arch-sublabel" style="fill:#fb923c">API Docs</text>
+          <text x="340" y="494" class="arch-sublabel" style="fill:#fb923c">Admin / Comments</text>
           <rect x="405" y="466" width="100" height="34" rx="6" fill="rgba(251,191,36,0.09)" stroke="rgba(251,191,36,0.28)" stroke-width="1"/>
           <text x="455" y="480" class="arch-label" style="font-size:10px;fill:#fbbf24">Medium</text>
-          <text x="455" y="494" class="arch-sublabel" style="fill:#fbbf24">Comments</text>
+          <text x="455" y="494" class="arch-sublabel" style="fill:#fbbf24">Subdomain Type</text>
           <rect x="520" y="466" width="100" height="34" rx="6" fill="rgba(74,222,128,0.09)" stroke="rgba(74,222,128,0.28)" stroke-width="1"/>
           <text x="570" y="480" class="arch-label" style="font-size:10px;fill:#4ade80">Low</text>
-          <text x="570" y="494" class="arch-sublabel" style="fill:#4ade80">Info</text>
+          <text x="570" y="494" class="arch-sublabel" style="fill:#4ade80">Old Content</text>
 
           <!-- Arrow: Risk → Dashboard -->
           <line x1="430" y1="516" x2="430" y2="550" stroke="rgba(99,102,241,0.5)" stroke-width="1.8" marker-end="url(#sr-arrow)"/>
@@ -202,7 +220,7 @@ tailwind.config = {
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">How it works</h2>
 
       <div class="flex flex-col gap-4">
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
           <div>
             <div class="font-syne font-bold mb-1">Multi-Source Passive Enumeration</div>
@@ -210,35 +228,43 @@ tailwind.config = {
           </div>
         </div>
 
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
           <div>
-            <div class="font-syne font-bold mb-1">API Documentation Probing</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Each live subdomain is probed for exposed API documentation at common paths (/swagger, /api-docs, /openapi.json, /v1/docs, etc.). Exposed Swagger/OpenAPI specs reveal full endpoint inventories, authentication schemes, and request/response models - a common critical finding in security assessments.</p>
+            <div class="font-syne font-bold mb-1">Port & Service Scanning</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Each live host is asynchronously probed across high-risk ports: FTP (21), SSH (22), MySQL (3306), RDP (3389), and alternate web ports (8000, 8080, 8888). Open dangerous ports are immediately escalated to Critical severity. A dedicated SSH probe module checks for banner leakage and version exposure that can fingerprint the underlying OS.</p>
           </div>
         </div>
 
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
           <div>
-            <div class="font-syne font-bold mb-1">HTML Source Comment Mining</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The HTML comment miner fetches page source and scans comments for patterns matching credentials, internal IP addresses, TODO/FIXME annotations, debug flags, and environment variable leakage. Developers frequently leave sensitive context in HTML comments that are invisible to users but visible in source.</p>
+            <div class="font-syne font-bold mb-1">API Documentation Probing</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Each live subdomain is probed for exposed API documentation at common paths (/swagger.json, /openapi.json, /v2/api-docs, /v3/api-docs, /actuator/health, etc.). Exposed Swagger/OpenAPI specs reveal full endpoint inventories, authentication schemes, and request/response models - a Critical finding that exposes the entire backend contract.</p>
           </div>
         </div>
 
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
           <div>
-            <div class="font-syne font-bold mb-1">Playwright Screenshot Evidence</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Playwright navigates to each discovered subdomain with a headless Chromium browser and captures full-page screenshots. This provides visual evidence of the live attack surface - login panels, admin interfaces, staging environments, and internal dashboards - without triggering active scanning alerts.</p>
+            <div class="font-syne font-bold mb-1">HTML Source Comment Mining</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The content analyzer fetches page source and scans HTML comments for patterns matching API keys, internal IPs, TODO/FIXME annotations, debug flags, and credential leakage. Pages with admin/dashboard/console/VPN keywords in their title are escalated to High severity. Developers frequently leave sensitive context in comments invisible to users but visible in source.</p>
           </div>
         </div>
 
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
           <div>
+            <div class="font-syne font-bold mb-1">Playwright Screenshot Evidence</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Playwright navigates to each discovered subdomain with a headless Chromium browser and captures full-page screenshots saved to a dated evidence folder. This provides visual proof of the live attack surface - login panels, admin interfaces, staging environments, and internal dashboards - without triggering active scanning alerts.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
+          <div>
             <div class="font-syne font-bold mb-1">Risk Scoring + Dashboard</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Each finding is classified into one of four severity tiers: <span class="risk-critical font-bold">Critical</span> (exposed credentials or auth bypass), <span class="risk-high font-bold">High</span> (exposed API docs), <span class="risk-medium font-bold">Medium</span> (sensitive HTML comments), <span class="risk-low font-bold">Low</span> (informational subdomains). The Streamlit dashboard aggregates findings by severity, renders the screenshot gallery, and tracks trends across multiple scan runs to surface newly appearing or disappearing subdomains.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Each finding is classified into one of four severity tiers: <span class="risk-critical font-bold">Critical</span> (open dangerous ports, exposed API docs, directory listing), <span class="risk-high font-bold">High</span> (sensitive HTML comments, admin/console title keywords), <span class="risk-medium font-bold">Medium</span> (sensitive subdomain names like staging/vpn/db), <span class="risk-low font-bold">Low</span> (stale content from 2010-2021). The Streamlit dashboard aggregates findings by severity, renders the screenshot gallery, and exports dated CSV reports for trend tracking.</p>
           </div>
         </div>
       </div>
@@ -251,49 +277,59 @@ tailwind.config = {
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Core</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Python</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">asyncio</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">httpx</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Python</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">asyncio</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">aiohttp</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">requests</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Recon Sources</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">HackerTarget API</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">crt.sh</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">RapidDNS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">HackerTarget API</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">crt.sh</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">RapidDNS</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Port & Service Scanning</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">asyncio port scanner</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SSH probe</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">tqdm</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">colorama</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Browser Automation</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Playwright</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Chromium</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Playwright</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Chromium</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">UI + Reporting</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Streamlit</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Pandas</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Plotly</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Streamlit</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Pandas</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Plotly</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Parsing</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">BeautifulSoup</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">regex</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">BeautifulSoup</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">regex</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Risk Engine</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Custom Scoring</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Critical / High / Medium / Low</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Custom Scoring</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Critical / High / Medium / Low</span>
           </div>
         </div>
       </div>
@@ -309,5 +345,58 @@ tailwind.config = {
   </div>
 </footer>
 
+<script>
+(function () {
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal with stagger
+  if (!REDUCED) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    // Section labels + h2s outside hero
+    document.querySelectorAll('section:not(#hero) .font-code.text-primary, section:not(#hero) h2').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    // Architecture glass panel
+    document.querySelectorAll('section:not(#hero) .glass-panel:not(.step-card):not(.tech-card)').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    // Step cards - staggered per section
+    document.querySelectorAll('.step-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 75) + 'ms');
+      obs.observe(el);
+    });
+
+    // Tech cards - staggered
+    document.querySelectorAll('.tech-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 60) + 'ms');
+      obs.observe(el);
+    });
+  }
+
+  // Count-up on hero stats
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, dur = 700, t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        el.textContent = Math.round(p * target);
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+})();
+</script>
 </body>
 </html>
