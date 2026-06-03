@@ -142,7 +142,7 @@ tailwind.config = {
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
 
       <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
-        <svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
+        <svg viewBox="0 0 860 582" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:640px">
           <defs>
             <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="rgba(99,102,241,0.6)"/>
@@ -153,77 +153,134 @@ tailwind.config = {
             <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="rgba(52,211,153,0.6)"/>
             </marker>
+            <marker id="arrow-yellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(251,191,36,0.6)"/>
+            </marker>
           </defs>
 
           <!-- User Browser -->
-          <rect x="340" y="10" width="180" height="50" rx="8" class="arch-node"/>
-          <text x="430" y="35" class="arch-label">User Browser</text>
+          <rect x="340" y="12" width="180" height="46" rx="8" class="arch-node"/>
+          <text x="430" y="38" class="arch-label">User Browser</text>
 
-          <!-- Flask App -->
-          <rect x="300" y="100" width="260" height="58" rx="8" class="arch-node"/>
+          <!-- EC2 Web boundary -->
+          <rect x="228" y="86" width="404" height="76" rx="9" fill="rgba(99,102,241,0.04)" stroke="rgba(99,102,241,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="430" y="98" class="arch-sublabel" style="fill:#a5b4fc;font-size:8px;letter-spacing:0.14em">EC2 INSTANCE · WEB</text>
+          <rect x="244" y="100" width="372" height="56" rx="8" class="arch-node"/>
           <text x="430" y="122" class="arch-label">Flask App</text>
-          <text x="430" y="138" class="arch-sublabel">EC2 / ECS · REST API</text>
+          <text x="430" y="138" class="arch-sublabel">Jinja2 · REST API · PostgreSQL RDS</text>
 
-          <!-- Globus Auth + Stripe side by side -->
-          <rect x="60" y="100" width="160" height="58" rx="8" class="arch-node-cyan"/>
-          <text x="140" y="122" class="arch-label" style="fill:#4cd7f6">Globus Auth</text>
-          <text x="140" y="138" class="arch-sublabel">Federated Identity</text>
+          <!-- Globus Auth -->
+          <rect x="42" y="100" width="152" height="56" rx="8" class="arch-node-cyan"/>
+          <text x="118" y="122" class="arch-label" style="fill:#4cd7f6">Globus Auth</text>
+          <text x="118" y="138" class="arch-sublabel">Federated Identity</text>
 
-          <rect x="640" y="100" width="160" height="58" rx="8" class="arch-node-green"/>
-          <text x="720" y="122" class="arch-label" style="fill:#34d399">Stripe</text>
-          <text x="720" y="138" class="arch-sublabel">Billing / Subscriptions</text>
+          <!-- Stripe -->
+          <rect x="666" y="100" width="152" height="56" rx="8" class="arch-node-green"/>
+          <text x="742" y="122" class="arch-label" style="fill:#34d399">Stripe</text>
+          <text x="742" y="138" class="arch-sublabel">Billing · Tiers</text>
 
           <!-- S3 -->
-          <rect x="300" y="210" width="260" height="58" rx="8" class="arch-node-green"/>
-          <text x="430" y="232" class="arch-label" style="fill:#34d399">Amazon S3</text>
-          <text x="430" y="248" class="arch-sublabel">Presigned URL Upload · File Storage</text>
+          <rect x="228" y="198" width="300" height="52" rx="8" class="arch-node-green"/>
+          <text x="378" y="220" class="arch-label" style="fill:#34d399">Amazon S3</text>
+          <text x="378" y="236" class="arch-sublabel">Presigned Upload · Storage · Results</text>
+
+          <!-- DynamoDB -->
+          <rect x="578" y="198" width="240" height="52" rx="8" class="arch-node"/>
+          <text x="698" y="220" class="arch-label">DynamoDB</text>
+          <text x="698" y="236" class="arch-sublabel">Job Status · User Metadata</text>
 
           <!-- SQS -->
-          <rect x="300" y="318" width="120" height="50" rx="8" class="arch-node"/>
-          <text x="360" y="343" class="arch-label">SQS Queue</text>
+          <rect x="218" y="296" width="142" height="46" rx="8" class="arch-node"/>
+          <text x="289" y="323" class="arch-label">SQS Queue</text>
 
           <!-- SNS -->
-          <rect x="440" y="318" width="120" height="50" rx="8" class="arch-node"/>
-          <text x="500" y="343" class="arch-label">SNS Topic</text>
-
-          <!-- Lambda + Notifier -->
-          <rect x="300" y="420" width="260" height="50" rx="8" class="arch-node-cyan"/>
-          <text x="430" y="438" class="arch-label" style="fill:#4cd7f6">Lambda / Workers</text>
-          <text x="430" y="453" class="arch-sublabel">VCF Processor · Archiver · SES Notifier · Restorer</text>
+          <rect x="390" y="296" width="142" height="46" rx="8" class="arch-node"/>
+          <text x="461" y="323" class="arch-label">SNS Topic</text>
 
           <!-- Step Functions -->
-          <rect x="610" y="318" width="200" height="152" rx="8" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="710" y="340" class="arch-label" style="font-size:10px;fill:#a5b4fc">Step Functions</text>
-          <rect x="626" y="352" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
-          <text x="710" y="370" class="arch-sublabel" style="fill:#c7c4d7">1. Validate</text>
-          <rect x="626" y="388" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
-          <text x="710" y="406" class="arch-sublabel" style="fill:#c7c4d7">2. Process</text>
-          <rect x="626" y="424" width="168" height="28" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
-          <text x="710" y="442" class="arch-sublabel" style="fill:#34d399">3. Archive → Glacier</text>
+          <rect x="578" y="296" width="240" height="108" rx="8" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="698" y="314" class="arch-label" style="font-size:10px;fill:#a5b4fc">Step Functions</text>
+          <rect x="592" y="322" width="212" height="24" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="698" y="337" class="arch-sublabel" style="fill:#c7c4d7">1. Validate checksum</text>
+          <rect x="592" y="352" width="212" height="24" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="698" y="367" class="arch-sublabel" style="fill:#c7c4d7">2. Process + index</text>
+          <rect x="592" y="382" width="212" height="24" rx="5" fill="rgba(22,27,34,0.8)" stroke="rgba(99,102,241,0.25)" stroke-width="1"/>
+          <text x="698" y="397" class="arch-sublabel" style="fill:#34d399">3. Archive to Glacier</text>
+
+          <!-- EC2 Ann boundary -->
+          <rect x="42" y="412" width="234" height="72" rx="9" fill="rgba(76,215,246,0.04)" stroke="rgba(76,215,246,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="159" y="425" class="arch-sublabel" style="fill:#4cd7f6;font-size:8px;letter-spacing:0.14em">EC2 INSTANCE · ANN</text>
+          <rect x="56" y="432" width="206" height="42" rx="6" fill="rgba(22,27,34,0.95)" stroke="rgba(76,215,246,0.3)" stroke-width="1.2"/>
+          <text x="159" y="449" class="arch-label" style="font-size:10px;fill:#4cd7f6">VCF Analyzer</text>
+          <text x="159" y="463" class="arch-sublabel">SQS-driven · pipeline/</text>
+
+          <!-- EC2 Util boundary -->
+          <rect x="294" y="412" width="256" height="72" rx="9" fill="rgba(76,215,246,0.04)" stroke="rgba(76,215,246,0.22)" stroke-width="1.2" stroke-dasharray="5,3"/>
+          <text x="422" y="425" class="arch-sublabel" style="fill:#4cd7f6;font-size:8px;letter-spacing:0.14em">EC2 INSTANCE · UTIL</text>
+          <!-- Archiver -->
+          <rect x="306" y="432" width="72" height="42" rx="5" fill="rgba(22,27,34,0.95)" stroke="rgba(76,215,246,0.3)" stroke-width="1.2"/>
+          <text x="342" y="449" class="arch-label" style="font-size:9px;fill:#4cd7f6">Archiver</text>
+          <text x="342" y="463" class="arch-sublabel">SNS</text>
+          <!-- Notifier -->
+          <rect x="386" y="432" width="72" height="42" rx="5" fill="rgba(22,27,34,0.95)" stroke="rgba(76,215,246,0.3)" stroke-width="1.2"/>
+          <text x="422" y="449" class="arch-label" style="font-size:9px;fill:#4cd7f6">Notifier</text>
+          <text x="422" y="463" class="arch-sublabel">SQS · SES</text>
+          <!-- Retriever -->
+          <rect x="466" y="432" width="76" height="42" rx="5" fill="rgba(22,27,34,0.95)" stroke="rgba(76,215,246,0.3)" stroke-width="1.2"/>
+          <text x="504" y="449" class="arch-label" style="font-size:9px;fill:#4cd7f6">Retriever</text>
+          <text x="504" y="463" class="arch-sublabel">SQS</text>
+
+          <!-- Lambda Restorer -->
+          <rect x="578" y="412" width="240" height="72" rx="8" class="arch-node-cyan"/>
+          <text x="698" y="440" class="arch-label" style="fill:#4cd7f6">Lambda: Restorer</text>
+          <text x="698" y="456" class="arch-sublabel">Copies thawed data</text>
+          <text x="698" y="470" class="arch-sublabel">Glacier → hot S3</text>
+
+          <!-- SES -->
+          <rect x="42" y="502" width="194" height="46" rx="8" fill="rgba(22,27,34,0.95)" stroke="rgba(251,191,36,0.4)" stroke-width="1.5"/>
+          <text x="139" y="522" class="arch-label" style="fill:#fbbf24">AWS SES</text>
+          <text x="139" y="537" class="arch-sublabel">Email Notifications</text>
+
+          <!-- Glacier -->
+          <rect x="578" y="502" width="240" height="46" rx="8" class="arch-node-green"/>
+          <text x="698" y="522" class="arch-label" style="fill:#34d399">S3 Glacier</text>
+          <text x="698" y="537" class="arch-sublabel">Cold Storage · Long-term Archive</text>
 
           <!-- CloudFormation banner -->
-          <rect x="30" y="490" width="800" height="24" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - S3 · SQS · SNS · Lambda · Step Functions · Glacier · SES · DynamoDB · EC2 · RDS · LocalStack · Moto</text>
+          <rect x="30" y="560" width="800" height="22" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="430" y="574" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - provisions entire stack · LocalStack for local dev · Moto for unit testing</text>
 
           <!-- Arrows -->
           <!-- User → Flask -->
-          <line x1="430" y1="60" x2="430" y2="98" class="arch-arrow"/>
-          <!-- Flask → Globus (left) -->
-          <line x1="300" y1="124" x2="222" y2="124" class="arch-arrow-cyan"/>
-          <!-- Flask → Stripe (right) -->
-          <line x1="560" y1="124" x2="638" y2="124" class="arch-arrow" style="stroke:rgba(52,211,153,0.5)"/>
+          <line x1="430" y1="58" x2="430" y2="98" class="arch-arrow"/>
+          <!-- Flask ← Globus -->
+          <line x1="244" y1="121" x2="196" y2="121" class="arch-arrow-cyan"/>
+          <!-- Flask → Stripe -->
+          <line x1="616" y1="121" x2="664" y2="121" class="arch-arrow" style="stroke:rgba(52,211,153,0.5);marker-end:url(#arrow-green)"/>
           <!-- Flask → S3 -->
-          <line x1="430" y1="158" x2="430" y2="208" class="arch-arrow"/>
+          <line x1="400" y1="156" x2="360" y2="196" class="arch-arrow"/>
+          <!-- Flask → DynamoDB -->
+          <line x1="616" y1="138" x2="660" y2="196" class="arch-arrow"/>
           <!-- S3 → SQS -->
-          <line x1="380" y1="268" x2="360" y2="316" class="arch-arrow"/>
+          <line x1="308" y1="250" x2="275" y2="294" class="arch-arrow"/>
           <!-- S3 → SNS -->
-          <line x1="480" y1="268" x2="500" y2="316" class="arch-arrow"/>
-          <!-- SQS → Lambda -->
-          <line x1="360" y1="368" x2="380" y2="418" class="arch-arrow"/>
-          <!-- SNS → Lambda -->
-          <line x1="500" y1="368" x2="460" y2="418" class="arch-arrow"/>
+          <line x1="450" y1="250" x2="450" y2="294" class="arch-arrow"/>
+          <!-- SQS → EC2 Ann (VCF Analyzer) -->
+          <line x1="262" y1="342" x2="170" y2="410" class="arch-arrow"/>
+          <!-- SNS → EC2 Util Archiver -->
+          <line x1="432" y1="342" x2="352" y2="410" class="arch-arrow"/>
+          <!-- SNS → EC2 Util Notifier -->
+          <line x1="468" y1="342" x2="425" y2="410" class="arch-arrow"/>
           <!-- SNS → Step Functions -->
-          <line x1="560" y1="343" x2="608" y2="365" class="arch-arrow"/>
+          <line x1="530" y1="311" x2="576" y2="324" class="arch-arrow"/>
+          <!-- Step Functions → Lambda Restorer -->
+          <line x1="698" y1="404" x2="698" y2="410" class="arch-arrow"/>
+          <!-- Notifier → SES -->
+          <line x1="386" y1="484" x2="236" y2="500" class="arch-arrow" style="stroke:rgba(251,191,36,0.55);marker-end:url(#arrow-yellow)"/>
+          <!-- Lambda Restorer → Glacier -->
+          <line x1="698" y1="484" x2="698" y2="500" class="arch-arrow"/>
+          <!-- Retriever → Glacier (initiates retrieval) -->
+          <line x1="538" y1="468" x2="600" y2="498" class="arch-arrow" style="stroke:rgba(52,211,153,0.45);marker-end:url(#arrow-green)"/>
         </svg>
       </div>
     </div>
