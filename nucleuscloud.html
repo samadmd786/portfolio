@@ -60,6 +60,19 @@ tailwind.config = {
   .arch-label { fill: #e1e2eb; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
   .arch-sublabel { fill: #c7c4d7; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
   .section-divider { border-color: rgba(255,255,255,0.06); }
+
+  @keyframes srFadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-in { opacity:0; animation: srFadeUp 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+    .sr-reveal { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease,transform 0.55s ease; transition-delay:var(--sr-d,0ms); }
+    .sr-reveal.in { opacity:1; transform:none; }
+  }
+  .step-card { transition:transform 0.22s ease,box-shadow 0.22s ease; }
+  .step-card:hover { transform:translateX(5px); box-shadow:-3px 0 0 0 #6366f1,0 4px 24px rgba(99,102,241,0.1); }
+  .tech-card { transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease; }
+  .tech-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.25)!important; }
+  .pill-glow { transition:background 0.15s,border-color 0.15s,color 0.15s; }
+  .pill-glow:hover { background:rgba(99,102,241,0.15)!important; border-color:rgba(99,102,241,0.4)!important; color:#a5b4fc!important; }
 </style>
 </head>
 
@@ -84,25 +97,32 @@ tailwind.config = {
 <main class="pt-16">
 
   <!-- Hero -->
-  <section class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
+  <section id="hero" class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
     <div class="max-w-container mx-auto">
-      <div class="flex flex-wrap gap-2 mb-5">
+      <div class="flex flex-wrap gap-2 mb-5 hero-in" style="animation-delay:0ms">
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud / AWS</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">Full-Stack</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(52,211,153,0.12);color:#34d399">Event-Driven</span>
       </div>
-      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4">NucleusCloud</h1>
-      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
+      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4 hero-in" style="animation-delay:90ms">NucleusCloud</h1>
+      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
         Fully event-driven bioinformatics data pipeline on AWS - Flask frontend, presigned S3 uploads, SQS/SNS workers, Lambda triggers, Step Functions archival workflow, Stripe billing, and Globus Auth. Entire stack provisioned from a single CloudFormation template.
       </p>
-      <div class="flex flex-wrap gap-8">
+      <div class="flex flex-wrap gap-4 mb-10 hero-in" style="animation-delay:260ms">
+        <a href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all duration-200">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">1</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="1">1</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">CloudFormation Template</div>
         </div>
         <div class="w-px bg-white/10"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">6</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="6">6</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">AWS Services</div>
         </div>
         <div class="w-px bg-white/10"></div>
@@ -216,7 +236,7 @@ tailwind.config = {
 
       <div class="flex flex-col gap-4">
         <!-- Step 1 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
           <div>
             <div class="font-syne font-bold mb-1">Authentication via Globus Auth</div>
@@ -225,7 +245,7 @@ tailwind.config = {
         </div>
 
         <!-- Step 2 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
           <div>
             <div class="font-syne font-bold mb-1">Presigned S3 Upload</div>
@@ -234,7 +254,7 @@ tailwind.config = {
         </div>
 
         <!-- Step 3 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
           <div>
             <div class="font-syne font-bold mb-1">SQS + SNS Event Fan-out</div>
@@ -243,7 +263,7 @@ tailwind.config = {
         </div>
 
         <!-- Step 4 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
           <div>
             <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
@@ -252,7 +272,7 @@ tailwind.config = {
         </div>
 
         <!-- Step 5 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
           <div>
             <div class="font-syne font-bold mb-1">Glacier Hydration on Demand</div>
@@ -261,7 +281,7 @@ tailwind.config = {
         </div>
 
         <!-- Step 6 -->
-        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
           <div>
             <div class="font-syne font-bold mb-1">One-Command Infrastructure</div>
@@ -278,54 +298,54 @@ tailwind.config = {
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Frontend</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Flask</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Jinja2</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">JavaScript</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Flask</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Jinja2</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">JavaScript</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">AWS Services</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">S3 + Glacier</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">SQS</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">SNS</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Lambda</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Step Functions</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">CloudWatch</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">S3 + Glacier</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SQS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SNS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Lambda</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Step Functions</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">CloudWatch</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Auth + Billing</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Globus Auth</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Stripe</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">OAuth 2.0</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Globus Auth</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Stripe</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">OAuth 2.0</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Infrastructure as Code</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">CloudFormation</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">IAM Roles + Policies</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">CloudFormation</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">IAM Roles + Policies</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Testing + Local Dev</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">LocalStack</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Moto</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Pytest</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">LocalStack</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Moto</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Pytest</span>
           </div>
         </div>
-        <div class="glass-panel rounded-xl p-5">
+        <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Backend</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Python</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">Boto3</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant">REST APIs</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Python</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Boto3</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">REST APIs</span>
           </div>
         </div>
       </div>
@@ -341,5 +361,52 @@ tailwind.config = {
   </div>
 </footer>
 
+<script>
+(function () {
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!REDUCED) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section:not(#hero) .font-code.text-primary, section:not(#hero) h2').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('section:not(#hero) .glass-panel:not(.step-card):not(.tech-card)').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('.step-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 75) + 'ms');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('.tech-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 60) + 'ms');
+      obs.observe(el);
+    });
+  }
+
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, dur = 700, t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        el.textContent = Math.round(p * target);
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+})();
+</script>
 </body>
 </html>
