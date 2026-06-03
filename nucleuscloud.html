@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="NucleusCloud — Fully event-driven bioinformatics pipeline on AWS by Md Samad"/>
+<meta name="description" content="NucleusCloud - Fully event-driven bioinformatics pipeline on AWS by Md Samad"/>
 <title>NucleusCloud | Md Samad</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -182,7 +182,7 @@ tailwind.config = {
 
           <!-- CloudFormation banner -->
           <rect x="30" y="490" width="800" height="24" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation — provisions entire stack · LocalStack for local dev · Moto for testing</text>
+          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - provisions entire stack · LocalStack for local dev · Moto for testing</text>
 
           <!-- Arrows -->
           <!-- User → Flask -->
@@ -220,7 +220,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
           <div>
             <div class="font-syne font-bold mb-1">Authentication via Globus Auth</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth — a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a scoped session token and provisions the user's storage quota via Stripe subscription tier.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth - a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a scoped session token and provisions the user's storage quota via Stripe subscription tier.</p>
           </div>
         </div>
 
@@ -229,7 +229,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
           <div>
             <div class="font-syne font-bold mb-1">Presigned S3 Upload</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side — the file bytes go directly from the user's browser to S3 without passing through the application server. This eliminates bandwidth bottlenecks and reduces server load to near-zero for large genomics files.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side - the file bytes go directly from the user's browser to S3 without passing through the application server. This eliminates bandwidth bottlenecks and reduces server load to near-zero for large genomics files.</p>
           </div>
         </div>
 
@@ -238,7 +238,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
           <div>
             <div class="font-syne font-bold mb-1">SQS + SNS Event Fan-out</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message. SNS fans this event out to multiple subscribers — the processing Lambda, the notification service, and the billing metering endpoint — all decoupled and independently scalable. No polling, fully push-driven.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message. SNS fans this event out to multiple subscribers - the processing Lambda, the notification service, and the billing metering endpoint - all decoupled and independently scalable. No polling, fully push-driven.</p>
           </div>
         </div>
 
@@ -247,7 +247,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
           <div>
             <div class="font-syne font-bold mb-1">Step Functions Archival Workflow</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">SNS triggers a Step Functions state machine with three stages: (1) Validate — checksum verification and format validation, (2) Process — indexing and metadata extraction, (3) Archive — tiered storage migration to S3 Glacier for cost-optimized long-term retention. Each stage is independently retryable with configurable backoff.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">SNS triggers a Step Functions state machine with three stages: (1) Validate - checksum verification and format validation, (2) Process - indexing and metadata extraction, (3) Archive - tiered storage migration to S3 Glacier for cost-optimized long-term retention. Each stage is independently retryable with configurable backoff.</p>
           </div>
         </div>
 
@@ -265,7 +265,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
           <div>
             <div class="font-syne font-bold mb-1">One-Command Infrastructure</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The entire stack — IAM roles, S3 buckets, SQS queues, SNS topics, Lambda functions, Step Functions, VPC networking — is defined in a single CloudFormation template. LocalStack mirrors the AWS environment locally for development. Moto mocks AWS service calls in unit tests, achieving full test coverage without cloud costs.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The entire stack - IAM roles, S3 buckets, SQS queues, SNS topics, Lambda functions, Step Functions, VPC networking - is defined in a single CloudFormation template. LocalStack mirrors the AWS environment locally for development. Moto mocks AWS service calls in unit tests, achieving full test coverage without cloud costs.</p>
           </div>
         </div>
       </div>
