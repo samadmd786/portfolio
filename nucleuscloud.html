@@ -103,10 +103,11 @@ tailwind.config = {
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud / AWS</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">Full-Stack</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(52,211,153,0.12);color:#34d399">Event-Driven</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(251,191,36,0.12);color:#fbbf24">Bioinformatics</span>
       </div>
       <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4 hero-in" style="animation-delay:90ms">NucleusCloud</h1>
       <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
-        Fully event-driven bioinformatics data pipeline on AWS - Flask frontend, presigned S3 uploads, SQS/SNS workers, Lambda triggers, Step Functions archival workflow, Stripe billing, and Globus Auth. Entire stack provisioned from a single CloudFormation template.
+        Cloud-native bioinformatics VCF variant processing pipeline on AWS. Accepts genomic VCF files via presigned S3 upload, processes them asynchronously through SQS/SNS-driven microservices, tiers cold storage to Glacier based on subscription level, and emails results via SES - all behind Globus Auth and Stripe billing. Entire stack deployed from a single CloudFormation template.
       </p>
       <div class="flex flex-wrap gap-4 mb-10 hero-in" style="animation-delay:260ms">
         <a href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener"
@@ -122,7 +123,7 @@ tailwind.config = {
         </div>
         <div class="w-px bg-white/10"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary" data-count="6">6</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="9">9</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">AWS Services</div>
         </div>
         <div class="w-px bg-white/10"></div>
@@ -185,10 +186,10 @@ tailwind.config = {
           <rect x="440" y="318" width="120" height="50" rx="8" class="arch-node"/>
           <text x="500" y="343" class="arch-label">SNS Topic</text>
 
-          <!-- Lambda -->
+          <!-- Lambda + Notifier -->
           <rect x="300" y="420" width="260" height="50" rx="8" class="arch-node-cyan"/>
-          <text x="430" y="440" class="arch-label" style="fill:#4cd7f6">Lambda</text>
-          <text x="430" y="455" class="arch-sublabel">Trigger · Glacier Hydration</text>
+          <text x="430" y="438" class="arch-label" style="fill:#4cd7f6">Lambda / Workers</text>
+          <text x="430" y="453" class="arch-sublabel">VCF Processor · Archiver · SES Notifier · Restorer</text>
 
           <!-- Step Functions -->
           <rect x="610" y="318" width="200" height="152" rx="8" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
@@ -202,7 +203,7 @@ tailwind.config = {
 
           <!-- CloudFormation banner -->
           <rect x="30" y="490" width="800" height="24" rx="5" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - provisions entire stack · LocalStack for local dev · Moto for testing</text>
+          <text x="430" y="505" class="arch-sublabel" style="fill:#a5b4fc;font-size:10px">CloudFormation - S3 · SQS · SNS · Lambda · Step Functions · Glacier · SES · DynamoDB · EC2 · RDS · LocalStack · Moto</text>
 
           <!-- Arrows -->
           <!-- User → Flask -->
@@ -240,7 +241,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
           <div>
             <div class="font-syne font-bold mb-1">Authentication via Globus Auth</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth - a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a scoped session token and provisions the user's storage quota via Stripe subscription tier.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Researchers authenticate through Globus Auth - a federated identity system trusted by institutions like NIH, XSEDE, and national labs. On successful login, Flask issues a session token and determines the user's tier via Stripe: Basic (150KB VCF upload limit, 5-minute Glacier archival) or Premium (unlimited file sizes, indefinite S3 preservation).</p>
           </div>
         </div>
 
@@ -249,7 +250,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
           <div>
             <div class="font-syne font-bold mb-1">Presigned S3 Upload</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side - the file bytes go directly from the user's browser to S3 without passing through the application server. This eliminates bandwidth bottlenecks and reduces server load to near-zero for large genomics files.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The Flask backend generates a presigned S3 URL server-side - the VCF file bytes go directly from the browser to S3, bypassing the application server entirely. This eliminates bandwidth bottlenecks and keeps server load near-zero for large genomic variant files. Upload limits are enforced per tier before the presigned URL is issued.</p>
           </div>
         </div>
 
@@ -258,7 +259,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
           <div>
             <div class="font-syne font-bold mb-1">SQS + SNS Event Fan-out</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message. SNS fans this event out to multiple subscribers - the processing Lambda, the notification service, and the billing metering endpoint - all decoupled and independently scalable. No polling, fully push-driven.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">S3 upload completion triggers an SQS message picked up by the VCF Analyzer worker, which processes the variant file and pushes results back to S3. SNS fans the completion event to multiple subscribers: the Archiver microservice, the SES Notifier (which emails the researcher on success or failure), and the billing metering endpoint - all independently scalable, zero polling.</p>
           </div>
         </div>
 
@@ -276,7 +277,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
           <div>
             <div class="font-syne font-bold mb-1">Glacier Hydration on Demand</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">A dedicated Lambda handles Glacier restore requests. When a researcher requests a previously archived file, the Lambda initiates an expedited or standard Glacier retrieval job, monitors completion via CloudWatch Events, and returns a presigned download URL when the file is available.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Two dedicated microservices handle cold-storage retrieval. The Retriever polls SQS to initiate Glacier retrieval batches; the Restorer Lambda copies the thawed data from Glacier back to hot S3 and generates a presigned download URL. Premium users get automated restoration; Basic-tier users can upgrade via Stripe to unlock it.</p>
           </div>
         </div>
 
@@ -303,7 +304,8 @@ tailwind.config = {
           <div class="flex flex-wrap gap-2">
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Flask</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Jinja2</span>
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">JavaScript</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Bootstrap</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">jQuery</span>
           </div>
         </div>
         <div class="glass-panel rounded-xl p-5 tech-card">
@@ -314,6 +316,9 @@ tailwind.config = {
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SNS</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Lambda</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Step Functions</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SES</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">DynamoDB</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">EC2 Autoscaling</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">CloudWatch</span>
           </div>
         </div>
@@ -343,8 +348,9 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-5 tech-card">
           <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Backend</div>
           <div class="flex flex-wrap gap-2">
-            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Python</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Python 3.9+</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Boto3</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">PostgreSQL RDS</span>
             <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">REST APIs</span>
           </div>
         </div>
