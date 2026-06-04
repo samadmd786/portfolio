@@ -8,8 +8,8 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
-<link rel="stylesheet" href="detail.css"/>
+<link rel="stylesheet" href="../assets/css/style.css"/>
+<link rel="stylesheet" href="../assets/css/detail.css"/>
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -46,8 +46,8 @@ tailwind.config = {
 <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
   <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
     <!-- Brand + back pill -->
-    <a href="index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
-    <a href="index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+    <a href="../index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="../index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       Portfolio
     </a>
@@ -320,10 +320,95 @@ tailwind.config = {
 <footer class="border-t border-white/5 py-10 bg-surface-container-low">
   <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
     <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
-    <a href="index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+    <a href="../index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
   </div>
 </footer>
 
-<script src="detail.js"></script>
+<script>
+/* Hex grid — CloudGuard */
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var hero   = document.getElementById('hero');
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+  hero.insertBefore(canvas, hero.firstChild);
+
+  var ctx   = canvas.getContext('2d');
+  var S     = 26; // hex circumradius
+  var cells = [];
+  var COLS  = ['99,102,241', '99,102,241', '76,215,246', '74,222,128', '248,113,113'];
+
+  function hex(cx, cy, r, alpha, col) {
+    ctx.beginPath();
+    for (var k = 0; k < 6; k++) {
+      var a = Math.PI / 3 * k - Math.PI / 6;
+      k === 0 ? ctx.moveTo(cx + r * Math.cos(a), cy + r * Math.sin(a))
+              : ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(' + col + ',' + alpha + ')';
+    ctx.lineWidth   = 0.8;
+    ctx.stroke();
+  }
+
+  function build() {
+    canvas.width  = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+    cells = [];
+    var cw = S * Math.sqrt(3), rh = S * 1.5;
+    var cols = Math.ceil(canvas.width  / cw) + 1;
+    var rows = Math.ceil(canvas.height / rh) + 1;
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var x = c * cw + (r % 2) * cw / 2;
+        var y = r * rh;
+        cells.push({ x: x, y: y, alpha: 0, target: 0,
+                     col: COLS[0], timer: Math.floor(Math.random() * 300) });
+      }
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var W = canvas.width;
+
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+
+      if (--c.timer <= 0) {
+        if (c.target === 0) {
+          c.col    = COLS[Math.floor(Math.random() * COLS.length)];
+          c.target = Math.random() * 0.45 + 0.2;
+          c.timer  = 50 + Math.floor(Math.random() * 90);
+        } else {
+          c.target = 0;
+          c.timer  = 80 + Math.floor(Math.random() * 280);
+        }
+      }
+
+      c.alpha += (c.target - c.alpha) * 0.04;
+
+      /* base grid — fade toward left so text stays readable */
+      var xFade = Math.max(0, (c.x / W - 0.3) / 0.4);
+      hex(c.x, c.y, S - 1, 0.06 * xFade, '99,102,241');
+
+      /* activated cell — only right 65% */
+      if (c.alpha > 0.01 && c.x > W * 0.35) {
+        hex(c.x, c.y, S - 1, c.alpha * xFade, c.col);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  build();
+  tick();
+  window.addEventListener('resize', build);
+}());
+</script>
+<script src="../assets/js/detail.js"></script>
 </body>
 </html>

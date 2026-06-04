@@ -8,8 +8,8 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
-<link rel="stylesheet" href="detail.css"/>
+<link rel="stylesheet" href="../assets/css/style.css"/>
+<link rel="stylesheet" href="../assets/css/detail.css"/>
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -45,8 +45,8 @@ tailwind.config = {
 <!-- Header -->
 <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
   <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
-    <a href="index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
-    <a href="index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+    <a href="../index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="../index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       Portfolio
     </a>
@@ -338,10 +338,51 @@ tailwind.config = {
 <footer class="border-t border-white/5 py-10 bg-surface-container-low">
   <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
     <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
-    <a href="index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+    <a href="../index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
   </div>
 </footer>
 
-<script src="detail.js"></script>
+<script>
+/* Sine waves — Cheetah.ai */
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hero = document.getElementById('hero');
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+  hero.insertBefore(canvas, hero.firstChild);
+  var ctx = canvas.getContext('2d');
+  var waves = [
+    { freq: 0.007, amp: 52, speed: 0.018, phase: 0,   col: '99,102,241',  alpha: 0.35, w: 1.5 },
+    { freq: 0.011, amp: 30, speed: 0.030, phase: 2.1, col: '76,215,246',  alpha: 0.28, w: 1.0 },
+    { freq: 0.005, amp: 70, speed: 0.012, phase: 4.2, col: '165,180,252', alpha: 0.18, w: 1.0 },
+    { freq: 0.014, amp: 18, speed: 0.045, phase: 1.0, col: '76,215,246',  alpha: 0.20, w: 0.7 },
+  ];
+
+  function resize() {
+    canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight;
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var cy = canvas.height * 0.52;
+    waves.forEach(function (w) {
+      ctx.beginPath();
+      for (var x = 0; x <= canvas.width; x += 4) {
+        var y = cy + Math.sin(x * w.freq + w.phase) * w.amp;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = 'rgba(' + w.col + ',' + w.alpha + ')';
+      ctx.lineWidth = w.w; ctx.stroke();
+      w.phase += w.speed;
+    });
+    requestAnimationFrame(tick);
+  }
+  resize(); tick();
+  window.addEventListener('resize', resize);
+}());
+</script>
+<script src="../assets/js/detail.js"></script>
 </body>
 </html>

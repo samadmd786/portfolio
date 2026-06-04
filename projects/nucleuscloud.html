@@ -8,8 +8,8 @@
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
-<link rel="stylesheet" href="detail.css"/>
+<link rel="stylesheet" href="../assets/css/style.css"/>
+<link rel="stylesheet" href="../assets/css/detail.css"/>
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -45,8 +45,8 @@ tailwind.config = {
 <!-- Header -->
 <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
   <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
-    <a href="index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
-    <a href="index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+    <a href="../index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="../index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       Portfolio
     </a>
@@ -408,10 +408,62 @@ tailwind.config = {
 <footer class="border-t border-white/5 py-10 bg-surface-container-low">
   <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
     <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
-    <a href="index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+    <a href="../index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
   </div>
 </footer>
 
-<script src="detail.js"></script>
+<script>
+/* Flowing pipeline — NucleusCloud */
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hero = document.getElementById('hero');
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+  hero.insertBefore(canvas, hero.firstChild);
+  var ctx = canvas.getContext('2d'), streams = [];
+  var COLS = ['52,211,153', '76,215,246', '52,211,153', '34,197,94', '76,215,246'];
+
+  function build() {
+    canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight;
+    streams = [];
+    for (var i = 0; i < 7; i++) {
+      var y = canvas.height * 0.08 + (i / 6) * canvas.height * 0.84;
+      streams.push({ y: y, parts: [], speed: 0.5 + Math.random() * 0.7,
+        col: COLS[i % COLS.length], spawn: Math.floor(Math.random() * 80) });
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    streams.forEach(function (s) {
+      s.spawn--;
+      if (s.spawn <= 0) {
+        s.parts.push({ x: canvas.width * 0.42, a: 0, sz: Math.random() * 2 + 1.2 });
+        s.spawn = 55 + Math.floor(Math.random() * 70);
+      }
+      ctx.beginPath();
+      ctx.moveTo(canvas.width * 0.42, s.y);
+      ctx.lineTo(canvas.width * 0.98, s.y);
+      ctx.strokeStyle = 'rgba(' + s.col + ',0.07)';
+      ctx.lineWidth = 0.5; ctx.stroke();
+      for (var i = s.parts.length - 1; i >= 0; i--) {
+        var p = s.parts[i];
+        p.x += s.speed;
+        p.a = p.x < canvas.width * 0.55 ? (p.x - canvas.width * 0.42) / (canvas.width * 0.13) : 1;
+        if (p.x > canvas.width * 0.9) p.a = 1 - (p.x - canvas.width * 0.9) / (canvas.width * 0.08);
+        if (p.a <= 0 || p.x > canvas.width) { s.parts.splice(i, 1); continue; }
+        ctx.beginPath(); ctx.arc(p.x, s.y, p.sz, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + s.col + ',' + p.a * 0.75 + ')'; ctx.fill();
+      }
+    });
+    requestAnimationFrame(tick);
+  }
+  build(); tick();
+  window.addEventListener('resize', build);
+}());
+</script>
+<script src="../assets/js/detail.js"></script>
 </body>
 </html>
