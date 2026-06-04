@@ -9,6 +9,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="detail.css"/>
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -37,28 +38,6 @@ tailwind.config = {
 }
 </script>
 
-<style>
-  html { scroll-behavior: smooth; }
-  body { background-color: #10131a; color: #e1e2eb; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-  .arch-label { fill: #e1e2eb; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
-  .arch-sublabel { fill: #c7c4d7; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
-  .arch-node { fill: rgba(22,27,34,0.9); stroke: rgba(99,102,241,0.4); stroke-width: 1.5; }
-  .arch-node-cyan { fill: rgba(22,27,34,0.9); stroke: rgba(76,215,246,0.4); stroke-width: 1.5; }
-  .arch-node-red { fill: rgba(22,27,34,0.9); stroke: rgba(248,113,113,0.45); stroke-width: 1.5; }
-
-  @keyframes srFadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-in { opacity:0; animation: srFadeUp 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
-    .sr-reveal { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease,transform 0.55s ease; transition-delay:var(--sr-d,0ms); }
-    .sr-reveal.in { opacity:1; transform:none; }
-  }
-  .step-card { transition:transform 0.22s ease,box-shadow 0.22s ease; }
-  .step-card:hover { transform:translateX(5px); box-shadow:-3px 0 0 0 #6366f1,0 4px 24px rgba(99,102,241,0.1); }
-  .tech-card { transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease; }
-  .tech-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.25)!important; }
-  .pill-glow { transition:background 0.15s,border-color 0.15s,color 0.15s; }
-  .pill-glow:hover { background:rgba(99,102,241,0.15)!important; border-color:rgba(99,102,241,0.4)!important; color:#a5b4fc!important; }
-</style>
 </head>
 
 <body>
@@ -345,52 +324,6 @@ tailwind.config = {
   </div>
 </footer>
 
-<script>
-(function () {
-  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!REDUCED) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section:not(#hero) .font-code.text-primary, section:not(#hero) h2').forEach(el => {
-      el.classList.add('sr-reveal');
-      obs.observe(el);
-    });
-
-    document.querySelectorAll('section:not(#hero) .glass-panel:not(.step-card):not(.tech-card)').forEach(el => {
-      el.classList.add('sr-reveal');
-      obs.observe(el);
-    });
-
-    document.querySelectorAll('.step-card').forEach((el, i) => {
-      el.classList.add('sr-reveal');
-      el.style.setProperty('--sr-d', (i * 75) + 'ms');
-      obs.observe(el);
-    });
-
-    document.querySelectorAll('.tech-card').forEach((el, i) => {
-      el.classList.add('sr-reveal');
-      el.style.setProperty('--sr-d', (i * 60) + 'ms');
-      obs.observe(el);
-    });
-  }
-
-  const countObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target, target = +el.dataset.count, dur = 700, t0 = performance.now();
-      (function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        el.textContent = Math.round(p * target);
-        if (p < 1) requestAnimationFrame(tick);
-      })(t0);
-      countObs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
-})();
-</script>
+<script src="detail.js"></script>
 </body>
 </html>
