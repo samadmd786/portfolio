@@ -68,13 +68,13 @@
 .tech-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 36px rgba(99,102,241,0.15);
-  border-color: rgba(99,102,241,0.25) !important;
+  border-color: rgba(99,102,241,0.25);
 }
 
 /* ── PILL TAGS ─────────────────────────────────────── */
 .pill-glow { transition: background 0.15s, border-color 0.15s, color 0.15s; }
 .pill-glow:hover {
-  background: rgba(99,102,241,0.15) !important;
-  border-color: rgba(99,102,241,0.4) !important;
-  color: #a5b4fc !important;
+  background: rgba(99,102,241,0.15);
+  border-color: rgba(99,102,241,0.4);
+  color: #a5b4fc;
 }
