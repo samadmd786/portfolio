@@ -38,6 +38,7 @@ tailwind.config = {
 </script>
 
 <style>
+  html { scroll-behavior: smooth; }
   body { background-color: #10131a; color: #e1e2eb; font-family: 'Inter', sans-serif; overflow-x: hidden; }
   .arch-node {
     fill: rgba(22,27,34,0.9);
@@ -80,16 +81,22 @@ tailwind.config = {
 
 <!-- Header -->
 <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
-  <div class="flex justify-between items-center h-16 px-4 sm:px-6 max-w-container mx-auto">
-    <a href="index.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200 font-code text-sm">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-      Back
+  <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
+    <a href="index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Portfolio
     </a>
-    <a href="index.html" class="font-syne text-lg font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200">Md Samad</a>
+    <div class="flex-1"></div>
+    <nav class="hidden md:flex items-center gap-1 mr-2">
+      <a href="#architecture" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">Architecture</a>
+      <a href="#how-it-works" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">How it works</a>
+      <a href="#tech-stack" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">Technologies</a>
+    </nav>
     <a href="https://github.com/samadmd786/nucleuscloud" target="_blank" rel="noopener"
-       class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2">
+       class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2 shrink-0">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      GitHub
+      View GitHub
     </a>
   </div>
 </header>
@@ -97,15 +104,17 @@ tailwind.config = {
 <main class="pt-16">
 
   <!-- Hero -->
-  <section id="hero" class="border-b border-white/5 px-4 sm:px-6 py-16 sm:py-24">
-    <div class="max-w-container mx-auto">
-      <div class="flex flex-wrap gap-2 mb-5 hero-in" style="animation-delay:0ms">
+  <section id="hero" class="border-b border-white/5 px-4 sm:px-6 py-20 sm:py-32 relative overflow-hidden">
+    <div class="absolute pointer-events-none" style="width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(52,211,153,0.09) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="absolute pointer-events-none" style="width:500px;height:500px;top:0;right:-100px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="max-w-container mx-auto relative">
+      <div class="flex flex-wrap gap-2 mb-6 hero-in" style="animation-delay:0ms">
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud / AWS</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">Full-Stack</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(52,211,153,0.12);color:#34d399">Event-Driven</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(251,191,36,0.12);color:#fbbf24">Bioinformatics</span>
       </div>
-      <h1 class="font-syne text-[36px] sm:text-[56px] font-extrabold leading-tight mb-4 hero-in" style="animation-delay:90ms">NucleusCloud</h1>
+      <h1 class="font-syne text-[44px] sm:text-[72px] font-extrabold leading-[1.05] mb-5 hero-in" style="animation-delay:90ms">NucleusCloud</h1>
       <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
         Cloud-native bioinformatics VCF variant processing pipeline on AWS. Accepts genomic VCF files via presigned S3 upload, processes them asynchronously through SQS/SNS-driven microservices, tiers cold storage to Glacier based on subscription level, and emails results via SES - all behind Globus Auth and Stripe billing. Entire stack deployed from a single CloudFormation template.
       </p>
@@ -115,6 +124,13 @@ tailwind.config = {
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           View on GitHub
         </a>
+      </div>
+      <div class="flex md:hidden items-center gap-6 mb-10 hero-in" style="animation-delay:340ms">
+        <a href="#architecture" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Architecture</a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#how-it-works" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>How it works</a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#tech-stack" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Technologies</a>
       </div>
       <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
         <div>
@@ -136,7 +152,7 @@ tailwind.config = {
   </section>
 
   <!-- Architecture -->
-  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+  <section id="architecture" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
     <div class="max-w-container mx-auto">
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">System Design</div>
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
@@ -287,7 +303,7 @@ tailwind.config = {
   </section>
 
   <!-- End-to-End Flow -->
-  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+  <section id="how-it-works" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
     <div class="max-w-container mx-auto">
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">End-to-End</div>
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">How it works</h2>
@@ -360,7 +376,7 @@ tailwind.config = {
   </section>
 
   <!-- Tech Stack -->
-  <section class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20">
+  <section id="tech-stack" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
     <div class="max-w-container mx-auto">
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
       <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>

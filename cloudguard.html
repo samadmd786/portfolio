@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="CloudGuard AI - AWS Security Hub misconfiguration analyzer powered by Claude ReAct agent by Md Samad"/>
+<title>CloudGuard AI | Md Samad</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary:   '#6366f1',
+        secondary: '#4cd7f6',
+        surface:   '#10131a',
+        'on-surface': '#e1e2eb',
+        'on-surface-variant': '#c7c4d7',
+        'surface-variant': '#32353c',
+        'surface-container': '#1d2026',
+        'surface-container-low': '#191c22',
+        'outline-variant': '#464554'
+      },
+      fontFamily: {
+        syne: ['Syne', 'sans-serif'],
+        code: ['JetBrains Mono', 'monospace'],
+        body: ['Inter', 'sans-serif']
+      },
+      maxWidth: { container: '1200px' }
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #10131a; color: #e1e2eb; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  .arch-label { fill: #e1e2eb; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .arch-sublabel { fill: #c7c4d7; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-anchor: middle; dominant-baseline: middle; opacity: 0.7; }
+  .arch-node { fill: rgba(22,27,34,0.9); stroke: rgba(99,102,241,0.4); stroke-width: 1.5; }
+  .arch-node-cyan { fill: rgba(22,27,34,0.9); stroke: rgba(76,215,246,0.4); stroke-width: 1.5; }
+  .arch-node-red { fill: rgba(22,27,34,0.9); stroke: rgba(248,113,113,0.45); stroke-width: 1.5; }
+
+  @keyframes srFadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-in { opacity:0; animation: srFadeUp 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+    .sr-reveal { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease,transform 0.55s ease; transition-delay:var(--sr-d,0ms); }
+    .sr-reveal.in { opacity:1; transform:none; }
+  }
+  .step-card { transition:transform 0.22s ease,box-shadow 0.22s ease; }
+  .step-card:hover { transform:translateX(5px); box-shadow:-3px 0 0 0 #6366f1,0 4px 24px rgba(99,102,241,0.1); }
+  .tech-card { transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease; }
+  .tech-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(99,102,241,0.15); border-color:rgba(99,102,241,0.25)!important; }
+  .pill-glow { transition:background 0.15s,border-color 0.15s,color 0.15s; }
+  .pill-glow:hover { background:rgba(99,102,241,0.15)!important; border-color:rgba(99,102,241,0.4)!important; color:#a5b4fc!important; }
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-surface/80 backdrop-blur-xl">
+  <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
+    <!-- Brand + back pill -->
+    <a href="index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-white/15 rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Portfolio
+    </a>
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+    <!-- Section nav (desktop only) -->
+    <nav class="hidden md:flex items-center gap-1 mr-2">
+      <a href="#architecture" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">Architecture</a>
+      <a href="#how-it-works" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">How it works</a>
+      <a href="#tech-stack" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-white/5">Technologies</a>
+    </nav>
+    <!-- GitHub -->
+    <a href="https://github.com/samadmd786/cloudguard" target="_blank" rel="noopener"
+       class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2 shrink-0">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      View GitHub
+    </a>
+  </div>
+</header>
+
+<main class="pt-16">
+
+  <!-- Hero -->
+  <section id="hero" class="border-b border-white/5 px-4 sm:px-6 py-20 sm:py-32 relative overflow-hidden">
+    <!-- Mesh glows -->
+    <div class="absolute pointer-events-none" style="width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(99,102,241,0.13) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="absolute pointer-events-none" style="width:500px;height:500px;top:0;right:-80px;background:radial-gradient(circle,rgba(76,215,246,0.07) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="max-w-container mx-auto relative">
+      <div class="flex flex-wrap gap-2 mb-6 hero-in" style="animation-delay:0ms">
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(99,102,241,0.12);color:#a5b4fc">AI / Agentic</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(76,215,246,0.12);color:#4cd7f6">Cloud Security</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(251,146,60,0.12);color:#fb923c">RAG</span>
+      </div>
+      <h1 class="font-syne text-[44px] sm:text-[72px] font-extrabold leading-[1.05] mb-5 hero-in" style="animation-delay:90ms">CloudGuard AI</h1>
+      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
+        Plain-English AWS Security Hub misconfiguration analyzer powered by Claude with ReAct agent reasoning. Looks up the real CVE, pulls the relevant AWS doc, and maps each finding to the compliance standard it violates - CIS, PCI DSS, SOC 2, NIST 800-53, and ISO 27001. Every answer is backed by authoritative citations, not guesses.
+      </p>
+      <div class="flex flex-wrap gap-4 mb-10 hero-in" style="animation-delay:260ms">
+        <a href="https://github.com/samadmd786/cloudguard" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all duration-200">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+        <a href="cloudguard-demo.html"
+           class="inline-flex items-center gap-2 border border-white/20 text-on-surface-variant px-5 py-2.5 rounded-lg font-code text-xs font-semibold hover:border-primary hover:text-primary transition-all duration-200">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Try Demo
+        </a>
+      </div>
+      <div class="flex md:hidden items-center gap-6 mb-10 hero-in" style="animation-delay:340ms">
+        <a href="#architecture" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Architecture
+        </a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#how-it-works" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          How it works
+        </a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#tech-stack" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Technologies
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="5">5</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Compliance Standards</div>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="20">20</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Analyses / hr</div>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="4">4</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Input Modes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section id="architecture" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">System Design</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
+
+      <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
+        <svg viewBox="0 0 860 506" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:580px">
+          <defs>
+            <marker id="cg-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(99,102,241,0.6)"/>
+            </marker>
+            <marker id="cg-arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(248,113,113,0.6)"/>
+            </marker>
+            <marker id="cg-arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(76,215,246,0.6)"/>
+            </marker>
+          </defs>
+
+          <!-- Input Layer -->
+          <rect x="180" y="12" width="500" height="56" rx="8" class="arch-node"/>
+          <text x="430" y="34" class="arch-label">Input Layer</text>
+          <text x="430" y="50" class="arch-sublabel">Paste finding · Upload JSON · Live AWS Security Hub (boto3)</text>
+
+          <!-- Agent Enrichment boundary (red) -->
+          <rect x="130" y="108" width="600" height="78" rx="9" fill="rgba(248,113,113,0.04)" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="430" y="122" class="arch-label" style="font-size:10px;fill:#f87171">Agent Enrichment Pipeline</text>
+          <text x="430" y="136" class="arch-sublabel" style="fill:#f87171;font-size:8px">HIGH / CRITICAL findings only - pre-fetches context before LLM call</text>
+          <!-- CVE Lookup -->
+          <rect x="148" y="142" width="176" height="34" rx="6" class="arch-node-red"/>
+          <text x="236" y="162" class="arch-label" style="font-size:10px;fill:#f87171">CVE Lookup</text>
+          <!-- AWS Docs -->
+          <rect x="342" y="142" width="176" height="34" rx="6" class="arch-node-red"/>
+          <text x="430" y="162" class="arch-label" style="font-size:10px;fill:#f87171">AWS Docs</text>
+          <!-- Compliance Mapping -->
+          <rect x="536" y="142" width="176" height="34" rx="6" class="arch-node-red"/>
+          <text x="624" y="162" class="arch-label" style="font-size:10px;fill:#f87171">Compliance Mapping</text>
+
+          <!-- RAG Layer -->
+          <rect x="225" y="234" width="410" height="58" rx="8" class="arch-node-cyan"/>
+          <text x="430" y="256" class="arch-label" style="fill:#4cd7f6">RAG Layer</text>
+          <text x="430" y="272" class="arch-sublabel">sentence-transformers · cosine similarity · JSON vector store</text>
+
+          <!-- Claude ReAct -->
+          <rect x="185" y="340" width="490" height="58" rx="8" class="arch-node"/>
+          <text x="430" y="362" class="arch-label">Claude API - ReAct Analysis</text>
+          <text x="430" y="378" class="arch-sublabel">Structured JSON output · "senior AWS security engineer" persona · citations</text>
+
+          <!-- Output Layer -->
+          <rect x="130" y="446" width="600" height="52" rx="8" class="arch-node"/>
+          <text x="430" y="464" class="arch-label">Output</text>
+          <text x="430" y="480" class="arch-sublabel">Risk Profile (0-100) · Remediation Steps · Compliance Tags · Markdown Export</text>
+
+          <!-- Arrows -->
+          <!-- Input → Agent Enrichment -->
+          <line x1="430" y1="68" x2="430" y2="106" stroke="rgba(248,113,113,0.5)" stroke-width="1.8" marker-end="url(#cg-arrow-red)"/>
+          <!-- Agent Enrichment → RAG -->
+          <line x1="430" y1="186" x2="430" y2="232" stroke="rgba(76,215,246,0.5)" stroke-width="1.8" marker-end="url(#cg-arrow-cyan)"/>
+          <!-- RAG → Claude -->
+          <line x1="430" y1="292" x2="430" y2="338" stroke="rgba(99,102,241,0.55)" stroke-width="1.8" marker-end="url(#cg-arrow)"/>
+          <!-- Claude → Output -->
+          <line x1="430" y1="398" x2="430" y2="444" stroke="rgba(99,102,241,0.55)" stroke-width="1.8" marker-end="url(#cg-arrow)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">End-to-End</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">How it works</h2>
+
+      <div class="flex flex-col gap-4">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Input - Four Ways to Get a Finding In</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Paste raw Security Hub JSON, upload a findings file, select one of the built-in sample findings, or connect directly to a live AWS account. The live mode uses boto3 to pull findings from Security Hub with severity filtering (CRITICAL, HIGH, MEDIUM, LOW) and handles pagination automatically. Per-session credential isolation ensures no server-side credential storage.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Agent Enrichment - Pre-fetching Context for HIGH/CRITICAL</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">For HIGH and CRITICAL severity findings, the agent enrichment pipeline fires before the LLM call. Three tools run: a CVE lookup against NVD for exact vulnerability details, an AWS documentation retriever for the relevant service guide, and a compliance mapper that pulls the specific CIS/NIST/PCI controls. All context is assembled into a single enriched prompt - one LLM call, not a chain of calls.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
+          <div>
+            <div class="font-syne font-bold mb-1">RAG Retrieval - Organizational Context from Past Analyses</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed"><span class="font-code text-xs text-secondary">sentence-transformers</span> encodes the incoming finding into a dense vector. Cosine similarity search over the JSON vector store retrieves the top-K most similar past analyses from your organization's history. This gives the LLM context about how similar findings have been handled before - making each subsequent analysis better informed than the last.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Claude Analysis - Structured Output with Citations</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Claude processes the enriched context with a "senior AWS security engineer" persona and a strict JSON output schema: TL;DR summary, severity rating, business impact, step-by-step remediation, compliance tags, and authoritative citations. Structured output prompting enforces the schema - every field is present, every citation links to a real source (AWS docs, NVD CVE entry, or CIS/NIST control). No hallucinated references.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Risk Scoring - Confidence-Scaled 0-100 Profile</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Each analysis contributes to an organization-level risk profile. The score uses a weighted-average severity formula with a confidence scaling factor - a single CRITICAL finding doesn't falsely push the score to 100 when sample size is small. The analysis is stored back to the JSON vector store automatically, enriching future RAG retrievals. The Risk Profile page tracks trends across scans.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Export - Markdown Report with Authoritative References</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Every analysis can be exported as a Markdown report that includes the full remediation plan and all citations - formatted for sharing with engineering teams or compliance auditors. Rate limited to 20 analyses per hour per session to manage API costs. The Streamlit UI has four pages: Home, Manual Input, Live AWS Findings, and Risk Profile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section id="tech-stack" class="border-b border-white/5 px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Core</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Python 3.11+</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Streamlit</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">LLM / Agent</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Claude API</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">ReAct agent pattern</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">Structured output</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Cloud</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">boto3</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">AWS Security Hub</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">RAG</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">sentence-transformers</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">cosine similarity</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">JSON vector store</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Compliance</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">CIS Benchmarks</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">NIST 800-53</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">PCI DSS</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">SOC 2</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">ISO 27001</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Testing</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">pytest</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-white/10 bg-white/5 text-on-surface-variant pill-glow">pytest-mock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-white/5 py-10 bg-surface-container-low">
+  <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
+    <a href="index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!REDUCED) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section:not(#hero) .font-code.text-primary, section:not(#hero) h2').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('section:not(#hero) .glass-panel:not(.step-card):not(.tech-card)').forEach(el => {
+      el.classList.add('sr-reveal');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('.step-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 75) + 'ms');
+      obs.observe(el);
+    });
+
+    document.querySelectorAll('.tech-card').forEach((el, i) => {
+      el.classList.add('sr-reveal');
+      el.style.setProperty('--sr-d', (i * 60) + 'ms');
+      obs.observe(el);
+    });
+  }
+
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, dur = 700, t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        el.textContent = Math.round(p * target);
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+})();
+</script>
+</body>
+</html>
