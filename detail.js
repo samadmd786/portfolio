@@ -23,14 +23,14 @@
     /* Step cards — staggered */
     document.querySelectorAll('.step-card').forEach(function (el, i) {
       el.classList.add('sr-reveal');
-      el.style.setProperty('--sr-d', i * 75 + 'ms');
+      el.style.setProperty('--sr-d', i * 45 + 'ms');
       obs.observe(el);
     });
 
     /* Tech cards — staggered */
     document.querySelectorAll('.tech-card').forEach(function (el, i) {
       el.classList.add('sr-reveal');
-      el.style.setProperty('--sr-d', i * 60 + 'ms');
+      el.style.setProperty('--sr-d', i * 35 + 'ms');
       obs.observe(el);
     });
   }
