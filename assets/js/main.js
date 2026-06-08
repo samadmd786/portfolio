@@ -81,7 +81,7 @@ function animateParticles() {
 
     pctx.beginPath();
     pctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    pctx.fillStyle = 'rgba(99,102,241,0.2)';
+    pctx.fillStyle = 'rgba(0,48,135,0.15)';
     pctx.fill();
 
     for (let j = i + 1; j < particles.length; j++) {
@@ -90,7 +90,7 @@ function animateParticles() {
       const d2  = Math.sqrt(dx2 * dx2 + dy2 * dy2);
       if (d2 < CONNECTION_DISTANCE) {
         pctx.beginPath();
-        pctx.strokeStyle = `rgba(99,102,241,${(1 - d2 / CONNECTION_DISTANCE) * 0.15})`;
+        pctx.strokeStyle = `rgba(0,48,135,${(1 - d2 / CONNECTION_DISTANCE) * 0.15})`;
         pctx.lineWidth = 0.5;
         pctx.moveTo(p.x, p.y);
         pctx.lineTo(p2.x, p2.y);
@@ -176,7 +176,7 @@ const sectionObs = new IntersectionObserver(entries => {
     if (e.isIntersecting) {
       const id = e.target.id;
       navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + id ? '#6366f1' : '';
+        a.style.color = a.getAttribute('href') === '#' + id ? '#003087' : '';
       });
     }
   });

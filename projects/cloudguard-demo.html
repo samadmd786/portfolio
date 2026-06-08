@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,7 +7,7 @@
 <title>CloudGuard AI - Demo | Md Samad</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../assets/css/style.css"/>
 
 <script id="tailwind-config">
@@ -16,16 +16,16 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        primary:   '#6366f1',
-        secondary: '#4cd7f6',
-        surface:   '#10131a',
-        'on-surface': '#e1e2eb',
-        'on-surface-variant': '#c7c4d7',
-        'surface-container-low': '#191c22',
-        'outline-variant': '#464554'
+        primary:   '#003087',
+        secondary: '#009cde',
+        surface:   '#ffffff',
+        'on-surface': '#2c2e2f',
+        'on-surface-variant': '#687173',
+        'surface-container-low': '#ffffff',
+        'outline-variant': '#d9dde0'
       },
       fontFamily: {
-        syne: ['Syne', 'sans-serif'],
+        syne: ['Plus Jakarta Sans', 'sans-serif'],
         code: ['JetBrains Mono', 'monospace'],
         body: ['Inter', 'sans-serif']
       },
@@ -36,14 +36,14 @@ tailwind.config = {
 </script>
 
 <style>
-  html, body { height: 100%; margin: 0; background-color: #10131a; color: #e1e2eb; font-family: 'Inter', sans-serif; overflow: hidden; }
+  html, body { height: 100%; margin: 0; background-color: #f5f7fa; color: #2c2e2f; font-family: 'Inter', sans-serif; overflow: hidden; }
 </style>
 </head>
 
 <body class="flex flex-col" style="height:100vh">
 
 <!-- Header -->
-<header class="flex-none border-b border-white/10 bg-surface/80 backdrop-blur-xl z-50" style="height:64px">
+<header class="flex-none border-b border-outline-variant bg-surface/80 backdrop-blur-xl z-50" style="height:64px">
   <div class="flex justify-between items-center h-full px-4 sm:px-6 max-w-container mx-auto">
     <a href="cloudguard.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200 font-code text-sm">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -59,7 +59,7 @@ tailwind.config = {
 </header>
 
 <!-- Thin title bar -->
-<div class="flex-none flex items-center justify-between px-4 sm:px-6 border-b border-white/5" style="height:40px;background:rgba(16,19,26,0.9)">
+<div class="flex-none flex items-center justify-between px-4 sm:px-6 border-b border-outline-variant" style="height:40px;background:rgba(245,247,250,0.9)">
   <span class="font-syne font-bold text-sm">CloudGuard AI - Live Demo</span>
   <a href="https://cloudguard.streamlit.app/" target="_blank" rel="noopener"
      class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1">
