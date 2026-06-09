@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Dispatch - Serverless Function-as-a-Service platform built from scratch by Md Samad"/>
+<title>Dispatch | Md Samad</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/css/style.css"/>
+<link rel="stylesheet" href="../assets/css/detail.css"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary:   '#003087',
+        secondary: '#009cde',
+        surface:   '#ffffff',
+        'on-surface': '#2c2e2f',
+        'on-surface-variant': '#687173',
+        'surface-variant': '#e6e8eb',
+        'surface-container': '#eef0f3',
+        'surface-container-low': '#ffffff',
+        'outline-variant': '#d9dde0'
+      },
+      fontFamily: {
+        syne: ['Plus Jakarta Sans', 'sans-serif'],
+        code: ['JetBrains Mono', 'monospace'],
+        body: ['Inter', 'sans-serif']
+      },
+      maxWidth: { container: '1200px' }
+    }
+  }
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant bg-surface/80 backdrop-blur-xl">
+  <div class="flex items-center h-16 px-4 sm:px-6 max-w-container mx-auto gap-3">
+    <a href="../index.html" class="font-syne text-base font-bold text-primary tracking-tight no-underline hover:opacity-80 transition-opacity duration-200 shrink-0">Md Samad</a>
+    <a href="../index.html" class="hidden sm:flex items-center gap-1.5 font-code text-xs text-on-surface-variant border border-outline-variant rounded-full px-3 py-1 hover:border-primary hover:text-primary transition-all duration-200 shrink-0">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Portfolio
+    </a>
+    <div class="flex-1"></div>
+    <nav class="hidden md:flex items-center gap-1 mr-2">
+      <a href="#architecture" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Architecture</a>
+      <a href="#how-it-works" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">How it works</a>
+      <a href="#tech-stack" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Technologies</a>
+    </nav>
+    <a href="https://github.com/samadmd786/faas-from-scratch" target="_blank" rel="noopener"
+       class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2 shrink-0">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      View GitHub
+    </a>
+  </div>
+</header>
+
+<main class="pt-16">
+
+  <!-- Hero -->
+  <section id="hero" class="border-b border-outline-variant px-4 sm:px-6 py-20 sm:py-32 relative overflow-hidden">
+    <div class="absolute pointer-events-none" style="width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(0,48,135,0.06) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="absolute pointer-events-none" style="width:500px;height:500px;top:0;right:-100px;background:radial-gradient(circle,rgba(0,156,222,0.05) 0%,transparent 65%);border-radius:50%"></div>
+    <div class="max-w-container mx-auto relative">
+      <div class="flex flex-wrap gap-2 mb-6 hero-in" style="animation-delay:0ms">
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(0,48,135,0.1);color:#003087">Distributed Systems</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(0,156,222,0.1);color:#009cde">ZeroMQ</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(251,146,60,0.12);color:#fb923c">Redis</span>
+        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(74,127,203,0.12);color:#4a7fcb">FastAPI</span>
+      </div>
+      <h1 class="font-syne text-[44px] sm:text-[72px] font-extrabold leading-[1.05] mb-5 hero-in" style="animation-delay:90ms">Dispatch</h1>
+      <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
+        A serverless Function-as-a-Service platform built from scratch. Register any Python function, submit it with arguments, and get the result back. The platform handles serialization, scheduling, and distributed execution - exploring three fundamentally different worker communication patterns to understand where their latency and throughput trade-offs actually live.
+      </p>
+      <div class="flex flex-wrap gap-4 mb-10 hero-in" style="animation-delay:260ms">
+        <a href="https://github.com/samadmd786/faas-from-scratch" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all duration-200">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <div class="flex md:hidden items-center gap-6 mb-10 hero-in" style="animation-delay:340ms">
+        <a href="#architecture" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Architecture</a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#how-it-works" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>How it works</a>
+        <span class="text-white/15 font-code text-xs">·</span>
+        <a href="#tech-stack" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Technologies</a>
+      </div>
+      <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary">3</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Dispatcher Modes</div>
+        </div>
+        <div class="w-px bg-surface-variant/60"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="72">72</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Tests</div>
+        </div>
+        <div class="w-px bg-surface-variant/60"></div>
+        <div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="248">248</div>
+          <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Tasks/sec Peak</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section id="architecture" class="border-b border-outline-variant px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">System Design</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
+
+      <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
+        <svg viewBox="0 0 860 500" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
+          <defs>
+            <marker id="fs-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,48,135,0.6)"/>
+            </marker>
+            <marker id="fs-arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,156,222,0.6)"/>
+            </marker>
+          </defs>
+
+          <!-- Row 1: Client + FastAPI + Redis -->
+          <rect x="30" y="30" width="110" height="50" rx="7" class="arch-node"/>
+          <text x="85" y="51" text-anchor="middle" class="arch-label">Client</text>
+          <text x="85" y="67" text-anchor="middle" class="arch-sublabel">Python / HTTP</text>
+
+          <line x1="140" y1="55" x2="200" y2="55" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow)"/>
+          <text x="170" y="48" text-anchor="middle" class="arch-sublabel" style="font-size:8px">HTTP</text>
+
+          <rect x="202" y="30" width="160" height="50" rx="7" class="arch-node"/>
+          <text x="282" y="51" text-anchor="middle" class="arch-label">FastAPI Server</text>
+          <text x="282" y="67" text-anchor="middle" class="arch-sublabel">register / execute / status / result</text>
+
+          <line x1="362" y1="55" x2="422" y2="55" stroke="rgba(0,156,222,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow-cyan)"/>
+          <text x="392" y="48" text-anchor="middle" class="arch-sublabel" style="font-size:8px;fill:#009cde">pub/sub</text>
+
+          <rect x="424" y="30" width="140" height="50" rx="7" class="arch-node-cyan"/>
+          <text x="494" y="51" text-anchor="middle" class="arch-label" style="fill:#009cde">Redis</text>
+          <text x="494" y="67" text-anchor="middle" class="arch-sublabel">task queue + result store</text>
+
+          <!-- Vertical arrow Redis -> Dispatcher -->
+          <line x1="494" y1="80" x2="494" y2="140" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow)"/>
+          <text x="510" y="115" class="arch-sublabel" style="font-size:8px">notify</text>
+
+          <!-- Dispatcher boundary -->
+          <rect x="100" y="142" width="760" height="130" rx="9" fill="rgba(0,48,135,0.03)" stroke="rgba(0,48,135,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="480" y="158" text-anchor="middle" class="arch-label" style="font-size:11px">Dispatcher</text>
+
+          <!-- Local mode -->
+          <rect x="120" y="168" width="210" height="88" rx="7" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.2"/>
+          <text x="225" y="190" text-anchor="middle" class="arch-label" style="font-size:10px">Local Mode</text>
+          <text x="225" y="206" text-anchor="middle" class="arch-sublabel">multiprocessing.Pool</text>
+          <text x="225" y="222" text-anchor="middle" class="arch-sublabel">workers on same machine</text>
+          <text x="225" y="238" text-anchor="middle" class="arch-sublabel" style="fill:#15803d;font-size:7.5px">best for CPU tasks at scale</text>
+
+          <!-- Pull mode -->
+          <rect x="374" y="168" width="210" height="88" rx="7" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.2"/>
+          <text x="479" y="190" text-anchor="middle" class="arch-label" style="font-size:10px">Pull Mode</text>
+          <text x="479" y="206" text-anchor="middle" class="arch-sublabel">ZMQ REQ/REP</text>
+          <text x="479" y="222" text-anchor="middle" class="arch-sublabel">workers poll for tasks</text>
+          <text x="479" y="238" text-anchor="middle" class="arch-sublabel" style="fill:#009cde;font-size:7.5px">horizontal scaling</text>
+
+          <!-- Push mode -->
+          <rect x="628" y="168" width="210" height="88" rx="7" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.2"/>
+          <text x="733" y="190" text-anchor="middle" class="arch-label" style="font-size:10px">Push Mode</text>
+          <text x="733" y="206" text-anchor="middle" class="arch-sublabel">ZMQ DEALER/ROUTER</text>
+          <text x="733" y="222" text-anchor="middle" class="arch-sublabel">dispatcher routes actively</text>
+          <text x="733" y="238" text-anchor="middle" class="arch-sublabel" style="fill:#fb923c;font-size:7.5px">lowest latency for short tasks</text>
+
+          <!-- Arrow dispatcher -> workers -->
+          <line x1="225" y1="272" x2="225" y2="340" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow)"/>
+          <line x1="479" y1="272" x2="479" y2="340" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow)"/>
+          <line x1="733" y1="272" x2="733" y2="340" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#fs-arrow)"/>
+
+          <!-- Workers row -->
+          <rect x="100" y="342" width="250" height="50" rx="7" class="arch-node"/>
+          <text x="225" y="363" text-anchor="middle" class="arch-label">Worker (subprocess)</text>
+          <text x="225" y="379" text-anchor="middle" class="arch-sublabel">deserialize + exec + return result</text>
+
+          <rect x="354" y="342" width="250" height="50" rx="7" class="arch-node"/>
+          <text x="479" y="363" text-anchor="middle" class="arch-label">Worker (pull)</text>
+          <text x="479" y="379" text-anchor="middle" class="arch-sublabel">pull_worker.py - REQ socket</text>
+
+          <rect x="608" y="342" width="250" height="50" rx="7" class="arch-node"/>
+          <text x="733" y="363" text-anchor="middle" class="arch-label">Worker (push)</text>
+          <text x="733" y="379" text-anchor="middle" class="arch-sublabel">push_worker.py - DEALER socket</text>
+
+          <!-- Results back up to Redis -->
+          <path d="M350,367 Q350,430 494,430 Q640,430 640,397" stroke="rgba(0,156,222,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="4,2" marker-end="url(#fs-arrow-cyan)"/>
+          <text x="494" y="446" text-anchor="middle" class="arch-sublabel" style="fill:#009cde;font-size:8px">results stored in Redis</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="border-b border-outline-variant px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">End-to-End</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">How it works</h2>
+
+      <div class="flex flex-col gap-4">
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">1</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Register a Function</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The client serializes any Python callable using <span class="font-code text-xs text-secondary">dill</span> (a pickle extension that handles closures, lambdas, and arbitrary callables) and POSTs it to <span class="font-code text-xs text-secondary">/register_function</span>. The FastAPI server stores the serialized payload in Redis under a UUID and returns a <span class="font-code text-xs text-secondary">function_id</span>. Any Python function can be registered - no pre-registration or interface contract required.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">2</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Submit a Task</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The client POSTs to <span class="font-code text-xs text-secondary">/execute_function</span> with the <span class="font-code text-xs text-secondary">function_id</span> and a dill-serialized <span class="font-code text-xs text-secondary">(args, kwargs)</span> tuple. The server creates a task record in Redis with status <span class="font-code text-xs text-secondary">QUEUED</span>, pushes the task ID to a Redis list, and publishes a notification on a pub/sub channel. The response returns a <span class="font-code text-xs text-secondary">task_id</span> immediately - the server never blocks waiting for execution.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">3</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Dispatcher Picks Up the Task</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The dispatcher subscribes to the Redis pub/sub channel and wakes up when a new task arrives. It pops the task from the Redis queue and routes it to a free worker - the routing strategy differs per mode. In <strong>local mode</strong>, it submits to a <span class="font-code text-xs text-secondary">multiprocessing.Pool</span>. In <strong>pull mode</strong>, it waits for a worker to REQ and sends the task over ZMQ REP. In <strong>push mode</strong>, it proactively routes to the next available DEALER socket using a ROUTER, eliminating the round-trip poll.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Worker Executes and Returns</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The worker deserializes the function and arguments, sets the task status to <span class="font-code text-xs text-secondary">RUNNING</span> in Redis, and calls the function. On success it serializes the return value with dill and stores it in Redis with status <span class="font-code text-xs text-secondary">COMPLETED</span>. On exception it serializes the exception object and stores it with status <span class="font-code text-xs text-secondary">FAILED</span>. Failures are surfaced as structured data, not silently dropped.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">5</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Client Polls for Result</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The client polls <span class="font-code text-xs text-secondary">/status/{task_id}</span> until the status transitions to <span class="font-code text-xs text-secondary">COMPLETED</span> or <span class="font-code text-xs text-secondary">FAILED</span>, then fetches the result from <span class="font-code text-xs text-secondary">/result/{task_id}</span>. The result is deserialized with dill on the client side - the round-trip preserves the full Python type, not just a JSON-serializable subset. An exception from the worker arrives as a deserializable Python exception object.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Benchmarking the Three Modes</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">All three modes were benchmarked under weak scaling (10 tasks per worker, 1-8 workers) using two workloads: noop tasks (pure overhead) and 100ms sleep tasks (parallelism test). Push mode dominates noop throughput (248 tasks/sec at 2 workers) because the dispatcher immediately routes to idle workers without waiting for a poll. Local mode dominates sleep-task throughput at 8 workers (1.08s total vs. 2.1s for ZMQ modes) because <span class="font-code text-xs text-secondary">multiprocessing.Pool</span> achieves true OS-level parallelism with no network overhead.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section id="tech-stack" class="border-b border-outline-variant px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
+    <div class="max-w-container mx-auto">
+      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Stack</div>
+      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-8">Technologies</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">API Server</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">FastAPI</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">Uvicorn</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">Pydantic</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">Python 3.12</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Messaging / Queue</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">Redis</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">ZeroMQ (PyZMQ)</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">REQ/REP</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">DEALER/ROUTER</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Serialization</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">dill</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">base64</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">multiprocessing.Pool</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Testing</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">pytest</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">unittest.mock</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">conftest.py</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Benchmarking</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">concurrent.futures</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">requests</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">weak scaling</span>
+          </div>
+        </div>
+        <div class="glass-panel rounded-xl p-5 tech-card">
+          <div class="font-code text-[10px] uppercase tracking-widest text-secondary mb-3">Packaging</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">pyproject.toml</span>
+            <span class="font-code text-[10px] px-2 py-1 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant pill-glow">pip install -e .</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-outline-variant py-10 bg-surface-container-low">
+  <div class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="font-code text-xs text-on-surface-variant opacity-50">&copy; 2026 Md Samad</div>
+    <a href="../index.html" class="font-code text-xs text-on-surface-variant hover:text-primary transition-colors duration-200">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<script>
+/* Distributed nodes animation - Dispatch */
+(function () {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var hero = document.getElementById('hero');
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+  hero.insertBefore(canvas, hero.firstChild);
+  var ctx = canvas.getContext('2d');
+  var nodes = [];
+  var NODE_COUNT = 22;
+  var CONNECT_DIST = 130;
+
+  function resize() {
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+    nodes = [];
+    for (var i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2.5 + 1.5
+      });
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach(function (n) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+    });
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx = nodes[i].x - nodes[j].x;
+        var dy = nodes[i].y - nodes[j].y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < CONNECT_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = 'rgba(0,48,135,' + (0.12 * (1 - d / CONNECT_DIST)) + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(function (n) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,48,135,0.18)';
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  resize(); tick();
+  window.addEventListener('resize', resize);
+}());
+</script>
+<script src="../assets/js/detail.js"></script>
+</body>
+</html>

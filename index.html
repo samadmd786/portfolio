@@ -654,6 +654,89 @@ tailwind.config = {
 
     </div>
 
+    <!-- Dispatch — Distributed Systems -->
+    <div class="flex items-center gap-4 mb-4 mt-2">
+      <div class="h-px flex-1" style="background:rgba(255,255,255,0.07)"></div>
+      <span class="font-code text-[10px] uppercase tracking-widest text-on-surface-variant opacity-60">Distributed Systems</span>
+      <div class="h-px flex-1" style="background:rgba(255,255,255,0.07)"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+      <a class="proj-card glass-panel rounded-xl overflow-hidden flex flex-col h-full no-underline" href="https://github.com/samadmd786/faas-from-scratch" target="_blank" rel="noopener">
+        <div class="proj-visual h-48" style="background:linear-gradient(135deg,#0d1b2a 0%,#0f2d4a 100%)" onclick="event.preventDefault();event.stopPropagation();window.open('projects/faas-from-scratch.html','_blank')">
+          <svg viewBox="0 0 400 192" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <g opacity="0.07" stroke="#fff" stroke-width="0.5">
+              <line x1="0" y1="48" x2="400" y2="48"/><line x1="0" y1="96" x2="400" y2="96"/>
+              <line x1="0" y1="144" x2="400" y2="144"/>
+              <line x1="100" y1="0" x2="100" y2="192"/><line x1="200" y1="0" x2="200" y2="192"/><line x1="300" y1="0" x2="300" y2="192"/>
+            </g>
+            <!-- Client -->
+            <rect x="12" y="76" width="64" height="40" rx="5" fill="rgba(255,255,255,0.92)" stroke="rgba(0,48,135,0.5)" stroke-width="1.2"/>
+            <text x="44" y="92" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="8" font-weight="700">Client</text>
+            <text x="44" y="106" text-anchor="middle" fill="#687173" font-family="ui-monospace,monospace" font-size="7">HTTP</text>
+            <!-- Arrow Client -> FastAPI -->
+            <line x1="76" y1="96" x2="102" y2="96" stroke="rgba(0,48,135,0.6)" stroke-width="1.5" marker-end="url(#fs-arr)"/>
+            <!-- FastAPI -->
+            <rect x="104" y="72" width="80" height="48" rx="5" fill="rgba(255,255,255,0.92)" stroke="rgba(0,48,135,0.5)" stroke-width="1.2"/>
+            <text x="144" y="90" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="8" font-weight="700">FastAPI</text>
+            <text x="144" y="104" text-anchor="middle" fill="#687173" font-family="ui-monospace,monospace" font-size="7">REST API</text>
+            <!-- Arrow FastAPI -> Redis -->
+            <line x1="184" y1="96" x2="210" y2="96" stroke="rgba(0,156,222,0.7)" stroke-width="1.5" marker-end="url(#fs-arr-c)"/>
+            <!-- Redis -->
+            <rect x="212" y="72" width="70" height="48" rx="5" fill="rgba(255,255,255,0.92)" stroke="rgba(0,156,222,0.5)" stroke-width="1.2"/>
+            <text x="247" y="90" text-anchor="middle" fill="#009cde" font-family="ui-monospace,monospace" font-size="8" font-weight="700">Redis</text>
+            <text x="247" y="104" text-anchor="middle" fill="#687173" font-family="ui-monospace,monospace" font-size="7">pub/sub</text>
+            <!-- Arrow Redis -> Dispatcher -->
+            <line x1="282" y1="96" x2="308" y2="96" stroke="rgba(0,48,135,0.6)" stroke-width="1.5" marker-end="url(#fs-arr)"/>
+            <!-- Dispatcher -->
+            <rect x="310" y="60" width="76" height="72" rx="5" fill="rgba(255,255,255,0.92)" stroke="rgba(0,48,135,0.5)" stroke-width="1.2" stroke-dasharray="4,2"/>
+            <text x="348" y="82" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="8" font-weight="700">Dispatcher</text>
+            <text x="348" y="96" text-anchor="middle" fill="#687173" font-family="ui-monospace,monospace" font-size="6.5">local / pull</text>
+            <text x="348" y="108" text-anchor="middle" fill="#687173" font-family="ui-monospace,monospace" font-size="6.5">/ push</text>
+            <!-- Arrows Dispatcher -> 3 workers below -->
+            <line x1="330" y1="132" x2="310" y2="154" stroke="rgba(0,48,135,0.5)" stroke-width="1.3" marker-end="url(#fs-arr)"/>
+            <line x1="348" y1="132" x2="348" y2="154" stroke="rgba(0,48,135,0.5)" stroke-width="1.3" marker-end="url(#fs-arr)"/>
+            <line x1="366" y1="132" x2="386" y2="154" stroke="rgba(0,48,135,0.5)" stroke-width="1.3" marker-end="url(#fs-arr)"/>
+            <!-- Workers -->
+            <rect x="286" y="156" width="48" height="26" rx="4" fill="rgba(255,255,255,0.88)" stroke="rgba(0,48,135,0.4)" stroke-width="1"/>
+            <text x="310" y="171" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="7" font-weight="600">Worker</text>
+            <rect x="324" y="156" width="48" height="26" rx="4" fill="rgba(255,255,255,0.88)" stroke="rgba(0,48,135,0.4)" stroke-width="1"/>
+            <text x="348" y="171" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="7" font-weight="600">Worker</text>
+            <rect x="362" y="156" width="48" height="26" rx="4" fill="rgba(255,255,255,0.88)" stroke="rgba(0,48,135,0.4)" stroke-width="1"/>
+            <text x="386" y="171" text-anchor="middle" fill="#003087" font-family="ui-monospace,monospace" font-size="7" font-weight="600">Worker</text>
+            <defs>
+              <marker id="fs-arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L7,3 z" fill="rgba(0,48,135,0.6)"/>
+              </marker>
+              <marker id="fs-arr-c" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L7,3 z" fill="rgba(0,156,222,0.7)"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
+          <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+        </div>
+        <div class="p-5 flex flex-col flex-grow">
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="font-code text-[9px] font-bold uppercase px-2 py-0.5 rounded" style="background:rgba(0,48,135,0.1);color:#003087">Systems / Infra</span>
+          </div>
+          <div class="proj-name font-syne text-lg font-bold mb-2">Dispatch</div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Serverless FaaS platform built from scratch - FastAPI REST server, Redis-backed task queue, and a dispatcher with three worker modes (local multiprocessing, ZMQ REQ/REP pull, ZMQ DEALER/ROUTER push). Push mode peaks at 248 tasks/sec; local mode achieves near-ideal parallel throughput at 8 workers. 72 tests with mocked Redis and ZMQ.</p>
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">Python</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">FastAPI</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">Redis</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">ZeroMQ</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">dill</span>
+            <span class="font-code text-[10px] px-2 py-0.5 rounded border border-outline-variant bg-surface-variant/30 text-on-surface-variant">pytest</span>
+          </div>
+          <div class="proj-footer">
+            <span class="proj-gh-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
 
   </div>
 </section>
