@@ -23,7 +23,7 @@ _Aug 2018 – May 2022_
 
 **Programming Languages:** Python, Bash, C++, C, Java, SQL, JavaScript, HTML, CSS, Rego, PowerShell, JSON, YAML
 
-**Frameworks & Libraries:** Flask, FastAPI, Streamlit, NumPy, PyTest, Open Policy Agent (OPA), NetworkX, sentence-transformers, LangGraph, Anthropic SDK, OpenAI SDK, Selenium
+**Frameworks & Libraries:** Flask, FastAPI, Streamlit, NumPy, PyTest, Open Policy Agent (OPA), NetworkX, sentence-transformers, LangGraph, Anthropic SDK, OpenAI SDK, Selenium, ZeroMQ, Redis
 
 **DevOps & Tools:** Docker, Kubernetes, Helm, Terraform, Jenkins, GitHub Actions, Git, Crossplane, Splunk, Grafana, Datadog, Confluence, LocalStack, Moto
 
@@ -94,7 +94,7 @@ _Uncommon Hacks 2026, University of Chicago - **Winner: Best Use of Snowflake**_
 - Implemented automated cold-storage lifecycle management migrating Basic-tier data to **AWS Glacier** with Expedited/Standard restore on Pro upgrade, balancing cost vs. retrieval SLA
 - Provisioned the entire stack via a single **CloudFormation template**; built LocalStack + Moto offline testing environment for full distributed-system iteration on a laptop
 
-**[Dispatch - Serverless Function-as-a-Service Platform](https://github.com/samadmd786/faas-from-scratch)** | Python, FastAPI, Redis, ZeroMQ, dill, pytest
+**[Dispatch - Serverless Function-as-a-Service Platform](https://github.com/samadmd786/dispatch)** | Python, FastAPI, Redis, ZeroMQ, dill, pytest
 - Built a serverless FaaS platform from scratch: FastAPI REST API, Redis-backed task queue with pub/sub dispatch, and three worker orchestration modes (local multiprocessing, ZMQ REQ/REP pull, ZMQ DEALER/ROUTER push)
 - Benchmarked all three modes with weak-scaling experiments across 1-8 workers; push mode peaked at 248 tasks/sec; local multiprocessing achieved near-ideal parallelism for longer tasks (1.08s for 80 concurrent 100ms tasks at 8 workers vs. 1.0s ideal)
 - 72 tests across 7 files - unit tests mock Redis and ZMQ for sub-second runs; integration tests spin up the full stack via pytest conftest
