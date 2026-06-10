@@ -4,10 +4,16 @@ Chicago, IL | (614) 806-0483 | samadmd6020@gmail.com | [md-samad.com](https://md
 
 ---
 
+## Summary
+
+MS Computer Science from UChicago. At Vanguard I delivered **99.999% uptime** handling **100,000+ peak hourly logons** and cut security incidents by **40%** across a platform serving **50M+ investors**. I build cloud-native infrastructure, secure IAM pipelines, and agentic AI tools that reach production.
+
+---
+
 ## Education
 
 **The University of Chicago** - MS in Computer Science
-_Sep 2025 – May 2026_
+_Sep 2025 – Jun 2026_
 Coursework: Cloud Computing, Distributed Systems, Generative AI, Computer Security, Networks
 
 **Michigan State University** - BS in Computer Science | GPA: 3.9/4.0
@@ -23,15 +29,15 @@ _Aug 2018 – May 2022_
 
 **Programming Languages:** Python, Bash, C++, C, Java, SQL, JavaScript, HTML, CSS, Rego, PowerShell, JSON, YAML
 
-**Frameworks & Libraries:** Flask, FastAPI, Streamlit, NumPy, PyTest, Open Policy Agent (OPA), NetworkX, sentence-transformers, LangGraph, Anthropic SDK, OpenAI SDK, Selenium, ZeroMQ, Redis
+**Frameworks & Libraries:** Flask, FastAPI, Streamlit, NumPy, PyTest, Open Policy Agent (OPA), Redis, ZeroMQ, sentence-transformers, LangGraph, Anthropic SDK, OpenAI SDK, Selenium
 
-**DevOps & Tools:** Docker, Kubernetes, Helm, Terraform, Jenkins, GitHub Actions, Git, Crossplane, Splunk, Grafana, Datadog, Confluence, LocalStack, Moto
+**DevOps & Tools:** Docker, Kubernetes, Helm, Terraform, Jenkins, Bamboo, GitHub Actions, Git, Crossplane, Splunk, Grafana, Datadog, Confluence, LocalStack, Moto
 
-**Architecture & Systems:** Microservices, CI/CD Pipelines, REST APIs, Event-Driven Architecture, Distributed Systems, IaaS, PaaS, Linux Fundamentals
+**Architecture & Systems:** Microservices, Sidecar Pattern, CI/CD Pipelines, REST APIs, Event-Driven Architecture, Distributed Systems, IaaS, PaaS, Linux Fundamentals
 
-**Security & Identity:** IAM, RBAC, MFA, Auth0, Okta, OAuth 2.0, SAML 2.0, SSO, OPA Policy-as-Code, AWS Security Hub, Kong API Gateway, Envoy Proxy
+**Security & Identity:** IAM, RBAC, MFA, Auth0, Okta, OAuth 2.0, OIDC, SAML 2.0, SSO, OPA Policy-as-Code, AWS Security Hub, Kong API Gateway, Envoy Proxy
 
-**AI / ML:** LangGraph, RAG pipelines, ReAct agents, vector embeddings, prompt engineering, sentence-transformers, GPT-4o, Groq/Llama 3.3 70B
+**AI / ML:** LangGraph, RAG pipelines, ReAct agents, vector embeddings, prompt engineering, sentence-transformers, HuggingFace, GPT-4o, Groq/Llama 3.3 70B
 
 **Certifications:** AWS Solutions Architect Associate (2025), AWS Cloud Practitioner (2023)
 
@@ -44,18 +50,22 @@ _Mar 2026 – Jun 2026_
 - Supported graduate students through complex cloud architecture assignments covering **AWS, Kubernetes, and distributed systems** - answering technical questions during office hours and online
 - Graded assignments and provided detailed feedback on **cloud infrastructure design, IaC, and system architecture** decisions; bridged theory and industry practice drawing on hands-on Vanguard experience
 
-**Vanguard** - Senior Software Engineer / Senior Cloud Security Engineer
+**Vanguard** - Senior Software Engineer
 _Dec 2023 – Jun 2025_
-- Architected RESTful distributed backend services on AWS handling **500,000 daily logons** across **10 global authentication platforms** at **99.999% availability**, serving **50M+ Vanguard investors** on critical auth paths
-- Reduced **p99 authentication latency by 10ms** and cut production failures by **25%** by instrumenting distributed monitoring across **10 microservices** using **Grafana and Splunk**, cutting incident detection time by **45%**
-- Integrated **Envoy service mesh and Kong API Gateway** across microservices architecture - cut end-to-end latency by **40%** and increased request throughput by **50%**
-- Secured microservices architectures using **OPA policy-as-code** (Rego) integrated with REST APIs for dynamic policy evaluation, decreasing unauthorized access by 40% and lifting compliance metrics by 30%
-- Built a real-time **AI video assistant** using HuggingFace-based LLM pipelines in collaboration with a cross-functional team of 10+ engineers to deliver conversational financial education modules
-- Mentored 5 engineers and led code reviews for AWS infrastructure built with Terraform, Kubernetes, and CI/CD pipelines; raised onboarding velocity and codebase quality across the team
+- Launched the new AWS auth platform to **500,000 daily logons** across **50M+ Vanguard investors** at **99.999% availability**; onboarded **10 platform teams** and mentored **20 engineers** (2 per team) on the microservices architecture, Auth0 integration, and deployment workflows
+- Reduced **p99 authentication latency by 10ms** by instrumenting distributed monitoring across **10 microservices** using **Grafana and Splunk**, cutting incident detection time by **45%**
+- Optimized **Envoy service mesh and Kong API Gateway** integration across microservices architecture, increasing request throughput by **50%**
+- Reduced AWS security incidents by **40%** by rolling out **Auth0 MFA + RBAC** and **OPA policy-as-code** (Rego) for dynamic policy evaluation across distributed microservices
+- Designed fine-grained **IAM roles, policies, and permission boundaries** across multi-account AWS environments, enforcing least-privilege access at scale
+- Served in a **7-day on-call rotation every 6 weeks** for the production auth platform; jumped into multiple live incidents across platform teams, helping diagnose and resolve production issues on critical auth paths
+- Prototyped a real-time **AI video assistant POC** by integrating a **HuggingFace Llama model** into LLM pipelines, collaborating with a cross-functional team of 10+ engineers on conversational financial education modules
 
 **Vanguard** - Software Engineer
 _Jun 2022 – Dec 2023_
-- Built automated API testing framework using **PyTest and Selenium** - increased test coverage by **60%** and cut regression defects by **35%** across backend services
+- Led POC-to-production migration of on-premises monolithic login infrastructure to AWS microservices; integrated the **Auth0 SDK** for identity, **Kong as API gateway**, **Nginx** for routing, and **OPA + Envoy in a sidecar pattern** for policy enforcement and traffic management - laying the foundation for org-wide platform adoption
+- Implemented **OIDC-based authentication flows and distributed session management** across microservices, solving cross-service session consistency challenges introduced by decomposing the monolith
+- Built **Bamboo CI/CD pipelines** with **canary and blue/green deployment** strategies - automated repo builds into Docker images and deployments to AWS
+- Built a **local Docker-based testing platform** (multi-image) with an automated **PyTest and Selenium** API testing framework, replacing a **45-minute** end-to-end pipeline build cycle with a **5-minute** local test loop and raising test coverage by **60%** across auth services
 - Configured and optimized **Envoy proxy**, achieving a **30% improvement** in request processing times across internal service mesh
 - Spearheaded enterprise **SSO integration** using Okta, Auth0, SAML 2.0 and OAuth 2.0 across internal applications; designed and shipped user-facing JavaScript interfaces
 
@@ -63,14 +73,14 @@ _Jun 2022 – Dec 2023_
 _Nov 2021 – May 2022_
 - Eliminated redundant build steps using **Jenkins shared libraries**, boosting pipeline efficiency by **90%**
 - Implemented **Docker containerization and Kubernetes orchestration**, enhancing scalability and fault tolerance across services
-- Automated operational tasks with **PowerShell and Bash**, cutting task completion time by **30%** and manual errors by **50%**
-- Reduced CI/CD security risk by **40%** by implementing RBAC and secure secrets protocols informed by pipeline vulnerability assessments
+- Automated operational tasks with **PowerShell and Bash**, cutting task completion time by **30%**
+- Reduced CI/CD security risk by implementing **RBAC and secure secrets protocols** informed by pipeline vulnerability assessments
 
 **TIAA** - Software Engineer Intern
 _Jun 2021 – Aug 2021_
-- Delivered a Python-based scoring model API (Flask, NumPy) with **80% SonarQube coverage**, reducing bugs by 40% and improving system efficiency by 30% through PyTest-driven development
+- Delivered a Python-based scoring model API (Flask, NumPy) with **80% SonarQube coverage** through PyTest-driven development
 - Optimized thread management and asynchronous processing, raising concurrent-request capacity by **75%**
-- Implemented automated testing within Jenkins CI/CD pipelines, cutting non-production bugs by 25%
+- Implemented automated testing within Jenkins CI/CD pipelines, reducing non-production bugs
 
 ---
 
@@ -94,10 +104,10 @@ _Uncommon Hacks 2026, University of Chicago - **Winner: Best Use of Snowflake**_
 - Implemented automated cold-storage lifecycle management migrating Basic-tier data to **AWS Glacier** with Expedited/Standard restore on Pro upgrade, balancing cost vs. retrieval SLA
 - Provisioned the entire stack via a single **CloudFormation template**; built LocalStack + Moto offline testing environment for full distributed-system iteration on a laptop
 
-**[Dispatch - Serverless Function-as-a-Service Platform](https://github.com/samadmd786/dispatch)** | Python, FastAPI, Redis, ZeroMQ, dill, pytest
-- Built a serverless FaaS platform from scratch: FastAPI REST API, Redis-backed task queue with pub/sub dispatch, and three worker orchestration modes (local multiprocessing, ZMQ REQ/REP pull, ZMQ DEALER/ROUTER push)
-- Benchmarked all three modes with weak-scaling experiments across 1-8 workers; push mode peaked at 248 tasks/sec; local multiprocessing achieved near-ideal parallelism for longer tasks (1.08s for 80 concurrent 100ms tasks at 8 workers vs. 1.0s ideal)
-- 72 tests across 7 files - unit tests mock Redis and ZMQ for sub-second runs; integration tests spin up the full stack via pytest conftest
+**Dispatch - Serverless FaaS Platform Built from Scratch** | Python, FastAPI, Redis, ZeroMQ, dill, PyTest
+- Built a function-as-a-service platform from scratch: **FastAPI REST server** for function registration and invocation, **Redis-backed task queue**, and a dispatcher supporting **three worker modes** - local multiprocessing, ZMQ REQ/REP pull, and ZMQ DEALER/ROUTER push
+- Push mode peaks at **248 tasks/sec**; local mode achieves near-ideal parallel throughput at 8 workers; functions serialized with **dill** for arbitrary Python payload execution
+- Validated by **72 tests** with mocked Redis and ZMQ
 
 **[Labyrinth - Agentic Digital Privacy Tool](https://labyrinth-rrkj.onrender.com/)** | Python, LangGraph, Streamlit
 - Built autonomous AI agents using **LangGraph** that discover and surface forgotten "zombie" online accounts sitting exposed across the web; live at [labyrinth-rrkj.onrender.com](https://labyrinth-rrkj.onrender.com/)
@@ -120,12 +130,26 @@ _Uncommon Hacks 2026, University of Chicago - **Winner: Best Use of Snowflake**_
 
 ---
 
+## Leadership & Involvement
+
+**National Society of Collegiate Scholars** - Member
+_May 2020 – Present | Michigan State University_
+- Invited based on academic aptitude and leadership potential; engaged in building school connections, leadership development, and service opportunities
+
+**University Activities Board** - Volunteer Staff
+_Oct 2018 – May 2022 | Michigan State University_
+- Volunteered at campus events hosting **100+ undergraduate students**; coordinated with **20+ team members** during weekly meetups to organize executive events each semester
+
+---
+
 ## Achievements
 
+- **MS in Computer Science** - The University of Chicago (2026)
 - **Winner: Best Use of Snowflake** - Uncommon Hacks 2026, University of Chicago
 - **AWS Solutions Architect Associate** (2025)
 - **AWS Cloud Practitioner** (2023)
 - **Dean's List** for 5 semesters at Michigan State University (GPA 3.9/4.0)
-- Architected AWS auth infrastructure at Vanguard handling **500,000 daily logons** at **99.999% uptime** serving **50M+ investors**
+- Built and launched AWS auth infrastructure at Vanguard handling **500,000 daily logons** (100,000+ peak hourly) at **99.999% uptime** serving **50M+ investors**; onboarded 10 platform teams post-migration
+- Mentored **20 engineers** across 10 teams during platform adoption at Vanguard
 - Reduced security incidents by **40%** at Vanguard across 50M+ investors in production
 - Built and deployed **5 production AI/cloud apps** (CloudGuard AI, Cheetah.ai, Labyrinth, AI-Powered Hangman, SubRecon)
