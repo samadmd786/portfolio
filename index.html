@@ -166,47 +166,47 @@ tailwind.config = {
           <circle cx="264" cy="321" r="40" fill="rgba(0,156,222,0.07)" class="hero-arch-pulse" style="animation-delay:-2s"/>
 
           <!-- Connections -->
-          <line x1="100" y1="86"  x2="162" y2="168" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" class="hero-arch-line"/>
-          <line x1="280" y1="86"  x2="218" y2="168" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" class="hero-arch-line" style="animation-delay:-0.3s"/>
-          <line x1="108" y1="191" x2="134" y2="191" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" class="hero-arch-line" style="animation-delay:-0.6s"/>
-          <line x1="272" y1="191" x2="246" y2="191" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" class="hero-arch-line" style="animation-delay:-0.9s"/>
-          <line x1="116" y1="300" x2="166" y2="214" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" class="hero-arch-line" style="animation-delay:-0.45s"/>
-          <line x1="264" y1="300" x2="214" y2="214" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" class="hero-arch-line" style="animation-delay:-0.75s"/>
+          <line x1="100" y1="86"  x2="162" y2="168" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line"/>
+          <line x1="280" y1="86"  x2="218" y2="168" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line" style="animation-delay:-0.3s"/>
+          <line x1="108" y1="191" x2="134" y2="191" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line" style="animation-delay:-0.6s"/>
+          <line x1="272" y1="191" x2="246" y2="191" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line" style="animation-delay:-0.9s"/>
+          <line x1="116" y1="300" x2="166" y2="214" stroke="rgba(0,156,222,0.5)" stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line" style="animation-delay:-0.45s"/>
+          <line x1="264" y1="300" x2="214" y2="214" stroke="rgba(0,48,135,0.5)"  stroke-width="1.5" stroke-dasharray="6 6" class="hero-arch-line" style="animation-delay:-0.75s"/>
 
           <!-- Center: AI Agent -->
-          <rect x="134" y="168" width="112" height="46" rx="10" class="hero-arch-node"/>
-          <text x="190" y="187" text-anchor="middle" class="hero-arch-label">AI Agent</text>
-          <text x="190" y="202" text-anchor="middle" class="hero-arch-sublabel">orchestration</text>
+          <rect x="134" y="168" width="112" height="46" rx="10" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.5" class="hero-arch-node"/>
+          <text x="190" y="187" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">AI Agent</text>
+          <text x="190" y="202" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">orchestration</text>
 
           <!-- IAM -->
-          <rect x="36" y="44" width="96" height="42" rx="8" class="hero-arch-node-cyan"/>
-          <text x="84" y="62" text-anchor="middle" class="hero-arch-label">IAM</text>
-          <text x="84" y="76" text-anchor="middle" class="hero-arch-sublabel">auth / access</text>
+          <rect x="36" y="44" width="96" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,156,222,0.4)" stroke-width="1.5" class="hero-arch-node-cyan"/>
+          <text x="84" y="62" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">IAM</text>
+          <text x="84" y="76" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">auth / access</text>
 
           <!-- CloudWatch -->
-          <rect x="230" y="44" width="100" height="42" rx="8" class="hero-arch-node"/>
-          <text x="280" y="62" text-anchor="middle" class="hero-arch-label">CloudWatch</text>
-          <text x="280" y="76" text-anchor="middle" class="hero-arch-sublabel">monitoring</text>
+          <rect x="230" y="44" width="100" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.5" class="hero-arch-node"/>
+          <text x="280" y="62" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">CloudWatch</text>
+          <text x="280" y="76" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">monitoring</text>
 
           <!-- EKS -->
-          <rect x="22" y="170" width="86" height="42" rx="8" class="hero-arch-node"/>
-          <text x="65" y="188" text-anchor="middle" class="hero-arch-label">EKS</text>
-          <text x="65" y="202" text-anchor="middle" class="hero-arch-sublabel">kubernetes</text>
+          <rect x="22" y="170" width="86" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.5" class="hero-arch-node"/>
+          <text x="65" y="188" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">EKS</text>
+          <text x="65" y="202" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">kubernetes</text>
 
           <!-- Lambda -->
-          <rect x="272" y="170" width="86" height="42" rx="8" class="hero-arch-node-cyan"/>
-          <text x="315" y="188" text-anchor="middle" class="hero-arch-label">Lambda</text>
-          <text x="315" y="202" text-anchor="middle" class="hero-arch-sublabel">serverless</text>
+          <rect x="272" y="170" width="86" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,156,222,0.4)" stroke-width="1.5" class="hero-arch-node-cyan"/>
+          <text x="315" y="188" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">Lambda</text>
+          <text x="315" y="202" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">serverless</text>
 
           <!-- S3 -->
-          <rect x="72" y="300" width="88" height="42" rx="8" class="hero-arch-node-cyan"/>
-          <text x="116" y="318" text-anchor="middle" class="hero-arch-label">S3</text>
-          <text x="116" y="332" text-anchor="middle" class="hero-arch-sublabel">storage</text>
+          <rect x="72" y="300" width="88" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,156,222,0.4)" stroke-width="1.5" class="hero-arch-node-cyan"/>
+          <text x="116" y="318" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">S3</text>
+          <text x="116" y="332" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">storage</text>
 
           <!-- Redis -->
-          <rect x="220" y="300" width="88" height="42" rx="8" class="hero-arch-node"/>
-          <text x="264" y="318" text-anchor="middle" class="hero-arch-label">Redis</text>
-          <text x="264" y="332" text-anchor="middle" class="hero-arch-sublabel">cache / queue</text>
+          <rect x="220" y="300" width="88" height="42" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(0,48,135,0.35)" stroke-width="1.5" class="hero-arch-node"/>
+          <text x="264" y="318" text-anchor="middle" fill="#2c2e2f" font-size="10" font-family="JetBrains Mono, monospace" font-weight="600" class="hero-arch-label">Redis</text>
+          <text x="264" y="332" text-anchor="middle" fill="#687173" font-size="8" font-family="JetBrains Mono, monospace" class="hero-arch-sublabel">cache / queue</text>
         </svg>
         <div class="absolute -bottom-6 -left-6 glass-panel px-5 py-3 rounded-xl flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -1035,8 +1035,18 @@ tailwind.config = {
 
       <div>
         <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">Validated</div>
-        <h2 class="font-syne text-2xl sm:text-4xl font-bold mb-8">Certifications</h2>
+        <h2 class="font-syne text-2xl sm:text-4xl font-bold mb-8">Certifications &amp; Awards</h2>
         <div class="flex flex-col gap-3">
+          <div class="glass-panel rounded-xl p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
+              <span class="material-symbols-outlined" style="font-size:22px">emoji_events</span>
+            </div>
+            <div class="min-w-0">
+              <div class="font-syne font-bold text-sm sm:text-base mb-0.5">IT Division Innovator Award</div>
+              <div class="text-on-surface-variant text-sm">Vanguard · Awarded May 2024</div>
+              <div class="font-code text-[10px] text-on-surface-variant opacity-60 mt-0.5">Internal recognition</div>
+            </div>
+          </div>
           <a href="https://www.credly.com/badges/b31abefe-897b-44a1-a932-c470f1c3bee8/linked_in_profile" target="_blank" rel="noopener" class="glass-panel rounded-xl p-5 flex items-center gap-4 hover:border-primary/30 transition-colors no-underline cursor-pointer">
             <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary flex-shrink-0">
               <span class="material-symbols-outlined" style="font-size:22px">cloud</span>
@@ -1065,7 +1075,7 @@ tailwind.config = {
             </div>
             <div>
               <div class="font-syne font-bold text-base mb-0.5">AT&amp;T Summer Learning Academy</div>
-              <div class="text-on-surface-variant text-sm">AT&amp;T · Extern Certification</div>
+              <div class="text-on-surface-variant text-sm">AT&amp;T · Extern Certification · Issued Jul 2020</div>
               <div class="font-code text-[10px] text-white/60 mt-0.5">View on Credly ↗</div>
             </div>
           </a>
