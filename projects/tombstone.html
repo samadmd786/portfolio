@@ -79,7 +79,7 @@ tailwind.config = {
       </div>
       <h1 class="font-syne text-[44px] sm:text-[72px] font-extrabold leading-[1.05] mb-5 hero-in" style="animation-delay:90ms">Tombstone</h1>
       <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
-        A personal data command center: multi-user Google OAuth discovers every account tied to your Gmail, cross-references breach data against LeakCheck and HaveIBeenPwned, flags forgotten "zombie" accounts, and uses AI agents (Groq Llama 3.3 70B) to draft CCPA / GDPR / DPDP deletion letters. Nothing is ever queued without explicit Active Consent.
+        A personal data command center: multi-user Google OAuth discovers every account tied to your Gmail (metadata-only scope), cross-references breach data against LeakCheck and HaveIBeenPwned, flags forgotten "zombie" accounts, and uses AI agents (Groq Llama 3.3 70B) to draft CCPA / GDPR / DPDP deletion letters. Once approved under explicit Active Consent, letters are sent from the user's own Gmail and tracked against the statutory response window. A no-login public breach checker leads onboarding, so value comes before the OAuth ask.
       </p>
       <div class="flex flex-wrap gap-4 mb-4 hero-in" style="animation-delay:260ms">
         <a href="https://github.com/samadmd786/Tombstone" target="_blank" rel="noopener"
@@ -104,7 +104,7 @@ tailwind.config = {
       </div>
       <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
         <div>
-          <div class="font-syne text-2xl font-bold text-primary" data-count="42">42</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="92">92</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Tests Passing</div>
         </div>
         <div class="w-px bg-surface-variant/60"></div>
@@ -168,7 +168,7 @@ tailwind.config = {
 
           <rect x="460" y="288" width="320" height="58" rx="8" class="arch-node"/>
           <text x="620" y="310" class="arch-label">LeakCheck + HIBP</text>
-          <text x="620" y="327" class="arch-sublabel">api_cache · 24h TTL · zombie flag (365d+)</text>
+          <text x="620" y="327" class="arch-sublabel">api_cache · 24h TTL · zombie flag (180d+)</text>
 
           <!-- AI Tier dashed container -->
           <rect x="40" y="386" width="780" height="112" rx="9" fill="rgba(0,48,135,0.04)" stroke="rgba(0,48,135,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
@@ -194,7 +194,7 @@ tailwind.config = {
           <!-- Deletion Requests -->
           <rect x="230" y="528" width="400" height="58" rx="8" class="arch-node"/>
           <text x="430" y="550" class="arch-label">deletion_requests</text>
-          <text x="430" y="567" class="arch-sublabel">draft -&gt; Active Consent -&gt; queued (Phase 4: send)</text>
+          <text x="430" y="567" class="arch-sublabel">draft -&gt; Active Consent -&gt; queued -&gt; sent (own Gmail) -&gt; tracked</text>
 
           <!-- Arrows -->
           <line x1="430" y1="56" x2="430" y2="90" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
@@ -247,7 +247,7 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">4</div>
           <div>
             <div class="font-syne font-bold mb-1">Breach Cross-Reference</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">With explicit consent, the user's own email (and only their own) is checked against LeakCheck and cross-referenced with the HaveIBeenPwned breach catalog, cached in a shared Postgres <span class="font-code text-xs text-secondary">api_cache</span> table (24h TTL, 5-min failure cooldown) so the web and worker processes share one freshness clock. Accounts with no activity in 365+ days are flagged "zombie"; breached services the user never emailed are injected into the dashboard so nothing slips through.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">With explicit consent, the user's own email (and only their own) is checked against LeakCheck and cross-referenced with the HaveIBeenPwned breach catalog, cached in a shared Postgres <span class="font-code text-xs text-secondary">api_cache</span> table (24h TTL, 5-min failure cooldown) so the web and worker processes share one freshness clock. Accounts with no activity in 180+ days (six months) are flagged "zombie"; breached services the user never emailed are injected into the dashboard so nothing slips through.</p>
           </div>
         </div>
 
@@ -262,8 +262,8 @@ tailwind.config = {
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
           <div>
-            <div class="font-syne font-bold mb-1">Active Consent: Draft -&gt; Approve -&gt; Queue</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Deletion letters are always written as drafts first - <span class="font-code text-xs text-secondary">status='draft'</span>, <span class="font-code text-xs text-secondary">consent_given_at</span> NULL, nothing enqueued. Only an explicit "Approve" click stamps the consent timestamp, appends to an immutable audit log, and enqueues a <span class="font-code text-xs text-secondary">deletion_request</span> job - which the worker refuses to process if consent is missing. Phase 4 (stretch) would send approved requests from the user's own Gmail and track responses against statutory response windows.</p>
+            <div class="font-syne font-bold mb-1">Active Consent + Real Sends (Phase 4, built)</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Deletion letters are always written as drafts first - <span class="font-code text-xs text-secondary">status='draft'</span>, <span class="font-code text-xs text-secondary">consent_given_at</span> NULL, nothing enqueued. Only an explicit "Approve" click stamps the consent timestamp, appends to an immutable audit log, and enqueues a <span class="font-code text-xs text-secondary">deletion_request</span> job - which the worker refuses to process if consent is missing. Approved letters are then sent from the user's <span class="font-code text-xs text-secondary">own Gmail</span> (the <span class="font-code text-xs text-secondary">gmail.send</span> scope is requested only at first send), with an atomic <span class="font-code text-xs text-secondary">approved -&gt; sending</span> claim that makes duplicate sends impossible across crashes and retries. A periodic job then tracks replies (headers only) against the statutory window (CCPA +45 days, GDPR +1 month) and auto-drafts - never auto-sends - an escalation if it lapses. Data-broker opt-outs and account self-deletion round out the loop.</p>
           </div>
         </div>
       </div>
