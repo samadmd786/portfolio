@@ -2,7 +2,8 @@ name: Keep Apps Awake
 
 on:
   schedule:
-    - cron: '*/20 * * * *'
+    - cron: '*/12 * * * *'   # Tombstone (Render, 15-min spindown)
+    - cron: '*/20 * * * *'   # CloudGuard (Streamlit)
   workflow_dispatch:
 
 jobs:
@@ -19,14 +20,25 @@ jobs:
       - name: Install Chromium
         run: npx playwright install chromium --with-deps
 
-      - name: Wake Streamlit apps
+      - name: Random jitter (avoid a robotic fixed interval)
+        run: |
+          # base cron fires every 12 min; add 0-150s jitter so pings land
+          # at an irregular time each run while staying under Render's 15-min spindown
+          JITTER=$(( RANDOM % 151 ))
+          echo "Sleeping ${JITTER}s before waking apps"
+          sleep "$JITTER"
+
+      - name: Wake apps
+        env:
+          TRIGGER: ${{ github.event.schedule }}
         run: |
           node -e "
           const { chromium } = require('playwright');
-          const apps = [
-            'https://cloudguard.streamlit.app/',
-            'https://ai-hangman.streamlit.app/'
-          ];
+          const trigger = process.env.TRIGGER || '';       // empty on manual dispatch
+          const apps = [];
+          // Manual run (no trigger) wakes both; otherwise only the app on that cron
+          if (trigger === '' || trigger === '*/20 * * * *') apps.push('https://cloudguard.streamlit.app/');
+          if (trigger === '' || trigger === '*/12 * * * *') apps.push('https://tombstone-dga7.onrender.com/');
           (async () => {
             const browser = await chromium.launch();
             for (const url of apps) {
