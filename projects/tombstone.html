@@ -57,7 +57,7 @@ tailwind.config = {
       <a href="#tech-stack" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Technologies</a>
       <a href="#feedback" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Feedback</a>
     </nav>
-    <a href="https://tombstone-dga7.onrender.com" target="_blank" rel="noopener"
+    <a href="https://tombstonepro.com" target="_blank" rel="noopener"
        class="bg-primary text-white px-4 py-2 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all flex items-center gap-2 shrink-0">
       &#9654; Live Demo
     </a>
@@ -75,20 +75,19 @@ tailwind.config = {
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(124,58,237,0.1);color:#7c3aed">Privacy / Security</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(0,156,222,0.1);color:#009cde">Multi-User SaaS</span>
         <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(0,48,135,0.1);color:#003087">AI Agents</span>
-        <span class="font-code text-[10px] font-bold uppercase px-2.5 py-1 rounded" style="background:rgba(21,128,61,0.12);color:#15803d">5-Person Team</span>
       </div>
       <h1 class="font-syne text-[44px] sm:text-[72px] font-extrabold leading-[1.05] mb-5 hero-in" style="animation-delay:90ms">Tombstone</h1>
       <p class="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-2xl mb-8 hero-in" style="animation-delay:190ms">
-        A personal data command center. Multi-user Google OAuth (narrow <span class="font-code text-sm text-secondary">gmail.metadata</span> scope: headers, never bodies) discovers every account tied to your Gmail, cross-references breach data against LeakCheck and HaveIBeenPwned, flags forgotten "zombie" accounts, and uses AI agents (Groq Llama 3.3 70B) to draft CCPA / GDPR / DPDP deletion letters. Once approved under explicit Active Consent, letters are sent from the user's own Gmail and tracked against the statutory response window. The whole thing is a mobile-responsive multi-page app, and a no-login public breach checker leads onboarding so value comes before the OAuth ask.
+        A personal data command center. Multi-user Google OAuth (narrow <span class="font-code text-sm text-secondary">gmail.metadata</span> scope: headers, never bodies) discovers every account tied to your Gmail, cross-references breach data against LeakCheck and HaveIBeenPwned, flags forgotten "zombie" accounts, and uses AI agents (Groq Llama 3.3 70B) to draft CCPA / GDPR / DPDP deletion letters. Every letter stays a draft until the user approves it under explicit Active Consent, then hands off to their own Gmail compose window, or to the company's privacy webform when no address is published. The whole thing is a mobile-responsive multi-page app, and a no-login public breach checker leads onboarding so value comes before the OAuth ask.
       </p>
       <div class="flex flex-wrap gap-4 mb-4 hero-in" style="animation-delay:260ms">
-        <a href="https://tombstone-dga7.onrender.com" target="_blank" rel="noopener"
+        <a href="https://tombstonepro.com" target="_blank" rel="noopener"
            class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-code text-xs font-semibold hover:brightness-110 transition-all duration-200">
           &#9654; Try Live Demo
         </a>
       </div>
       <p class="font-code text-[11px] text-on-surface-variant opacity-70 mb-10 hero-in" style="animation-delay:300ms">
-        Note: Google OAuth is in testing mode (login requires test-user access) - the public breach checker and the /demo product tour work for anyone, no login required.
+        Note: Google OAuth is in testing mode while the app goes through Google's production verification and CASA Tier 2 security assessment, so login currently requires test-user access - the public breach checker and the /demo product tour work for anyone, no login required.
       </p>
       <div class="flex md:hidden items-center gap-6 mb-10 hero-in" style="animation-delay:340ms">
         <a href="#architecture" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Architecture</a>
@@ -99,17 +98,17 @@ tailwind.config = {
       </div>
       <div class="flex flex-wrap gap-8 hero-in" style="animation-delay:380ms">
         <div>
-          <div class="font-syne text-2xl font-bold text-primary" data-count="103">103</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="236">236</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Tests Passing</div>
         </div>
         <div class="w-px bg-surface-variant/60"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary">2,542</div>
+          <div class="font-syne text-2xl font-bold text-primary">2,543</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Deletion Directory</div>
         </div>
         <div class="w-px bg-surface-variant/60"></div>
         <div>
-          <div class="font-syne text-2xl font-bold text-primary" data-count="7">7</div>
+          <div class="font-syne text-2xl font-bold text-primary" data-count="8">8</div>
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Postgres Tables</div>
         </div>
       </div>
@@ -188,13 +187,13 @@ tailwind.config = {
 
           <rect x="622" y="412" width="176" height="66" rx="7" class="arch-node-cyan"/>
           <text x="710" y="437" class="arch-label" style="font-size:10px;fill:#009cde">Walkthroughs</text>
-          <text x="710" y="454" class="arch-sublabel">JustDelete.me · 2,542 svc</text>
+          <text x="710" y="454" class="arch-sublabel">JustDelete.me · 2,543 svc</text>
 
           <!-- Deletion lifecycle + Phase 4 sends/tracking -->
           <rect x="40" y="526" width="400" height="66" rx="8" class="arch-node"/>
           <text x="240" y="547" class="arch-label" style="font-size:10px">deletion_requests + broker opt-outs</text>
           <text x="240" y="564" class="arch-sublabel">draft -&gt; approve (Active Consent) -&gt; queued</text>
-          <text x="240" y="578" class="arch-sublabel">atomic approved-&gt;sending -&gt; sent from own Gmail</text>
+          <text x="240" y="578" class="arch-sublabel">atomic approved-&gt;sending claim · handoff to own Gmail</text>
 
           <rect x="460" y="526" width="360" height="66" rx="8" class="arch-node"/>
           <text x="640" y="547" class="arch-label" style="font-size:10px">Response tracking + escalation</text>
@@ -271,15 +270,25 @@ tailwind.config = {
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">6</div>
           <div>
             <div class="font-syne font-bold mb-1">AI Tier - Classification, Triage, Letters, Walkthroughs</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">A single <span class="font-code text-xs text-secondary">call_llm()</span> wrapper - originally spec'd for the Claude API, swapped to Groq's Llama 3.3 70B behind that one function for a free tier - powers four pipelines: domain classification (batched 25 at a time, cached globally), a 20-minute breach action plan ranked by current risk, deletion letters whose statutes are hardcoded templates (CCPA &#167;1798.105, GDPR Article 17, India's DPDP Section 12, or statute-free generic wording) with the LLM writing only the context paragraph and post-checked so it can never invent a citation, and step-by-step deletion walkthroughs from a vendored JustDelete.me dataset (2,542 services). Every pipeline has a non-AI fallback, so the app degrades gracefully with no API key.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">A single <span class="font-code text-xs text-secondary">call_llm()</span> wrapper - originally spec'd for the Claude API, swapped to Groq's Llama 3.3 70B behind that one function for a free tier - powers four pipelines: domain classification (batched 25 at a time, cached globally), a 20-minute breach action plan ranked by current risk, deletion letters whose statutes are hardcoded templates (CCPA &#167;1798.105, GDPR Article 17, India's DPDP Section 12, or statute-free generic wording) with the LLM writing only the context paragraph and post-checked so it can never invent a citation, and step-by-step deletion walkthroughs from a vendored JustDelete.me dataset (2,543 services). Every pipeline has a non-AI fallback, so the app degrades gracefully with no API key.</p>
           </div>
         </div>
 
         <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
           <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">7</div>
           <div>
-            <div class="font-syne font-bold mb-1">Active Consent + Real Sends (Phase 4, built)</div>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Deletion letters are always written as drafts first - <span class="font-code text-xs text-secondary">status='draft'</span>, <span class="font-code text-xs text-secondary">consent_given_at</span> NULL, nothing enqueued. Only an explicit "Approve" click stamps the consent timestamp, appends to an immutable audit log, and enqueues a <span class="font-code text-xs text-secondary">deletion_request</span> job - which the worker refuses to process if consent is missing. Approved letters are then sent from the user's <span class="font-code text-xs text-secondary">own Gmail</span> (the <span class="font-code text-xs text-secondary">gmail.send</span> scope is requested only at first send), with an atomic <span class="font-code text-xs text-secondary">approved -&gt; sending</span> claim that makes duplicate sends impossible across crashes and retries. A periodic job then tracks replies (headers only) against the statutory window (CCPA +45 days, GDPR +1 month) and auto-drafts - never auto-sends - an escalation if it lapses. Data-broker opt-outs and account self-deletion round out the loop.</p>
+            <div class="font-syne font-bold mb-1">Active Consent + the Deletion Handoff</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Deletion letters are always written as drafts first - <span class="font-code text-xs text-secondary">status='draft'</span>, <span class="font-code text-xs text-secondary">consent_given_at</span> NULL, nothing enqueued. Only an explicit "Approve" click stamps the consent timestamp, appends to an atomic append-only audit log, and enqueues a <span class="font-code text-xs text-secondary">deletion_request</span> job - which the worker refuses to process if consent is missing, as a permanent failure rather than a retry. The full automated send pipeline is built and tested: an atomic <span class="font-code text-xs text-secondary">approved -&gt; sending</span> claim that makes a duplicate legal letter impossible across crashes and retries, reply tracking (headers only, with bounce and auto-reply filtering) against the statutory window (CCPA +45 days, GDPR +1 month), and escalation letters that are always drafted, never auto-sent.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed mt-3">That pipeline is deliberately <span class="font-code text-xs text-secondary">dormant in production</span>. The <span class="font-code text-xs text-secondary">gmail.send</span> grant is gated behind an env flag that is off, so Google's verification submission covers exactly one restricted scope (<span class="font-code text-xs text-secondary">gmail.metadata</span>) and no sensitive scope at all. The live path is a manual handoff: the approved letter opens prefilled in the user's own Gmail compose window and they press send. Fewer permissions asked for, and the user sees the letter before it leaves. Re-enabling automated sends later costs a re-verification, not a second security assessment.</p>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-xl p-6 flex gap-5 items-start step-card">
+          <div class="w-10 h-10 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center font-syne font-bold text-primary flex-shrink-0">8</div>
+          <div>
+            <div class="font-syne font-bold mb-1">Where Do You Actually Send It? A Tiered Contact Resolver</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed">A drafted letter is worthless without a destination, and only 466 of the 2,543 directory entries publish a privacy address. So resolution is a cost-ordered cascade, cheapest first, stopping at the first hit: the vendored directory (free, offline, in git), then a global Postgres cache shared across <em>all</em> users, then a website scrape on a hard 6-second budget so a click can never hang, then an LLM recall pass, and only as a last resort a paid web-search tier at roughly a cent per domain. The first user to retire an uncovered company pays discovery once; everyone after reads the cache.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed mt-3">Two details that matter more than the cascade. <strong>Misses are cached honestly</strong>: a null result is only persisted when a tier actually ran and none errored, so an outage or a missing key never poisons the cache for a fortnight. And <strong>no address is ever invented</strong> - results are validated for shape and same-organization domain, because a plausible-looking wrong address is worse than an empty field. When there is genuinely no published email, the modal falls back to a vendored directory of 195 privacy <span class="font-code text-xs text-secondary">webforms</span> (Meta, LinkedIn, Microsoft and PayPal all accept requests only this way), and failing that, a targeted search. The modal always offers exactly one primary action, re-picked live as the user edits the recipient.</p>
           </div>
         </div>
       </div>
