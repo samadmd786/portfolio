@@ -78,3 +78,41 @@
   border-color: rgba(0,48,135,0.3);
   color: #003087;
 }
+
+/* Interactive viewer for the original, authored architecture diagrams. */
+.diagram-viewer.glass-panel { padding:0; overflow:hidden; background:#f8fafc; border:1px solid #d9e2ee; box-shadow:0 12px 36px rgba(15,23,42,.05); }
+.diagram-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:16px 20px; border-bottom:1px solid #d9e2ee; }
+.diagram-caption { flex:1 1 180px; color:#475569; font:600 10px 'JetBrains Mono',monospace; letter-spacing:.14em; }
+.diagram-toolbar button { min-height:38px; min-width:38px; padding:8px 12px; border:1px solid #cbd5e1; border-radius:8px; background:#fff; color:#334155; font:600 11px 'JetBrains Mono',monospace; cursor:pointer; }
+.diagram-toolbar button:hover:not(:disabled), .diagram-toolbar button[aria-pressed="true"] { border-color:#0891b2; background:#ecfeff; color:#0e7490; }
+.diagram-toolbar button:disabled { opacity:.4; cursor:default; }
+.diagram-toolbar button:focus-visible, .diagram-stage:focus-visible { outline:2px solid #0891b2; outline-offset:3px; }
+.diagram-stage { padding:28px; overflow:auto; background-image:linear-gradient(rgba(148,163,184,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.08) 1px,transparent 1px); background-size:32px 32px; }
+.diagram-stage > svg { display:block; min-width:0 !important; max-width:none; height:auto; }
+.diagram-stage text { pointer-events:none; }
+.diagram-stage .arch-node { fill:#eef2ff; stroke:#6366f1; }
+.diagram-stage .arch-node-cyan { fill:#ecfeff; stroke:#0891b2; }
+.diagram-stage .arch-node-green { fill:#ecfdf5; stroke:#059669; }
+.diagram-stage .arch-node-red { fill:#fff1f2; stroke:#e11d48; }
+.diagram-stage .arch-sublabel { opacity:1; }
+.diagram-component { cursor:pointer; transition:stroke-width .15s,filter .15s; }
+.diagram-component:hover, .diagram-component:focus-visible, .diagram-component.is-selected { stroke:#0891b2 !important; stroke-width:3; filter:drop-shadow(0 2px 5px rgba(8,145,178,.2)); outline:none; }
+.diagram-edge.is-connected { stroke:#0891b2 !important; stroke-width:3; }
+.diagram-status { margin:0; min-height:58px; padding:16px 20px; border-top:1px solid #d9e2ee; color:#475569; font:12px/1.7 'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.diagram-dark.diagram-viewer { background:#0b1222; border-color:#334155; }
+.diagram-dark .diagram-toolbar, .diagram-dark .diagram-status { border-color:#334155; }
+.diagram-dark .diagram-caption, .diagram-dark .diagram-status { color:#cbd5e1; }
+.diagram-dark .diagram-toolbar button { background:#162238; border-color:#475569; color:#e2e8f0; }
+.diagram-dark .arch-label { fill:#f1f5f9; }
+.diagram-dark .arch-sublabel { fill:#a8b8cf; }
+.diagram-dark .arch-node { fill:#202446; stroke:#818cf8; }
+.diagram-dark .arch-node-cyan { fill:#103345; stroke:#22d3ee; }
+.diagram-dark .arch-node-green { fill:#103d36; stroke:#34d399; }
+.diagram-dark .arch-node-red { fill:#3c2332; stroke:#fb7185; }
+.diagram-dark .diagram-edge { stroke:#94a3b8; }
+.diagram-dark marker path { fill:#94a3b8; }
+@media(max-width:640px) { .diagram-toolbar { padding:12px; gap:6px; } .diagram-caption { flex-basis:100%; padding:4px 0; } .diagram-stage { padding:16px; } .diagram-status { padding:12px; } }
+.diagram-dark text[style*="fill:#003087"] { fill:#a5b4fc !important; }
+.diagram-dark text[style*="fill:#15803d"] { fill:#6ee7b7 !important; }
+.diagram-dark text[style*="fill:#687173"] { fill:#a8b8cf !important; }
+.diagram-dark text[style*="fill:#009cde"] { fill:#67e8f9 !important; }

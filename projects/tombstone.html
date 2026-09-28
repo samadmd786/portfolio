@@ -52,7 +52,7 @@ tailwind.config = {
     </a>
     <div class="flex-1"></div>
     <nav class="hidden md:flex items-center gap-1 mr-2">
-      <a href="#architecture" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Architecture</a>
+
       <a href="#how-it-works" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">How it works</a>
       <a href="#tech-stack" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Technologies</a>
       <a href="#feedback" class="font-code text-xs px-3 py-1.5 text-on-surface-variant hover:text-primary transition-colors duration-200 rounded-md hover:bg-surface-variant/30">Feedback</a>
@@ -90,8 +90,6 @@ tailwind.config = {
         Note: Google OAuth is in testing mode while the app goes through Google's production verification and CASA Tier 2 security assessment, so login currently requires test-user access - the public breach checker and the /demo product tour work for anyone, no login required.
       </p>
       <div class="flex md:hidden items-center gap-6 mb-10 hero-in" style="animation-delay:340ms">
-        <a href="#architecture" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Architecture</a>
-        <span class="text-white/15 font-code text-xs">·</span>
         <a href="#how-it-works" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>How it works</a>
         <span class="text-white/15 font-code text-xs">·</span>
         <a href="#tech-stack" class="font-code text-[11px] text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Technologies</a>
@@ -115,111 +113,7 @@ tailwind.config = {
     </div>
   </section>
 
-  <!-- Architecture -->
-  <section id="architecture" class="border-b border-outline-variant px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
-    <div class="max-w-container mx-auto">
-      <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">System Design</div>
-      <h2 class="font-syne text-2xl sm:text-3xl font-bold mb-10">Architecture</h2>
-
-      <div class="glass-panel rounded-2xl p-4 sm:p-8 overflow-x-auto">
-        <svg viewBox="0 0 860 612" xmlns="http://www.w3.org/2000/svg" class="w-full" style="min-width:600px">
-          <defs>
-            <marker id="ts-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,48,135,0.6)"/>
-            </marker>
-            <marker id="ts-arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,156,222,0.6)"/>
-            </marker>
-          </defs>
-
-          <!-- Entry layer: check-first onboarding vs OAuth login -->
-          <rect x="40" y="12" width="380" height="52" rx="8" class="arch-node"/>
-          <text x="230" y="33" class="arch-label" style="font-size:10px">Logged-out - public breach check + /demo</text>
-          <text x="230" y="49" class="arch-sublabel">no login · LeakCheck + HIBP · per-breach risk</text>
-
-          <rect x="440" y="12" width="380" height="52" rx="8" class="arch-node"/>
-          <text x="630" y="33" class="arch-label" style="font-size:10px">Browser - Google OAuth login</text>
-          <text x="630" y="49" class="arch-sublabel">gmail.metadata scope · cookie = user_id (UUID)</text>
-
-          <!-- Flask -->
-          <rect x="180" y="100" width="500" height="54" rx="8" class="arch-node"/>
-          <text x="430" y="121" class="arch-label">Flask Web App - app.py</text>
-          <text x="430" y="138" class="arch-sublabel">multi-page · marketing + guarded app · CSRF · rate limiting</text>
-
-          <!-- Row of 3 -->
-          <rect x="30" y="190" width="250" height="58" rx="8" class="arch-node"/>
-          <text x="155" y="212" class="arch-label" style="font-size:10px">crypto.py + Google OAuth</text>
-          <text x="155" y="229" class="arch-sublabel">Fernet-encrypted tokens · key_version</text>
-
-          <rect x="305" y="190" width="250" height="58" rx="8" class="arch-node"/>
-          <text x="430" y="212" class="arch-label">Postgres</text>
-          <text x="430" y="229" class="arch-sublabel">users · accounts · jobs · deletion_requests</text>
-
-          <rect x="580" y="190" width="250" height="58" rx="8" class="arch-node"/>
-          <text x="705" y="212" class="arch-label" style="font-size:10px">Worker - worker.py</text>
-          <text x="705" y="229" class="arch-sublabel">SKIP LOCKED · 3x retry · idempotent send claim</text>
-
-          <!-- Row of 2: data sources -->
-          <rect x="80" y="286" width="320" height="58" rx="8" class="arch-node"/>
-          <text x="240" y="308" class="arch-label" style="font-size:10px">Gmail API (metadata-only)</text>
-          <text x="240" y="325" class="arch-sublabel">Quick/Deep/Stop · root-merge · &#8805;2-email · watermark</text>
-
-          <rect x="460" y="286" width="320" height="58" rx="8" class="arch-node"/>
-          <text x="620" y="308" class="arch-label">LeakCheck + HIBP</text>
-          <text x="620" y="325" class="arch-sublabel">api_cache · 24h TTL · zombie flag (180d+)</text>
-
-          <!-- AI Tier dashed container -->
-          <rect x="40" y="384" width="780" height="112" rx="9" fill="rgba(0,48,135,0.04)" stroke="rgba(0,48,135,0.3)" stroke-width="1.5" stroke-dasharray="5,3"/>
-          <text x="430" y="402" class="arch-label" style="font-size:11px">AI Tier - Groq Llama 3.3 70B (services/ai_service.py)</text>
-
-          <rect x="58" y="412" width="176" height="66" rx="7" class="arch-node-cyan"/>
-          <text x="146" y="437" class="arch-label" style="font-size:10px;fill:#009cde">Classification</text>
-          <text x="146" y="454" class="arch-sublabel">batched 25 domains -&gt; cache</text>
-
-          <rect x="246" y="412" width="176" height="66" rx="7" class="arch-node-cyan"/>
-          <text x="334" y="437" class="arch-label" style="font-size:10px;fill:#009cde">Breach Triage</text>
-          <text x="334" y="454" class="arch-sublabel">20-min action plan</text>
-
-          <rect x="434" y="412" width="176" height="66" rx="7" class="arch-node-cyan"/>
-          <text x="522" y="430" class="arch-label" style="font-size:10px;fill:#009cde">Deletion Letters</text>
-          <text x="522" y="447" class="arch-sublabel">CCPA &#167;1798.105</text>
-          <text x="522" y="461" class="arch-sublabel">GDPR Art.17 · DPDP Sec.12</text>
-
-          <rect x="622" y="412" width="176" height="66" rx="7" class="arch-node-cyan"/>
-          <text x="710" y="437" class="arch-label" style="font-size:10px;fill:#009cde">Walkthroughs</text>
-          <text x="710" y="454" class="arch-sublabel">JustDelete.me · 2,543 svc</text>
-
-          <!-- Deletion lifecycle + Phase 4 sends/tracking -->
-          <rect x="40" y="526" width="400" height="66" rx="8" class="arch-node"/>
-          <text x="240" y="547" class="arch-label" style="font-size:10px">deletion_requests + broker opt-outs</text>
-          <text x="240" y="564" class="arch-sublabel">draft -&gt; approve (Active Consent) -&gt; queued</text>
-          <text x="240" y="578" class="arch-sublabel">atomic approved-&gt;sending claim · handoff to own Gmail</text>
-
-          <rect x="460" y="526" width="360" height="66" rx="8" class="arch-node"/>
-          <text x="640" y="547" class="arch-label" style="font-size:10px">Response tracking + escalation</text>
-          <text x="640" y="564" class="arch-sublabel">headers-only reply scan · bounce filter</text>
-          <text x="640" y="578" class="arch-sublabel">due CCPA+45 / GDPR+1mo · escalation = draft</text>
-
-          <!-- Arrows -->
-          <line x1="270" y1="64" x2="360" y2="98" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-          <line x1="590" y1="64" x2="500" y2="98" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-
-          <line x1="330" y1="154" x2="200" y2="188" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-          <line x1="430" y1="154" x2="430" y2="188" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-          <line x1="530" y1="154" x2="660" y2="188" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-
-          <line x1="650" y1="248" x2="300" y2="284" stroke="rgba(0,156,222,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow-cyan)"/>
-          <line x1="710" y1="248" x2="650" y2="284" stroke="rgba(0,156,222,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow-cyan)"/>
-
-          <line x1="430" y1="248" x2="430" y2="382" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-          <line x1="240" y1="496" x2="240" y2="524" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-          <line x1="440" y1="558" x2="458" y2="558" stroke="rgba(0,48,135,0.5)" stroke-width="1.8" marker-end="url(#ts-arrow)"/>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
+<!-- How it works -->
   <section id="how-it-works" class="border-b border-outline-variant px-4 sm:px-6 py-14 sm:py-20" style="scroll-margin-top:80px">
     <div class="max-w-container mx-auto">
       <div class="font-code text-primary text-[11px] uppercase tracking-[0.2em] mb-2">End-to-End</div>
