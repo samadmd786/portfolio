@@ -266,6 +266,35 @@
 
     <div class="flex flex-col gap-3">
 
+      <!-- Vanguard Senior (current) -->
+      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+        <div class="flex items-start gap-4 p-5">
+          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined" style="font-size:22px">&#xeb8e;</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="exp-role-title font-syne font-bold text-base mb-1">Senior Software Engineer</div>
+            <div class="text-on-surface-variant text-sm mb-0.5">Vanguard · Aug 2026 - Present</div>
+            <div class="font-code text-[11px] text-on-surface-variant mb-3">Layer7 API Gateway on Amazon EKS</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Layer7 API Gateway</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Amazon EKS</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">Kubernetes</span>
+              <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 font-code text-[10px] text-on-surface-variant uppercase tracking-widest opacity-70 flex-shrink-0 pt-1 hover:opacity-100 transition-opacity">
+            <span>Details</span>
+            <span class="material-symbols-outlined exp-toggle-icon" style="font-size:18px">&#xe145;</span>
+          </div>
+        </div>
+        <div class="exp-body px-5 pb-5">
+          <ul class="exp-bullets pt-4">
+            <li>Rejoined Vanguard as a Senior Software Engineer, managing the <strong>Layer7 API Gateway</strong> running on <strong>Amazon EKS</strong></li>
+          </ul>
+        </div>
+      </div>
+
       <!-- UChicago TA -->
       <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
         <div class="flex items-start gap-4 p-5">
@@ -274,7 +303,7 @@
           </div>
           <div class="flex-1 min-w-0">
             <div class="exp-role-title font-syne font-bold text-base mb-1">Graduate Teaching Assistant</div>
-            <div class="text-on-surface-variant text-sm mb-0.5">University of Chicago · Mar 2026 - Jun 2026</div>
+            <div class="text-on-surface-variant text-sm mb-0.5">University of Chicago · Mar 2026 - Jun 2026, Sep 2026 - Present</div>
             <div class="font-code text-[11px] text-on-surface-variant mb-3">MPCS 51083 Cloud Computing (Graduate)</div>
             <div class="flex flex-wrap gap-1.5">
               <span class="font-code text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">AWS</span>
@@ -297,7 +326,7 @@
         </div>
       </div>
 
-      <!-- Vanguard Senior -->
+      <!-- Vanguard Senior (previous) -->
       <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
         <div class="flex items-start gap-4 p-5">
           <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
@@ -502,6 +531,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="cloudguard" aria-label="Watch CloudGuard AI video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -548,6 +578,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-secondary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="cheetah" aria-label="Watch Cheetah.ai video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -602,6 +633,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="nucleuscloud" aria-label="Watch NucleusCloud video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -662,6 +694,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="tombstone" aria-label="Watch Tombstone video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -708,6 +741,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="subrecon" aria-label="Watch SubRecon video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -789,6 +823,7 @@
           </svg>
           <div class="proj-visual-overlay bg-gradient-to-br from-primary/5 to-transparent"></div>
           <div class="preview-overlay"><span class="preview-overlay-text">&#9654; View Project</span></div>
+          <button type="button" class="proj-watch" data-video="dispatch" aria-label="Watch Dispatch video" onclick="event.preventDefault(); event.stopPropagation(); openVideo(this.dataset.video, this.getAttribute('aria-label'))"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch video</button>
         </div>
         <div class="p-5 flex flex-col flex-grow">
           <div class="flex flex-wrap gap-1.5 mb-3">
@@ -1313,6 +1348,13 @@
   </div>
 </footer>
 
+<!-- Project video lightbox (opened by .proj-watch buttons) -->
+<div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-label="Project video" hidden onclick="if (event.target === this) closeVideo()">
+  <div class="video-modal-inner">
+    <button type="button" class="video-close" aria-label="Close video" onclick="closeVideo()">&times;</button>
+    <video id="video-player" controls playsinline preload="none"></video>
+  </div>
+</div>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
