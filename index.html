@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/tailwind.css"/>
-<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="stylesheet" href="assets/css/style.css?v=2"/>
 
 <script type="application/ld+json">
 {
@@ -267,7 +267,7 @@
     <div class="flex flex-col gap-3">
 
       <!-- Vanguard Senior (current) -->
-      <div class="exp-row glass-panel rounded-xl" role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
+      <div class="exp-row glass-panel rounded-xl" data-default-open role="button" tabindex="0" aria-expanded="false" onclick="toggleExp(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleExp(this)}">
         <div class="flex items-start gap-4 p-5">
           <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
             <span class="material-symbols-outlined" style="font-size:22px">&#xeb8e;</span>
@@ -1355,6 +1355,6 @@
     <video id="video-player" controls playsinline preload="none"></video>
   </div>
 </div>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

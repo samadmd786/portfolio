@@ -249,7 +249,7 @@ document.addEventListener('keydown', e => {
 /* ── INIT ───────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
   const rows = document.querySelectorAll('.exp-row');
-  const defaultRow = rows[0]; // open current Vanguard role (1st row)
+  const defaultRow = document.querySelector('.exp-row[data-default-open]') || rows[0]; // current Vanguard role
   if (defaultRow) { defaultRow.classList.add('open'); defaultRow.setAttribute('aria-expanded', 'true'); }
 });
 
