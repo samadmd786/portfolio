@@ -218,10 +218,38 @@ if (contactForm) {
 /* ── PROJECT CARDS ───────────────────────────────────── */
 /* Cards are <a> tags; image onclick intercepts to open demo. No JS needed. */
 
+/* ── PROJECT VIDEO LIGHTBOX ─────────────────────────── */
+let videoOpener = null;
+function openVideo(name, label) {
+  const modal = document.getElementById('video-modal');
+  const player = document.getElementById('video-player');
+  videoOpener = document.activeElement;
+  player.src = `assets/video/${name}.mp4`;
+  player.poster = `assets/video/${name}.jpg`;
+  modal.setAttribute('aria-label', label || 'Project video');
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  modal.querySelector('.video-close').focus();
+  player.play().catch(() => {});
+}
+function closeVideo() {
+  const modal = document.getElementById('video-modal');
+  const player = document.getElementById('video-player');
+  player.pause();
+  player.removeAttribute('src');
+  player.load();
+  modal.hidden = true;
+  document.body.style.overflow = '';
+  if (videoOpener) videoOpener.focus();
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !document.getElementById('video-modal').hidden) closeVideo();
+});
+
 /* ── INIT ───────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
   const rows = document.querySelectorAll('.exp-row');
-  const defaultRow = rows[1] || rows[0]; // open Vanguard Senior (2nd row), fallback to first
+  const defaultRow = rows[0]; // open current Vanguard role (1st row)
   if (defaultRow) { defaultRow.classList.add('open'); defaultRow.setAttribute('aria-expanded', 'true'); }
 });
 
