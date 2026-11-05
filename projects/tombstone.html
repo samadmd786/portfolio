@@ -110,8 +110,16 @@ tailwind.config = {
           <div class="font-code text-[10px] uppercase tracking-wider text-on-surface-variant mt-0.5">Postgres Tables</div>
         </div>
       </div>
-      <div class="hero-in mt-12 max-w-4xl rounded-xl overflow-hidden glass-panel" style="animation-delay:460ms">
-        <video class="block w-full h-auto" src="../assets/video/tombstone.mp4" poster="../assets/video/tombstone.jpg" controls playsinline preload="none" aria-label="Tombstone project video"></video>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-[9fr_16fr] gap-6 items-start">
+        <figure class="hero-in min-w-0 rounded-xl overflow-hidden glass-panel" style="animation-delay:460ms">
+          <video class="block w-full h-auto" width="1080" height="1080" poster="../assets/video/tombstone-teaser.jpg" controls playsinline preload="none" aria-label="Tombstone launch teaser: coming soon">
+            <source src="../assets/video/tombstone-teaser.mp4" type="video/mp4"/>
+            <a href="../assets/video/tombstone-teaser.mp4">Watch the Tombstone launch teaser</a>.
+          </video>
+        </figure>
+        <div class="hero-in min-w-0 rounded-xl overflow-hidden glass-panel" style="animation-delay:520ms">
+          <video class="block w-full h-auto" width="1920" height="1080" src="../assets/video/tombstone.mp4" poster="../assets/video/tombstone.jpg" controls playsinline preload="none" aria-label="Tombstone project video"></video>
+        </div>
       </div>
     </div>
   </section>
