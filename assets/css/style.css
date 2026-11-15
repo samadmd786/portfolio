@@ -88,7 +88,7 @@ body { background-color: #ffffff; color: #2c2e2f; font-family: 'Inter', sans-ser
 /* ── MOBILE MENU ───────────────────────────────────── */
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
-  cursor: pointer; padding: 4px; background: none; border: none;
+  cursor: pointer; padding: 14px 11px; margin: -10px -11px; background: none; border: none;
 }
 .hamburger span { width: 22px; height: 2px; background: #2c2e2f; display: block; transition: all .3s; }
 
@@ -245,4 +245,24 @@ body { background-color: #ffffff; color: #2c2e2f; font-family: 'Inter', sans-ser
   .contact-grid    { gap: 2.5rem !important; }
   .proj-footer     { padding-top: 10px; }
   .preview-overlay-text { font-size: 10px; padding: 5px 12px; }
+}
+
+/* ---- Motion: split-text hero reveal (React Bits SplitText, vanilla port) ---- */
+.split-char { display: inline-block; opacity: 0; transform: translateY(0.45em); filter: blur(4px);
+  animation: splitIn .6s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--i) * 45ms + 150ms); }
+@keyframes splitIn { to { opacity: 1; transform: none; filter: none; } }
+
+/* ---- Motion: cursor spotlight on cards (React Bits SpotlightCard, vanilla port) ---- */
+.spotlight { position: relative; isolation: isolate; }
+.spotlight::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(0,156,222,0.10), transparent 70%);
+  opacity: 0; transition: opacity .25s ease; }
+.spotlight:hover::after { opacity: 1; }
+
+/* Bigger tap area for small "View on GitHub" links without moving layout */
+.proj-gh-link { padding-block: 10px; margin-block: -10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .split-char { animation: none; opacity: 1; transform: none; filter: none; }
+  .spotlight::after { display: none; }
 }

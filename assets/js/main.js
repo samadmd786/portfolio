@@ -264,3 +264,37 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   if (!REDUCE_MOTION) initParticles();
 });
+
+// ---- Motion: split-text hero reveal + card spotlight ----
+(() => {
+  const h1 = document.querySelector('#hero h1, h1');
+  if (h1 && !REDUCE_MOTION) {
+    h1.setAttribute('aria-label', h1.textContent.replace(/\s+/g, ' ').trim());
+    let i = 0;
+    const walk = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          [...n.textContent.replace(/\s+/g, ' ')].forEach((ch) => {
+            if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+            const sp = document.createElement('span');
+            sp.className = 'split-char'; sp.textContent = ch; sp.style.setProperty('--i', i++);
+            sp.setAttribute('aria-hidden', 'true');
+            frag.appendChild(sp);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    };
+    walk(h1);
+  }
+  if (REDUCE_MOTION || !window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.proj-card, #achievements .glass-panel').forEach((el) => {
+    el.classList.add('spotlight');
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+})();
